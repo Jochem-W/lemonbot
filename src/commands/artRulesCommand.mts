@@ -19,6 +19,7 @@ import {
   bold,
   channelMention,
   SlashCommandStringOption,
+  Colors,
 } from "discord.js"
 
 const acceptRules = staticComponent({
@@ -115,7 +116,8 @@ const rules = {
       )
       .setFooter({
         text: "If you have THOROUGHLY read through these rules, you can press the button below to gain access to the art channels!",
-      }),
+      })
+      .setColor(Colors.Blurple),
   ],
   components: [
     new ActionRowBuilder<MessageActionRowComponentBuilder>().setComponents(
