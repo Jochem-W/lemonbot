@@ -19,7 +19,6 @@ const model = z.object({
     modGeneral: z.string(),
     qotw: z.string(),
     restart: z.string(),
-    staff: z.array(z.string()),
   }),
   guild: z.string(),
   logs: z.object({
