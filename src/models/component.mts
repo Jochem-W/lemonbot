@@ -24,13 +24,13 @@ type Interaction<T extends ComponentType> = T extends ComponentType.Button
   ? ChannelSelectMenuInteraction
   : never
 
-export function staticComponent<T extends ComponentType>({
+export function staticComponent<T extends ComponentType, TT extends string>({
   type,
   name,
   handle,
 }: {
   type: T
-  name: string
+  name: TT
   handle: (interaction: Interaction<T>) => Promise<void>
 }) {
   if (Interactable.has(name)) {
