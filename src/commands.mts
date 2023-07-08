@@ -1,4 +1,5 @@
 import { AddEmojiCommand } from "./commands/addEmojiCommand.mjs"
+import { ArtRulesCommand } from "./commands/artRulesCommand.mjs"
 import { AvatarCommand } from "./commands/avatarCommand.mjs"
 import { AvatarContextCommand } from "./commands/avatarContextCommand.mjs"
 import { BannerCommand } from "./commands/bannerCommand.mjs"
@@ -26,6 +27,7 @@ import { ApplicationCommandType, Collection, type Snowflake } from "discord.js"
 
 export const SlashCommands: Command<ApplicationCommandType.ChatInput>[] = [
   AddEmojiCommand,
+  ArtRulesCommand,
   AvatarCommand,
   BannerCommand,
   CatCommand,
