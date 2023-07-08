@@ -76,7 +76,7 @@ const rules = {
       )
       .setFields(
         {
-          name: "1️⃣ › Please post in the respective art channels correctly.",
+          name: "1️⃣ › Please post in the correct art channels.",
           value: `${bold("1a ›")} ${channelMention(
             Config.art.general
           )} is for discussing art, sending commission sheets, etc.\n${bold(
@@ -91,7 +91,7 @@ const rules = {
         },
         {
           name: "2️⃣ › Suggestive and NSFW artwork and images are prohibited.",
-          value: `Said images violating this rule will be deleted respectively and if repeated, you will lose access to these channels. ${bold(
+          value: `Images violating this rule will be deleted, and, if this offense is repeated, you will lose access to these channels. ${bold(
             "This is a zero tolerance policy."
           )}`,
         },
@@ -99,22 +99,22 @@ const rules = {
           name: "3️⃣ › Do not repost art without credit.",
           value: `${bold(
             "3a ›"
-          )} Do not repost art without credit. Artist's work deserve to be properly regonized and appreciated.\n${bold(
+          )} Do not repost art without credit. Artist's works deserve to be properly regonized and appreciated.\n${bold(
             "3b ›"
           )} Do not post artwork in ${channelMention(
             Config.art.others
-          )} without proper linking and credit to the original artist.\n${bold(
+          )} without properly crediting the original artist.\n${bold(
             "3c ›"
           )} If you do not know the original artist, take the time and effort to find out, or do not post at all.`,
         },
         {
-          name: "4️⃣ › These are not official rules, but etiquette that we would like you to keep in mind!",
+          name: "4️⃣ › Use proper etiquette.",
           value:
-            "Please try not to post over other people here. Everyone's work deserves proper recognition and it can be hurtful to do this! We also would appreciate it if you did not use the art channels to only self promote yourself, this is a community, not an advertisement station!",
+            "Please try to not post over other people here. Everyone's work deserves proper recognition and it can be hurtful to do this! We would also appreciate it if you did not use the art channels to only self promote yourself; this is a community, not an advertisement station!",
         }
       )
       .setFooter({
-        text: "If you have THOROUGHLY read through these rules, please press the following button to gain access to sending and sharing art!",
+        text: "If you have THOROUGHLY read through these rules, you can press the button below to gain access to the art channels!",
       }),
   ],
   components: [
