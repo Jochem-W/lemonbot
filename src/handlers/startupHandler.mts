@@ -1,4 +1,4 @@
-import { GitHubClient } from "../clients.mjs"
+import { Db, GitHubClient } from "../clients.mjs"
 import { logError } from "../errors.mjs"
 import { Config } from "../models/config.mjs"
 import { handler } from "../models/handler.mjs"
@@ -47,6 +47,7 @@ export const StartupHandler = handler({
     function exitListener() {
       client
         .destroy()
+        .then(() => Db.end())
         .then(() => setState("DOWN"))
         .catch((e) => {
           e instanceof Error ? void logError(client, e) : console.error(e)

@@ -6,7 +6,7 @@ import postgres from "postgres"
 
 export const GitHubClient = new Octokit({ auth: Variables.githubToken })
 
-const client = postgres(Variables.databaseUrl)
-export const Drizzle = drizzle(client)
+export const Db = postgres(Variables.databaseUrl)
+export const Drizzle = drizzle(Db)
 
 await migrate(Drizzle, { migrationsFolder: "drizzle" })
