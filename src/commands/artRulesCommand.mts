@@ -142,6 +142,8 @@ export const ArtRulesCommand = slashCommand({
     ),
   ],
   async handle(interaction, messageId) {
+    rules.embeds[0]?.setTimestamp(interaction.createdAt)
+
     const channel = await interactionChannel(interaction, true)
     let rulesMessage
     if (messageId) {
