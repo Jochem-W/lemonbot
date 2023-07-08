@@ -66,6 +66,9 @@ const rules = {
   embeds: [
     new EmbedBuilder()
       .setTitle("Art category rules")
+      .setThumbnail(
+        "https://cdn.discordapp.com/attachments/1125446368002052186/1127325150245814362/IMG_4463.png"
+      )
       .setDescription(
         `${quote(
           "Please refer to, and read these rules thoroughly to gain the ability to send messages and images in the art channels!"
