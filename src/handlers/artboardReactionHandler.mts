@@ -61,7 +61,7 @@ export const ArtboardReactionHandler = handler({
     })
 
     await Drizzle.update(artboard)
-      .set({ threadId: threadMessage.thread?.id ?? null })
+      .set({ threadId: threadMessage.id })
       .where(eq(artboard.messageId, originalMessage.id))
   },
 })
