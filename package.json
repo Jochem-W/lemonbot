@@ -1,0 +1,82 @@
+{
+  "name": "lemonbot",
+  "version": "1.0.0",
+  "main": "dist/index.mjs",
+  "author": "Jochem-W",
+  "license": "AGPL-3.0-only",
+  "pnpm": {
+    "overrides": {
+      "discord.js": "dev",
+      "@discordjs/builders": "dev",
+      "@discordjs/collection": "dev",
+      "@discordjs/formatters": "dev",
+      "@discordjs/util": "dev",
+      "@discordjs/rest": "dev",
+      "@discordjs/ws": "dev"
+    }
+  },
+  "dependencies": {
+    "@octokit/rest": "^19.0.13",
+    "camelcase-keys": "^8.0.2",
+    "discord.js": "dev",
+    "drizzle-orm": "^0.27.0",
+    "gm": "^1.25.0",
+    "luxon": "^3.3.0",
+    "postgres": "^3.3.5",
+    "whatwg-mimetype": "^3.0.0",
+    "zod": "^3.21.4"
+  },
+  "devDependencies": {
+    "@trivago/prettier-plugin-sort-imports": "^4.1.1",
+    "@tsconfig/esm": "^1.0.4",
+    "@tsconfig/node20": "^1.0.2",
+    "@tsconfig/strictest": "^2.0.1",
+    "@types/gm": "^1.25.1",
+    "@types/luxon": "^3.3.0",
+    "@types/node": "^20.4.1",
+    "@types/whatwg-mimetype": "^3.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.61.0",
+    "@typescript-eslint/parser": "^5.61.0",
+    "drizzle-kit": "^0.19.3",
+    "eslint": "^8.44.0",
+    "eslint-config-prettier": "^8.8.0",
+    "prettier": "^2.8.8",
+    "typescript": "^5.1.6"
+  },
+  "optionalDependencies": {
+    "bufferutil": "^4.0.7",
+    "erlpack": "^0.1.4",
+    "utf-8-validate": "^6.0.3",
+    "zlib-sync": "^0.1.8"
+  },
+  "prettier": {
+    "semi": false,
+    "plugins": [
+      "@trivago/prettier-plugin-sort-imports"
+    ]
+  },
+  "eslintConfig": {
+    "extends": [
+      "eslint:recommended",
+      "plugin:@typescript-eslint/recommended",
+      "plugin:@typescript-eslint/recommended-requiring-type-checking",
+      "plugin:@typescript-eslint/strict",
+      "prettier"
+    ],
+    "rules": {
+      "@typescript-eslint/non-nullable-type-assertion-style": "off",
+      "@typescript-eslint/consistent-type-definitions": [
+        "warn",
+        "type"
+      ]
+    },
+    "parser": "@typescript-eslint/parser",
+    "plugins": [
+      "@typescript-eslint"
+    ],
+    "root": true,
+    "parserOptions": {
+      "project": "./tsconfig.json"
+    }
+  }
+}

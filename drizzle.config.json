@@ -1,0 +1,4 @@
+{
+  "schema": "./src/schema.mts",
+  "out": "./drizzle"
+}

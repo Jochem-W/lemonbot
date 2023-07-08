@@ -1,0 +1,11 @@
+{
+  "extends": [
+    "@tsconfig/node20/tsconfig",
+    "@tsconfig/esm/tsconfig",
+    "@tsconfig/strictest/tsconfig"
+  ],
+  "compilerOptions": {
+    "outDir": "dist",
+    "sourceMap": true
+  }
+}
