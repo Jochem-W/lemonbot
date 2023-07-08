@@ -2,12 +2,18 @@ import { readFile } from "fs/promises"
 import { z } from "zod"
 
 const model = z.object({
+  art: z.object({
+    general: z.string(),
+    others: z.string(),
+    wips: z.string(),
+    yours: z.string(),
+  }),
+  applicationId: z.string(),
   autoBan: z.object({
     banReason: z.string(),
     days: z.number(),
     unbanReason: z.string(),
   }),
-  applicationId: z.string(),
   artboard: z.object({
     id: z.string(),
     reactionCount: z.number(),
