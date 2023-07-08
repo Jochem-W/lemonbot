@@ -1,6 +1,5 @@
 import { GitHubClient } from "../clients.mjs"
 import { logError } from "../errors.mjs"
-import { Jobs } from "../jobs.mjs"
 import { Config } from "../models/config.mjs"
 import { handler } from "../models/handler.mjs"
 import { fetchChannel, uniqueName } from "../utilities/discordUtilities.mjs"
@@ -46,10 +45,6 @@ export const StartupHandler = handler({
     await setVersion()
 
     function exitListener() {
-      for (const job of Jobs) {
-        job.stop()
-      }
-
       client
         .destroy()
         .then(() => setState("DOWN"))
@@ -60,10 +55,6 @@ export const StartupHandler = handler({
 
     process.on("SIGINT", () => exitListener())
     process.on("SIGTERM", () => exitListener())
-
-    for (const job of Jobs) {
-      job.start()
-    }
   },
 })
 
