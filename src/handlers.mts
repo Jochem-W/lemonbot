@@ -27,7 +27,7 @@ import { UnbanOldAccountsHandler } from "./handlers/unbanOldAccountsHandler.mjs"
 import { UpdatePresenceOnJoinHandler } from "./handlers/updatePresenceOnJoinHandler.mjs"
 import { UpdatePresenceOnLeaveHandler } from "./handlers/updatePresenceOnLeaveHandler.mjs"
 import { UpdatePresenceOnStartupHandler } from "./handlers/updatePresenceOnStartupHandler.mjs"
-import type { Handler } from "./types/handler.mjs"
+import type { Handler } from "./models/handler.mjs"
 import type { ClientEvents } from "discord.js"
 
 export const Handlers: Handler<keyof ClientEvents>[] = [
