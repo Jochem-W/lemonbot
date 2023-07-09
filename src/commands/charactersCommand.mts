@@ -37,7 +37,7 @@ const characters: Character[] = [
     colour: 0xff525e,
     description:
       "Your local demon cat. He has horns underneath that headband! Although they are partly demon, Kuiper is still not as evil as you'd think she is.",
-    emoji: "kuiper",
+    emoji: "cKuiper",
     images: [
       "https://pbs.twimg.com/media/FkYFNCrWIAEDcvj?format=jpg&name=large",
       "https://pbs.twimg.com/media/Fbgj0X4WQAATq5w?format=jpg&name=large",
@@ -55,7 +55,7 @@ const characters: Character[] = [
     colour: 0x72e387,
     description:
       "Half skeleton, half fluffy! This cat can glow in the dark, and is perfect for halloween since he doesn't have to spend money on costumes!",
-    emoji: "erwin",
+    emoji: "cErwin",
     images: [
       "https://cdn.discordapp.com/attachments/1125446368002052186/1127299068423569568/FjmcX7cX0AMm8WY.jpg",
       "https://pbs.twimg.com/media/Fj6Itl_WIAEv7iz?format=jpg&name=large",
@@ -72,7 +72,7 @@ const characters: Character[] = [
     colour: 0xfee177,
     description:
       "A bee, AND a cat! This fella loves flowers and (sometimes) his brother. Don't call him short.",
-    emoji: "beecat",
+    emoji: "cBeecat",
     images: [
       "https://cdn.discordapp.com/attachments/1125446368002052186/1127298967131140267/IMG_4561.jpg",
       "https://pbs.twimg.com/media/FnXky_BWAAA0LQk?format=png",
@@ -89,7 +89,7 @@ const characters: Character[] = [
     colour: 0xfecc67,
     description:
       "Although he is part wasp, Waspdog is as sweet as can be! He is mischievous and a bit silly and devilish, but would never bite or sting. The worst he does is enact in sibling rivalry with his brother, Beecat.",
-    emoji: "waspdog",
+    emoji: "cWaspdog",
     images: [
       "https://pbs.twimg.com/media/FVkmnqhX0AMQYWb?format=jpg&name=large",
       "https://pbs.twimg.com/media/FMS4AEOXsAEm3Nw?format=jpg&name=large",
@@ -106,7 +106,7 @@ const characters: Character[] = [
     colour: 0x7ff3fe,
     description:
       "Your local server Protogen. He CAN run a google search on the spot if you politely ask them for it.",
-    emoji: "syntax",
+    emoji: "cSyntax",
     images: [
       "https://cdn.discordapp.com/attachments/1125446368002052186/1127298812373913751/IMG_4562.jpg",
       "https://pbs.twimg.com/media/FQ9M2uLWUAEnbNu?format=jpg&name=large",
@@ -123,7 +123,7 @@ const characters: Character[] = [
     colour: 0xff4d63,
     description:
       "Syntax's evil brother, Error! Now don't worry, he doesn't hack multi-million-dollar companies, they just want to steal from the local best buy.",
-    emoji: "error",
+    emoji: "cError",
     images: [
       "https://pbs.twimg.com/media/FZLb-pwXkAIQLhI?format=jpg&name=large",
       "https://pbs.twimg.com/media/FcZVN8UXoAAUl-f?format=jpg&name=large",
@@ -140,7 +140,7 @@ const characters: Character[] = [
     colour: 0xf3ffff,
     description:
       "A Ghost Cat, also friends with Kuiper, they hang out sometimes! No unfinished business here, he is a guide for the lost souls of kittens gone before their time. They seem to like him.",
-    emoji: "fjord",
+    emoji: "cFjord",
     images: [
       "https://cdn.discordapp.com/attachments/1125446368002052186/1127298584694489148/IMG_4559.jpg",
       "https://pbs.twimg.com/media/FfM9-cjXEAUdAhz?format=jpg&name=large",
@@ -157,7 +157,7 @@ const characters: Character[] = [
     colour: 0x7e92db,
     description:
       "She's a shy dragon and gets flustered a lot! Despite this, she does not stutter over space facts one bit.",
-    emoji: "cirrus",
+    emoji: "cCirrus",
     images: [
       "https://pbs.twimg.com/media/FZlU5bOWAAAn8aa?format=jpg&name=large",
       "https://pbs.twimg.com/media/Fp67dXfXsAERGzV?format=jpg&name=large",
@@ -174,7 +174,7 @@ const characters: Character[] = [
     colour: 0xac3b33,
     description:
       "Local Ferret that Commits Crimes™ He isn't that mean though, he just likes to threaten with his bat and be on their way.",
-    emoji: "kade",
+    emoji: "cKade",
     images: [
       "https://cdn.discordapp.com/attachments/1125446368002052186/1127298256746074184/IMG_4661.png",
       "https://pbs.twimg.com/media/FO8tjJGWQAAzkr2?format=jpg&name=large",
@@ -191,7 +191,7 @@ const characters: Character[] = [
     colour: 0xffeca1,
     description:
       "He was named on a Wednesday! Not much to say about this little guy, he is quite silly though.",
-    emoji: "friday",
+    emoji: "cFriday",
     images: [
       "https://pbs.twimg.com/media/FBByvsEUcAg8KMb?format=jpg&name=medium",
       "https://pbs.twimg.com/media/FQUV65pWQAYKCNo?format=jpg&name=large",
@@ -208,7 +208,7 @@ const characters: Character[] = [
     colour: 0x68ffff,
     description:
       "A robocat made to assist a now abandoned chemical plant. She's quite reserved, and doesn't talk to bio-organisms much, but i'm sure she'll like you :)",
-    emoji: "indi",
+    emoji: "cIndi",
     images: [
       "https://pbs.twimg.com/media/EzbgvOQXEAAGkck?format=jpg&name=large",
       "https://cdn.discordapp.com/attachments/1125446368002052186/1127297909243789382/image0_1.jpg",
@@ -225,7 +225,7 @@ const characters: Character[] = [
     colour: 0xff3b92,
     description:
       "Sometime, somewhere, somehow, someone. Demon? cat? It just exists, shapeshifting properties.",
-    emoji: "sometime",
+    emoji: "cSometime",
     images: [
       "https://cdn.discordapp.com/attachments/1125446368002052186/1127297739831640164/8409148C-03A8-4EB1-81C7-23C7DFDDF85D.png",
     ],
@@ -240,7 +240,7 @@ const characters: Character[] = [
     colour: 0x9b70b7,
     description:
       "A space calico! He is a nerd for space and science stuff, and is even made out of star dust!",
-    emoji: "atom",
+    emoji: "cAtom",
     images: [
       "https://pbs.twimg.com/media/FgQdX3bX0AYb1_J?format=jpg&name=large",
       "https://pbs.twimg.com/media/E2FaxxWXoAcs_8I?format=jpg&name=large",
