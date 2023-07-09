@@ -62,34 +62,6 @@ export const UserUpdateHandler = handler({
       )
     }
 
-    if (!newUser.banner) {
-      await newUser.fetch()
-    }
-
-    if (oldUser.banner !== newUser.banner) {
-      const oldBanner = oldUser.bannerURL({ size: 4096 })
-      const newBanner = newUser.bannerURL({ size: 4096 })
-
-      embeds.push(
-        new EmbedBuilder()
-          .setTitle("🖼️ Banner changed")
-          .setFields(
-            {
-              name: "Before",
-              value: oldBanner ? hyperlink("Click here", oldBanner) : "\u200b",
-              inline: true,
-            },
-            {
-              name: "After",
-              value: newBanner ? hyperlink("Click here", newBanner) : "\u200b",
-              inline: true,
-            }
-          )
-          .setImage(newBanner ?? null)
-          .setColor(Colours.orange[500])
-      )
-    }
-
     if (oldUser.discriminator !== newUser.discriminator) {
       embeds.push(
         new EmbedBuilder()
