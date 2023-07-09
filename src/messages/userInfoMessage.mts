@@ -64,6 +64,8 @@ export async function userInfoMessage(interaction: Interaction, user?: User) {
 
   const member = await interactionMember(interaction, { user })
   if (member) {
+    embed.setThumbnail(member.displayAvatarURL({ size: 4096 }))
+
     const presence = formatPresence(member)
     if (presence) {
       lines.push(presence)
@@ -77,13 +79,18 @@ export async function userInfoMessage(interaction: Interaction, user?: User) {
       })
     }
 
-    embed.setThumbnail(member.displayAvatarURL({ size: 4096 })).addFields({
-      name: "Roles",
-      value: member.roles.cache
-        .filter((r) => r.id !== member.guild.roles.everyone.id)
-        .map((r) => roleMention(r.id))
-        .join(" "),
-    })
+    const roles = member.roles.cache.filter(
+      (r) => r.id !== member.guild.roles.everyone.id
+    )
+    if (roles.size > 0) {
+      embed.addFields({
+        name: "Roles",
+        value: member.roles.cache
+          .filter((r) => r.id !== member.guild.roles.everyone.id)
+          .map((r) => roleMention(r.id))
+          .join(" "),
+      })
+    }
   }
 
   embed.setDescription(lines.join("\n"))
