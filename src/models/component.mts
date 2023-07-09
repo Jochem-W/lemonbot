@@ -1,5 +1,5 @@
-import { DuplicateNameError, InvalidComponentTypeError } from "../errors.mjs"
-import { Interactable } from "../interactable.mjs"
+import { Components } from "../components.mjs"
+import { ComponentTypeMismatchError, DuplicateNameError } from "../errors.mjs"
 import {
   ComponentType,
   StringSelectMenuInteraction,
@@ -24,6 +24,11 @@ type Interaction<T extends ComponentType> = T extends ComponentType.Button
   ? ChannelSelectMenuInteraction
   : never
 
+export type Component<T extends ComponentType> = {
+  type: T
+  handle: (interaction: Interaction<T>) => Promise<void>
+}
+
 export function staticComponent<T extends ComponentType, TT extends string>({
   type,
   name,
@@ -33,16 +38,23 @@ export function staticComponent<T extends ComponentType, TT extends string>({
   name: TT
   handle: (interaction: Interaction<T>) => Promise<void>
 }) {
-  if (Interactable.has(name)) {
+  if (Components.has(name)) {
     throw new DuplicateNameError(name)
   }
 
-  Interactable.set(name, async (interaction) => {
-    if (interaction.componentType !== type) {
-      throw new InvalidComponentTypeError(name, type, interaction.componentType)
-    }
+  Components.set(name, {
+    type,
+    handle: async (interaction) => {
+      if (interaction.componentType !== type) {
+        throw new ComponentTypeMismatchError(
+          name,
+          type,
+          interaction.componentType
+        )
+      }
 
-    await handle(interaction as Interaction<T>)
+      await handle(interaction as Interaction<T>)
+    },
   })
 
   return name
@@ -60,19 +72,26 @@ export function component<
   name: string
   handle: (interaction: Interaction<TT>, ...args: T) => Promise<void>
 }) {
-  if (Interactable.has(name)) {
+  if (Components.has(name)) {
     throw new DuplicateNameError(name)
   }
 
-  Interactable.set(name, async (interaction) => {
-    if (interaction.componentType !== type) {
-      throw new InvalidComponentTypeError(name, type, interaction.componentType)
-    }
+  Components.set(name, {
+    type,
+    handle: async (interaction) => {
+      if (interaction.componentType !== type) {
+        throw new ComponentTypeMismatchError(
+          name,
+          type,
+          interaction.componentType
+        )
+      }
 
-    await handle(
-      interaction as Interaction<TT>,
-      ...(interaction.customId.split(":").slice(1) as [...T])
-    )
+      await handle(
+        interaction as Interaction<TT>,
+        ...(interaction.customId.split(":").slice(1) as [...T])
+      )
+    },
   })
 
   function generateCustomId(...args: T) {

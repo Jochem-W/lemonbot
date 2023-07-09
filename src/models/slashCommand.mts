@@ -28,6 +28,7 @@ import {
   ApplicationCommandOptionType,
   SlashCommandSubcommandBuilder,
   SlashCommandSubcommandGroupBuilder,
+  ApplicationCommandType,
 } from "discord.js"
 
 type Options =
@@ -332,7 +333,12 @@ export function slashCommand<
     transform(builder)
   }
 
-  return { builder, handle: getOptionsAndHandle, autocomplete }
+  return {
+    type: ApplicationCommandType.ChatInput as ApplicationCommandType.ChatInput,
+    builder,
+    handle: getOptionsAndHandle,
+    autocomplete,
+  }
 }
 
 type SlashOption<T extends Options, TT extends boolean> = {

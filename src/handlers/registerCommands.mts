@@ -4,7 +4,7 @@ import {
   SlashCommands,
   UserContextMenuCommands,
 } from "../commands.mjs"
-import { CommandNotFoundByNameError } from "../errors.mjs"
+import { CommandNotFoundError } from "../errors.mjs"
 import { Config } from "../models/config.mjs"
 import { handler } from "../models/handler.mjs"
 import type { Command } from "../types/command.mjs"
@@ -61,7 +61,7 @@ export const RegisterCommands = handler({
       }
 
       if (!command) {
-        throw new CommandNotFoundByNameError(applicationCommand.name)
+        throw new CommandNotFoundError(applicationCommand.name)
       }
 
       RegisteredCommands.set(applicationCommand.id, command)

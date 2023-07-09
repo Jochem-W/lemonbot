@@ -1,11 +1,10 @@
 import { ArtboardMessageCreateHandler } from "./handlers/artboardMessageCreateHandler.mjs"
 import { ArtboardMessageUpdateHandler } from "./handlers/artboardMessageUpdateHandler.mjs"
 import { ArtboardReactionHandler } from "./handlers/artboardReactionHandler.mjs"
-import { AutocompleteHandler } from "./handlers/autocompleteHandler.mjs"
 import { BanNewAccountsHandler } from "./handlers/banNewAccountsHandler.mjs"
-import { CommandHandler } from "./handlers/commandHandler.mjs"
 import { CrosspostHandler } from "./handlers/crosspostHandler.mjs"
 import { DebugHandler } from "./handlers/debugHandler.mjs"
+import { InteractionHandler } from "./handlers/interactionHandler.mjs"
 import { LemonMentionHandler } from "./handlers/lemonMentionHandler.mjs"
 import { GuildBanAddHandler } from "./handlers/logging/guildBanAddHandler.mjs"
 import { GuildBanRemoveHandler } from "./handlers/logging/guildBanRemoveHandler.mjs"
@@ -19,7 +18,6 @@ import { UserUpdateHandler } from "./handlers/logging/userUpdateHandler.mjs"
 import { VoiceLogsHandler } from "./handlers/logging/voiceLogsHandler.mjs"
 import { MediaRoleHandler } from "./handlers/mediaRoleHandler.mjs"
 import { MediaRoleStartupHandler } from "./handlers/mediaRoleStartupHandler.mjs"
-import { MessageComponentHandler } from "./handlers/messageComponentHandler.mjs"
 import { QotwHandler } from "./handlers/qotwHandler.mjs"
 import { RegisterCommands } from "./handlers/registerCommands.mjs"
 import { StartupHandler } from "./handlers/startupHandler.mjs"
@@ -34,15 +32,13 @@ export const Handlers: Handler<keyof ClientEvents>[] = [
   ArtboardMessageCreateHandler,
   ArtboardMessageUpdateHandler,
   ArtboardReactionHandler,
-  AutocompleteHandler,
   BanNewAccountsHandler,
-  CommandHandler,
   CrosspostHandler,
   DebugHandler,
+  InteractionHandler,
   LemonMentionHandler,
   MediaRoleHandler,
   MediaRoleStartupHandler,
-  MessageComponentHandler,
   QotwHandler,
   RegisterCommands,
   StartupHandler,

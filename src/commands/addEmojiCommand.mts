@@ -61,7 +61,7 @@ export const AddEmojiCommand = slashCommand({
         }
 
         if (image.size > maxEmojiSize) {
-          throw new FileSizeError(maxEmojiSize)
+          throw new FileSizeError(image.size, maxEmojiSize)
         }
 
         await interaction.deferReply({ ephemeral: true })
@@ -132,7 +132,7 @@ export const AddEmojiCommand = slashCommand({
         }
 
         if (image.size > maxStickerSize) {
-          throw new FileSizeError(maxEmojiSize)
+          throw new FileSizeError(image.size, maxEmojiSize)
         }
 
         await interaction.deferReply({ ephemeral: true })

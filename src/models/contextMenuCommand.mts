@@ -63,5 +63,5 @@ export function contextMenuCommand<T extends ContextMenuCommandType>({
     }
   }
 
-  return { builder, handle: getOptionAndHandle }
+  return { builder, handle: getOptionAndHandle, type }
 }

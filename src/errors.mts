@@ -1,8 +1,6 @@
 import { Config } from "./models/config.mjs"
-import type { Command } from "./types/command.mjs"
 import { makeErrorMessage } from "./utilities/embedUtilities.mjs"
 import {
-  Attachment,
   ChannelType,
   CommandInteraction,
   type Channel,
@@ -14,7 +12,6 @@ import {
   ComponentType,
   Client,
 } from "discord.js"
-import type { DateTime } from "luxon"
 import type MIMEType from "whatwg-mimetype"
 
 class CustomError extends Error {
@@ -31,8 +28,10 @@ export class DownloadError extends CustomError {
 }
 
 export class FileSizeError extends CustomError {
-  public constructor(max: number) {
-    super(`The file size exceeds the maximum file size of ${max} bytes`)
+  public constructor(current: number, max: number) {
+    super(
+      `The file size ${current} exceeds the maximum file size of ${max} bytes`
+    )
   }
 }
 
@@ -48,37 +47,53 @@ export class NotImplementedError extends CustomError {
   }
 }
 
-export class BotError extends CustomError {
-  public constructor(message: string) {
-    super(message)
+export class CommandNotFoundError extends CustomError {
+  public constructor(id: Snowflake) {
+    super(`Couldn't find a command with ID ${id}`)
   }
 }
 
-export class InvalidArgumentsError extends BotError {
-  public constructor(message: string) {
-    super(message)
+export class CommandTypeMismatchError extends CustomError {
+  public constructor(
+    id: Snowflake,
+    expected: ApplicationCommandType,
+    got: ApplicationCommandType
+  ) {
+    super(`${id} expected a command of type ${expected}, got ${got} instead`)
   }
 }
 
-export class CommandNotFoundError extends BotError {
-  public constructor(message: string) {
-    super(message)
+export class InvalidCustomIdError extends CustomError {
+  public constructor(customId: string) {
+    super(`The custom ID ${customId} is invalid`)
   }
 }
 
-export class CommandNotFoundByIdError extends CommandNotFoundError {
-  public constructor(commandId: string) {
-    super(`Command with ID "${commandId}" couldn't be found.`)
+export class ComponentNotFoundError extends CustomError {
+  public constructor(name: string) {
+    super(`Couldn't find a component with name ${name}`)
   }
 }
 
-export class CommandNotFoundByNameError extends CommandNotFoundError {
-  public constructor(commandName: string) {
-    super(`Command with name "${commandName}" couldn't be found.`)
+export class ComponentTypeMismatchError extends CustomError {
+  public constructor(
+    name: string,
+    expected: ComponentType,
+    got: ComponentType
+  ) {
+    super(
+      `${name} expected a component of type ${expected}, got ${got} instead`
+    )
   }
 }
 
-export class SubcommandGroupNotFoundError extends BotError {
+export class ModalNotFoundError extends CustomError {
+  public constructor(name: string) {
+    super(`Couldn't find a modal with name ${name}`)
+  }
+}
+
+export class SubcommandGroupNotFoundError extends CustomError {
   public constructor(
     interaction: CommandInteraction | AutocompleteInteraction,
     subcommandGroup: string
@@ -89,7 +104,7 @@ export class SubcommandGroupNotFoundError extends BotError {
   }
 }
 
-export class SubcommandNotFoundError extends BotError {
+export class SubcommandNotFoundError extends CustomError {
   public constructor(
     interaction: CommandInteraction | AutocompleteInteraction,
     subcommand: string
@@ -100,88 +115,50 @@ export class SubcommandNotFoundError extends BotError {
   }
 }
 
-export class OptionNotAutocompletableError extends BotError {
+export class OptionNotAutocompletableError extends CustomError {
   public constructor(option: ApplicationCommandOptionBase) {
     super(
-      `Option "${option.name}" (type "${option.type}") doesn't support autocompletion`
+      `Option ${option.name} of type ${option.type} doesn't support autocompletion`
     )
   }
 }
 
-export class AutocompleteOptionNotFoundError extends BotError {
+export class AutocompleteOptionNotFoundError extends CustomError {
   public constructor(
     interaction: AutocompleteInteraction,
     option: AutocompleteFocusedOption
   ) {
     super(
-      `Command "${interaction.commandName}" doesn't have the "${option.name}" option`
+      `Command ${interaction.commandName} doesn't have the ${option.name} option`
     )
   }
 }
 
-export class NoAutocompleteHandlerError extends BotError {
+export class NoAutocompleteHandlerError extends CustomError {
   public constructor(interaction: AutocompleteInteraction) {
-    super(`Command "${interaction.commandName}" has no autocomplete handler.`)
+    super(`Command ${interaction.commandName} has no autocomplete handler.`)
   }
 }
 
-export class NoMessageComponentHandlerError extends BotError {
-  public constructor(command: Command<ApplicationCommandType>) {
-    super(
-      `Command "${command.builder.name}" doesn't support message component interactions.`
-    )
-  }
-}
-
-export class NoPermissionError extends BotError {
-  public constructor() {
-    super("You don't have permission to use this command.")
-  }
-}
-
-export class GuildOnlyError extends BotError {
+export class GuildOnlyError extends CustomError {
   public constructor() {
     super("This command can only be used in a server.")
   }
 }
 
-export class InvalidPenaltyError extends BotError {
-  public constructor(penalty: string) {
-    super(`Invalid penalty "${penalty}".`)
-  }
-}
-
-export class NoContentTypeError extends BotError {
-  public constructor(attachment: Attachment) {
-    super(`The file "${attachment.name}" has an invalid filetype.`)
-  }
-}
-
-export class ImageOnlyError extends BotError {
-  public constructor(attachment: Attachment) {
-    super(`The file "${attachment.name}" is not an image.`)
-  }
-}
-
-export class InvalidCustomIdError extends BotError {
-  public constructor(customId: string) {
-    super(`Invalid custom ID "${customId}".`)
-  }
-}
-
-export class ChannelNotFoundError extends BotError {
+export class ChannelNotFoundError extends CustomError {
   public constructor(channelId: string) {
-    super(`Channel with ID "${channelId}" couldn't be found.`)
+    super(`Channel with ID ${channelId} couldn't be found.`)
   }
 }
 
-export class InvalidChannelTypeError extends BotError {
+export class InvalidChannelTypeError extends CustomError {
   public constructor(channel: Channel, expected?: ChannelType | ChannelType[]) {
     let channelString
     if ("name" in channel && channel.name) {
-      channelString = `Channel "${channel.name}" (ID: "${channel.id}")`
+      channelString = `Channel ${channel.name} (ID: ${channel.id})`
     } else {
-      channelString = `"${channel.id}"`
+      channelString = `Channel ${channel.id}`
     }
 
     if (expected === undefined) {
@@ -200,85 +177,25 @@ export class InvalidChannelTypeError extends BotError {
   }
 }
 
-export class OwnerOnlyError extends BotError {
+export class OwnerOnlyError extends CustomError {
   public constructor() {
     super("This command can only be used by the bot owner.")
   }
 }
 
-export class AuditLogNotFoundError extends BotError {
-  public constructor(message: string) {
-    super(message)
-  }
-}
-
-export class InvalidAuditLogEntryError extends BotError {
-  public constructor(message: string) {
-    super(message)
-  }
-}
-
-export class NoValidCodeError extends BotError {
-  public constructor(message: string) {
-    super(message)
-  }
-}
-
-export class ButtonNotFoundError extends BotError {
-  public constructor(name: string) {
-    super(`Couldn't find a button with name "${name}"`)
-  }
-}
-
-export class ModalNotFoundError extends BotError {
-  public constructor(name: string) {
-    super(`Couldn't find a modal with name "${name}"`)
-  }
-}
-
-export class DuplicateNameError extends BotError {
+export class DuplicateNameError extends CustomError {
   public constructor(name: string) {
     super(`A component with the name ${name} already exists`)
   }
 }
 
-export class InvalidComponentTypeError extends BotError {
-  public constructor(
-    name: string,
-    expected: ComponentType,
-    got: ComponentType
-  ) {
-    super(
-      `Expected component of type "${expected}" for "${name}", got "${got}" instead`
-    )
-  }
-}
-
-export class UnregisteredNameError extends BotError {
-  public constructor(type: "button" | "modal", name: string) {
-    super(`A ${type} with the name ${name} doesn't exist`)
-  }
-}
-
-export class InvalidPathError extends BotError {
-  public constructor(value: string) {
-    super(`The supplied path ${value} is invalid`)
-  }
-}
-
-export class InvalidMethodError extends BotError {
-  public constructor(value: string) {
-    super(`The supplied method ${value} is invalid`)
-  }
-}
-
-export class NoDataError extends BotError {
+export class NoDataError extends CustomError {
   public constructor(message: string) {
     super(message)
   }
 }
 
-export class InvalidRoleError extends BotError {
+export class InvalidRoleError extends CustomError {
   public constructor(id: Snowflake) {
     super(`The role ${id} is invalid`)
   }
@@ -287,23 +204,6 @@ export class InvalidRoleError extends BotError {
 export class InvalidEmbedError extends CustomError {
   public constructor(message: string) {
     super(message)
-  }
-}
-
-export class NoMessageRevisionsError extends CustomError {
-  public constructor(id: Snowflake) {
-    super(`Message with ID "${id}" has no revisions`)
-  }
-}
-export class InvalidStreamError extends CustomError {
-  public constructor() {
-    super("The stream isn't an instance of Readable")
-  }
-}
-
-export class InvalidDateTimeError extends CustomError {
-  public constructor(date: DateTime) {
-    super(`The date ${JSON.stringify(date.toObject())} is invalid`)
   }
 }
 
