@@ -28,7 +28,7 @@ const responseModel = z.object({
 
 const size = 100
 
-const regenerate = component<[string], ComponentType.Button>({
+const regenerate = component({
   type: ComponentType.Button,
   name: "palette",
   async handle(interaction, userId) {

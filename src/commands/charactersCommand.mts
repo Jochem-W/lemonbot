@@ -296,7 +296,7 @@ export const CharactersCommand = slashCommand({
   },
 })
 
-const updateCharacters = component<[string], ComponentType.StringSelect>({
+const updateCharacters = component({
   type: ComponentType.StringSelect,
   name: "character",
   async handle(interaction, userId) {
