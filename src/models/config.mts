@@ -30,6 +30,7 @@ const model = z.object({
   logs: z.object({
     member: z.string(),
     message: z.string(),
+    user: z.string(),
     verify: z.string(),
     voice: z.string(),
   }),

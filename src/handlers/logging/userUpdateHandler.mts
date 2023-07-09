@@ -21,7 +21,7 @@ export const UserUpdateHandler = handler({
   async handle(oldUser, newUser) {
     logChannel ??= await fetchChannel(
       newUser.client,
-      Config.logs.member,
+      Config.logs.user,
       ChannelType.GuildText
     )
 
