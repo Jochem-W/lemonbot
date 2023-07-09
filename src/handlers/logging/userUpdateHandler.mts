@@ -40,7 +40,7 @@ export const UserUpdateHandler = handler({
 
     if (oldUser.avatar !== newUser.avatar) {
       const oldAvatar = oldUser.avatarURL()
-      const newAvatar = oldUser.avatarURL()
+      const newAvatar = newUser.avatarURL()
 
       embeds.push(
         new EmbedBuilder()
