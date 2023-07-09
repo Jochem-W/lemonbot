@@ -41,7 +41,7 @@ export const GuildMemberUpdateHandler = handler({
         .setColor(Colours.orange[500]),
     ]
 
-    if (oldMember.roles.cache.size !== newMember.roles.cache.size) {
+    if (oldMember.roles.cache.difference(newMember.roles.cache).size > 0) {
       embeds.push(
         new EmbedBuilder()
           .setColor(Colours.orange[500])
@@ -51,7 +51,7 @@ export const GuildMemberUpdateHandler = handler({
               name: "➖ Removed",
               value:
                 oldMember.roles.cache
-                  .difference(newMember.roles.cache)
+                  .subtract(newMember.roles.cache)
                   .map((r) => roleMention(r.id))
                   .join(" ") || "\u200b",
               inline: true,
@@ -60,7 +60,7 @@ export const GuildMemberUpdateHandler = handler({
               name: "➕ Added",
               value:
                 newMember.roles.cache
-                  .difference(oldMember.roles.cache)
+                  .subtract(oldMember.roles.cache)
                   .map((r) => roleMention(r.id))
                   .join(" ") || "\u200b",
               inline: true,
