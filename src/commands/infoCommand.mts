@@ -154,7 +154,8 @@ export const InfoCommand = slashCommand({
               .filter(
                 (e) =>
                   e.name?.toLowerCase().includes(value.toLowerCase()) &&
-                  e.guild.id === interaction.guildId
+                  e.guild.id === interaction.guildId &&
+                  e.roles.cache.size === 0
               )
               .slice(0, 25)
               .map((e) => ({ name: e.name as string, value: e.id }))
@@ -166,11 +167,11 @@ export const InfoCommand = slashCommand({
         const emoji =
           interaction.client.emojis.cache.get(id) ??
           interaction.client.emojis.cache.find((e) => e.name === id)
-        if (!emoji) {
+        if (!emoji || emoji.roles.cache.size > 0) {
           await interaction.reply({
             embeds: [
               new EmbedBuilder()
-                .setTitle("Emojis")
+                .setTitle("Invalid emoji")
                 .setDescription(`The emoji ${inlineCode(id)} doesn't exist!`)
                 .setColor(Colours.red[500]),
             ],
