@@ -47,7 +47,7 @@ export const GuildMemberUpdateHandler = handler({
       if (removed.size === 0) {
         embeds.push(
           new EmbedBuilder()
-            .setColor(Colours.amber[500])
+            .setColor(Colours.green[500])
             .setTitle("➕ Roles added")
             .setDescription(
               added.map((r) => roleMention(r.id)).join(" ") || null
@@ -56,7 +56,7 @@ export const GuildMemberUpdateHandler = handler({
       } else if (added.size === 0) {
         embeds.push(
           new EmbedBuilder()
-            .setColor(Colours.amber[500])
+            .setColor(Colours.red[500])
             .setTitle("➖ Roles removed")
             .setDescription(
               removed.map((r) => roleMention(r.id)).join(" ") || null
