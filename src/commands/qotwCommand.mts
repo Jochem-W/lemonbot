@@ -1,5 +1,6 @@
 import { Drizzle } from "../clients.mjs"
-import { Colours } from "../colours.mjs"
+import { invalidQuestionMessage } from "../messages/invalidQuestionMessage.mjs"
+import { modal, modalInput } from "../models/modal.mjs"
 import {
   slashCommand,
   slashOption,
@@ -11,9 +12,45 @@ import {
   PermissionFlagsBits,
   SlashCommandIntegerOption,
   SlashCommandStringOption,
-  inlineCode,
+  TextInputBuilder,
+  TextInputStyle,
 } from "discord.js"
 import { asc, desc, eq } from "drizzle-orm"
+
+const editModal = modal({
+  title: "Edit question",
+  id: "qotw-edit",
+  components: [
+    modalInput(
+      "body",
+      true,
+      new TextInputBuilder().setLabel("Body").setStyle(TextInputStyle.Paragraph)
+    ),
+  ],
+  async handle(interaction, { body }, id) {
+    const intId = parseInt(id)
+    const [old] = await Drizzle.select().from(qotw).where(eq(qotw.id, intId))
+
+    if (!old) {
+      await interaction.reply(invalidQuestionMessage(interaction, id, body))
+      return
+    }
+
+    await Drizzle.update(qotw).set({ body }).where(eq(qotw.id, intId))
+    await interaction.reply({
+      embeds: [
+        new EmbedBuilder()
+          .setTitle("Question edited")
+          .setFields(
+            { name: "Old body", value: old.body },
+            { name: "New body", value: body }
+          )
+          .setFooter({ text: id })
+          .setTimestamp(Date.now()),
+      ],
+    })
+  },
+})
 
 async function autocompleteQuestions(value: string) {
   const questions = await Drizzle.select().from(qotw).orderBy(asc(qotw.body))
@@ -102,48 +139,16 @@ export const QotwCommand = slashCommand({
             return await autocompleteQuestions(value)
           },
         }),
-        slashOption(
-          true,
-          new SlashCommandStringOption()
-            .setName("body")
-            .setDescription("The new body of the question")
-        ),
       ],
-      async handle(interaction, id, body) {
-        const [question] = await Drizzle.select()
-          .from(qotw)
-          .where(eq(qotw.id, id))
-        if (!question) {
-          await interaction.reply({
-            embeds: [
-              new EmbedBuilder()
-                .setTitle("Invalid question")
-                .setDescription(
-                  `Question with ID ${inlineCode(
-                    id.toString(10)
-                  )} doesn't exist`
-                )
-                .setTimestamp(Date.now())
-                .setColor(Colours.red[500]),
-            ],
-          })
+      async handle(interaction, id) {
+        const stringId = id.toString(10)
+        const [old] = await Drizzle.select().from(qotw).where(eq(qotw.id, id))
+        if (!old) {
+          await interaction.reply(invalidQuestionMessage(interaction, stringId))
           return
         }
 
-        await Drizzle.update(qotw).set({ body }).where(eq(qotw.id, id))
-
-        await interaction.reply({
-          embeds: [
-            new EmbedBuilder()
-              .setTitle("Question edited")
-              .setFields(
-                { name: "Old body", value: question.body },
-                { name: "New body", value: body }
-              )
-              .setFooter({ text: id.toString(10) })
-              .setTimestamp(Date.now()),
-          ],
-        })
+        await interaction.showModal(editModal({ body: old.body }, stringId))
       },
     }),
     subcommand({
