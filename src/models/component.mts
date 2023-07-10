@@ -61,16 +61,17 @@ export function staticComponent<T extends ComponentType, TT extends string>({
 }
 
 export function component<
-  T extends readonly string[],
-  TT extends ComponentType
+  T extends ComponentType,
+  TT extends string,
+  TTT extends readonly string[]
 >({
   type,
   name,
   handle,
 }: {
-  type: TT
-  name: string
-  handle: (interaction: Interaction<TT>, ...args: T) => Promise<void>
+  type: T
+  name: TT
+  handle: (interaction: Interaction<T>, ...args: TTT) => Promise<void>
 }) {
   if (Components.has(name)) {
     throw new DuplicateNameError(name)
@@ -88,13 +89,13 @@ export function component<
       }
 
       await handle(
-        interaction as Interaction<TT>,
-        ...(interaction.customId.split(":").slice(1) as [...T])
+        interaction as Interaction<T>,
+        ...(interaction.customId.split(":").slice(1) as [...TTT])
       )
     },
   })
 
-  function generateCustomId(...args: T) {
+  function generateCustomId(...args: TTT) {
     return `${name}:${args.join(":")}`
   }
 
