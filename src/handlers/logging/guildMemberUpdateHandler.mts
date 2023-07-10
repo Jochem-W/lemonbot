@@ -42,31 +42,47 @@ export const GuildMemberUpdateHandler = handler({
     ]
 
     if (oldMember.roles.cache.difference(newMember.roles.cache).size > 0) {
-      embeds.push(
-        new EmbedBuilder()
-          .setColor(Colours.orange[500])
-          .setTitle("Roles changed")
-          .setFields(
-            {
-              name: "➖ Removed",
-              value:
-                oldMember.roles.cache
-                  .subtract(newMember.roles.cache)
-                  .map((r) => roleMention(r.id))
-                  .join(" ") || "\u200b",
-              inline: true,
-            },
-            {
-              name: "➕ Added",
-              value:
-                newMember.roles.cache
-                  .subtract(oldMember.roles.cache)
-                  .map((r) => roleMention(r.id))
-                  .join(" ") || "\u200b",
-              inline: true,
-            }
-          )
-      )
+      const removed = oldMember.roles.cache.subtract(newMember.roles.cache)
+      const added = newMember.roles.cache.subtract(oldMember.roles.cache)
+      if (removed.size === 0) {
+        embeds.push(
+          new EmbedBuilder()
+            .setColor(Colours.orange[500])
+            .setTitle("➕ Roles added")
+            .setDescription(
+              added.map((r) => roleMention(r.id)).join(" ") || null
+            )
+        )
+      } else if (added.size === 0) {
+        embeds.push(
+          new EmbedBuilder()
+            .setColor(Colours.orange[500])
+            .setTitle("➖ Roles removed")
+            .setDescription(
+              removed.map((r) => roleMention(r.id)).join(" ") || null
+            )
+        )
+      } else {
+        embeds.push(
+          new EmbedBuilder()
+            .setColor(Colours.orange[500])
+            .setTitle("Roles changed")
+            .setFields(
+              {
+                name: "➖ Removed",
+                value:
+                  removed.map((r) => roleMention(r.id)).join(" ") || "\u200b",
+                inline: true,
+              },
+              {
+                name: "➕ Added",
+                value:
+                  added.map((r) => roleMention(r.id)).join(" ") || "\u200b",
+                inline: true,
+              }
+            )
+        )
+      }
     }
 
     if (oldMember.nickname !== newMember.nickname) {
