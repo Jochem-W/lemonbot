@@ -1,54 +1,148 @@
 import { DuplicateNameError } from "../errors.mjs"
 import { Modals } from "../modals.mjs"
-import { ModalSubmitInteraction } from "discord.js"
+import {
+  ActionRowBuilder,
+  type ModalActionRowComponentBuilder,
+  ModalBuilder,
+  ModalSubmitInteraction,
+  TextInputBuilder,
+} from "discord.js"
 
-export function staticModal<T extends string>({
-  name,
-  handle,
-}: {
-  name: T
-  handle: (interaction: ModalSubmitInteraction) => Promise<void>
-}) {
-  if (Modals.has(name)) {
-    throw new DuplicateNameError(name)
-  }
+type InferModalValues<
+  T extends readonly unknown[],
+  R extends object | unknown = unknown
+> = T extends readonly [infer TH, ...infer TT]
+  ? InferModalValues<
+      TT,
+      TH extends ReturnType<typeof modalInput>
+        ? TH["required"] extends true
+          ? R & { [P in TH["id"]]: string }
+          : R & { [P in TH["id"]]?: string }
+        : R
+    >
+  : R
 
-  Modals.set(name, async (interaction) => {
-    if (!interaction.isModalSubmit()) {
-      return
-    }
-
-    await handle(interaction)
-  })
-
-  return name
+export function modalInput<T extends boolean, TT extends string>(
+  id: TT,
+  required: T,
+  builder: TextInputBuilder
+) {
+  builder.setCustomId(id).setRequired(required)
+  return { id, required, builder }
 }
 
-export function modal<T extends readonly string[]>({
-  name,
+// export function staticModal<
+//   T extends string,
+//   TT extends readonly ReturnType<typeof modalInput>[]
+// >({
+//   id,
+//   title,
+//   components,
+//   handle,
+// }: {
+//   id: T
+//   title: string
+//   components: [...TT]
+//   handle: (
+//     interaction: ModalSubmitInteraction,
+//     values: InferModalValues<TT>
+//   ) => Promise<void>
+// }) {
+//   if (Modals.has(id)) {
+//     throw new DuplicateNameError(id)
+//   }
+
+//   const modal = new ModalBuilder()
+//     .setTitle(title)
+//     .setCustomId(id)
+//     .setComponents(
+//       components.map((c) =>
+//         new ActionRowBuilder<ModalActionRowComponentBuilder>().setComponents(
+//           c.builder
+//         )
+//       )
+//     )
+
+//   Modals.set(id, async (interaction) => {
+//     const values: Record<string, string> = {}
+//     for (const row of interaction.components) {
+//       for (const input of row.components) {
+//         if (input.value === "") {
+//           continue
+//         }
+
+//         values[input.customId] = input.value
+//       }
+//     }
+
+//     await handle(interaction, values as InferModalValues<TT>)
+//   })
+
+//   return modal
+// }
+
+export function modal<
+  T extends string,
+  TT extends readonly ReturnType<typeof modalInput>[],
+  TTT extends readonly string[]
+>({
+  id,
+  title,
+  components,
   handle,
 }: {
-  name: string
-  handle: (interaction: ModalSubmitInteraction, ...args: T) => Promise<void>
+  id: T
+  title: string
+  components: readonly [...TT]
+  handle: (
+    interaction: ModalSubmitInteraction,
+    values: InferModalValues<TT>,
+    ...args: [...TTT]
+  ) => Promise<void>
 }) {
-  if (Modals.has(name)) {
-    throw new DuplicateNameError(name)
+  if (Modals.has(id)) {
+    throw new DuplicateNameError(id)
   }
 
-  Modals.set(name, async (interaction) => {
-    if (!interaction.isModalSubmit()) {
-      return
+  Modals.set(id, async (interaction) => {
+    const values: Record<string, string> = {}
+    for (const row of interaction.components) {
+      for (const input of row.components) {
+        if (input.value === "") {
+          continue
+        }
+
+        values[input.customId] = input.value
+      }
     }
 
     await handle(
       interaction,
-      ...(interaction.customId.split(":").slice(1) as [...T])
+      values as InferModalValues<TT>,
+      ...(interaction.customId.split(":").slice(1) as [...TTT])
     )
   })
 
-  function generateCustomId(...args: T) {
-    return `${name}:${args.join(":")}`
+  function setupForm(
+    defaults?: Partial<InferModalValues<TT>>,
+    ...args: [...TTT]
+  ) {
+    return new ModalBuilder()
+      .setTitle(title)
+      .setCustomId(`${id}:${args.join(":")}`)
+      .setComponents(
+        components.map((c) => {
+          const input = new TextInputBuilder(c.builder.data)
+          if (defaults && c.id in defaults) {
+            input.setValue((defaults as Record<string, string>)[c.id] as string)
+          }
+
+          return new ActionRowBuilder<ModalActionRowComponentBuilder>().setComponents(
+            input
+          )
+        })
+      )
   }
 
-  return generateCustomId
+  return setupForm
 }
