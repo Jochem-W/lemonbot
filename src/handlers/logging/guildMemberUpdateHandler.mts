@@ -48,7 +48,12 @@ export const GuildMemberUpdateHandler = handler({
         embeds.push(
           new EmbedBuilder()
             .setColor(Colours.green[500])
-            .setTitle("➕ Roles added")
+            .setTitle("Roles changed")
+            .setFields({
+              name: "➕ Added",
+              value: added.map((r) => roleMention(r.id)).join(" ") || "\u200b",
+              inline: true,
+            })
             .setDescription(
               added.map((r) => roleMention(r.id)).join(" ") || null
             )
@@ -57,7 +62,13 @@ export const GuildMemberUpdateHandler = handler({
         embeds.push(
           new EmbedBuilder()
             .setColor(Colours.red[500])
-            .setTitle("➖ Roles removed")
+            .setTitle("Roles changed")
+            .setFields({
+              name: "➖ Removed",
+              value:
+                removed.map((r) => roleMention(r.id)).join(" ") || "\u200b",
+              inline: true,
+            })
             .setDescription(
               removed.map((r) => roleMention(r.id)).join(" ") || null
             )
