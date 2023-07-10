@@ -20,6 +20,11 @@ export async function giveMediaRole(
   message: Message<true>,
   userId: string
 ) {
+  if (message.author.id !== message.client.user.id) {
+    console.warn("Skipping edit of", message.id)
+    return
+  }
+
   const user = await guild.client.users.fetch(userId)
 
   const member = await tryFetchMember(guild, userId)
@@ -46,11 +51,6 @@ export async function giveMediaRole(
 
   if (!member.roles.cache.has(Config.roles.media)) {
     await member.roles.add(Config.roles.media)
-  }
-
-  if (message.author.id !== message.client.user.id) {
-    console.warn("Skipping edit of", message.id)
-    return
   }
 
   await message.edit({
