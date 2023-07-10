@@ -142,6 +142,10 @@ export const UserUpdateHandler = handler({
         main.setThumbnail(change.data.thumbnail.url)
       }
 
+      if (change.data.color !== undefined) {
+        main.setColor(change.data.color)
+      }
+
       embeds.pop()
     }
 
