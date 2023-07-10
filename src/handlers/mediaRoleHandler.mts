@@ -48,6 +48,11 @@ export async function giveMediaRole(
     await member.roles.add(Config.roles.media)
   }
 
+  if (message.author.id !== message.client.user.id) {
+    console.warn("Skipping edit of", message.id)
+    return
+  }
+
   await message.edit({
     embeds: [
       new EmbedBuilder()
