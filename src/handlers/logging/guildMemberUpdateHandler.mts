@@ -38,7 +38,7 @@ export const GuildMemberUpdateHandler = handler({
         .setDescription(userMention(newMember.id))
         .setFooter({ text: newMember.id })
         .setTimestamp(Date.now())
-        .setColor(Colours.orange[500]),
+        .setColor(Colours.amber[500]),
     ]
 
     if (oldMember.roles.cache.difference(newMember.roles.cache).size > 0) {
@@ -47,7 +47,7 @@ export const GuildMemberUpdateHandler = handler({
       if (removed.size === 0) {
         embeds.push(
           new EmbedBuilder()
-            .setColor(Colours.orange[500])
+            .setColor(Colours.amber[500])
             .setTitle("➕ Roles added")
             .setDescription(
               added.map((r) => roleMention(r.id)).join(" ") || null
@@ -56,7 +56,7 @@ export const GuildMemberUpdateHandler = handler({
       } else if (added.size === 0) {
         embeds.push(
           new EmbedBuilder()
-            .setColor(Colours.orange[500])
+            .setColor(Colours.amber[500])
             .setTitle("➖ Roles removed")
             .setDescription(
               removed.map((r) => roleMention(r.id)).join(" ") || null
@@ -65,7 +65,7 @@ export const GuildMemberUpdateHandler = handler({
       } else {
         embeds.push(
           new EmbedBuilder()
-            .setColor(Colours.orange[500])
+            .setColor(Colours.amber[500])
             .setTitle("Roles changed")
             .setFields(
               {
@@ -88,7 +88,7 @@ export const GuildMemberUpdateHandler = handler({
     if (oldMember.nickname !== newMember.nickname) {
       embeds.push(
         new EmbedBuilder()
-          .setColor(Colours.orange[500])
+          .setColor(Colours.amber[500])
           .setTitle("🏷️ Nickname changed")
           .setFields(
             {
@@ -111,7 +111,7 @@ export const GuildMemberUpdateHandler = handler({
 
       embeds.push(
         new EmbedBuilder()
-          .setColor(Colours.orange[500])
+          .setColor(Colours.amber[500])
           .setTitle("🖼️ Server avatar changed")
           .setFields(
             {
@@ -136,7 +136,7 @@ export const GuildMemberUpdateHandler = handler({
     ) {
       embeds.push(
         new EmbedBuilder()
-          .setColor(Colours.orange[500])
+          .setColor(Colours.amber[500])
           .setTitle("⏱️ Timed out")
           .setFields({
             name: "Until",

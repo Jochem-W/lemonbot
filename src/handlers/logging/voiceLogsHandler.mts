@@ -71,7 +71,7 @@ export const VoiceLogsHandler = handler({
             inline: true,
           }
         )
-        .setColor(Colours.orange[500])
+        .setColor(Colours.amber[500])
       voiceChannelId = newState.channelId
     } else {
       throw new NotImplementedError("Voice log not implemented")

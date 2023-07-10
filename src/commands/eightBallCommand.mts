@@ -75,7 +75,7 @@ export const EightBallCommand = slashCommand({
             response.type === "affirmative"
               ? Colours.green[500]
               : response.type === "non-committal"
-              ? Colours.orange[500]
+              ? Colours.amber[500]
               : Colours.red[500]
           )
           .setTimestamp(Date.now()),

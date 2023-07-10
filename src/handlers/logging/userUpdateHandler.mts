@@ -35,7 +35,7 @@ export const UserUpdateHandler = handler({
         .setDescription(userMention(newUser.id))
         .setFooter({ text: newUser.id })
         .setTimestamp(Date.now())
-        .setColor(Colours.orange[500]),
+        .setColor(Colours.amber[500]),
     ]
 
     if (oldUser.avatar !== newUser.avatar) {
@@ -58,7 +58,7 @@ export const UserUpdateHandler = handler({
               inline: true,
             }
           )
-          .setColor(Colours.orange[500])
+          .setColor(Colours.amber[500])
       )
     }
 
@@ -78,7 +78,7 @@ export const UserUpdateHandler = handler({
               inline: true,
             }
           )
-          .setColor(Colours.orange[500])
+          .setColor(Colours.amber[500])
       )
     }
 
@@ -98,7 +98,7 @@ export const UserUpdateHandler = handler({
               inline: true,
             }
           )
-          .setColor(Colours.orange[500])
+          .setColor(Colours.amber[500])
       )
     }
 
@@ -118,7 +118,7 @@ export const UserUpdateHandler = handler({
               inline: true,
             }
           )
-          .setColor(Colours.orange[500])
+          .setColor(Colours.amber[500])
       )
     }
 

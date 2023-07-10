@@ -74,7 +74,7 @@ export const MessageUpdateHandler = handler({
         iconURL: (member ?? newMessage.author).displayAvatarURL(),
       })
       .setTitle("📝 Message edited")
-      .setColor(Colours.orange[500])
+      .setColor(Colours.amber[500])
       .setFields(
         {
           name: "Before",

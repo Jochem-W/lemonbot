@@ -36,7 +36,7 @@ export const GuildBanRemoveHandler = handler({
       .setTitle(`🙏 User unbanned`)
       .setThumbnail(ban.user.displayAvatarURL())
       .setDescription(userMention(ban.user.id))
-      .setColor(Colours.orange[500])
+      .setColor(Colours.amber[500])
       .setFooter({ text: ban.user.id })
       .setTimestamp(Date.now())
 
