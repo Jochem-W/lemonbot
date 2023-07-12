@@ -22,10 +22,10 @@ dependencies:
     version: 8.0.2
   discord.js:
     specifier: dev
-    version: 14.12.0-dev.1688817865-df40dcd.0(bufferutil@4.0.7)(utf-8-validate@6.0.3)
+    version: 14.11.1-dev.1689163486-7fb91c5.0(bufferutil@4.0.7)(utf-8-validate@6.0.3)
   drizzle-orm:
-    specifier: ^0.27.0
-    version: 0.27.0(postgres@3.3.5)
+    specifier: ^0.27.2
+    version: 0.27.2(postgres@3.3.5)
   gm:
     specifier: ^1.25.0
     version: 1.25.0
@@ -224,12 +224,12 @@ packages:
       to-fast-properties: 2.0.0
     dev: true
 
-  /@discordjs/builders@1.7.0-dev.1688817868-df40dcd.0:
-    resolution: {integrity: sha512-EWdYm8MXbuStkBWLHzxs95MPzjNgeQuynW6wjSnqGqewIrkp5VBRRhM2JHvb9o/L3sPy5ZWA/n02AyTETpY6Ag==}
+  /@discordjs/builders@1.6.4-dev.1689163492-7fb91c5.0:
+    resolution: {integrity: sha512-dasuyeud3Ghv1bi4Mo+fK/oiTcxOO2T3bwYE6C4/CnYLTctwY/JkEZbcwVpiVNLr0Lt1YpryjRplUIlrKdJeLA==}
     engines: {node: '>=16.9.0'}
     dependencies:
-      '@discordjs/formatters': 0.4.0-dev.1688817880-df40dcd.0
-      '@discordjs/util': 0.4.0-dev.1688817869-df40dcd.0
+      '@discordjs/formatters': 0.3.2-dev.1689163488-7fb91c5.0
+      '@discordjs/util': 0.3.2-dev.1689163527-7fb91c5.0
       '@sapphire/shapeshift': 3.9.2
       discord-api-types: 0.37.47
       fast-deep-equal: 3.1.3
@@ -237,24 +237,24 @@ packages:
       tslib: 2.6.0
     dev: false
 
-  /@discordjs/collection@1.6.0-dev.1688817853-df40dcd.0:
-    resolution: {integrity: sha512-CEifxWjOCNBVQqPJDdOuTHAHNhh+ZDU+315eoDHY0D7Q+t2COTf6051BuLOz/8b92RH/zwz04fHJIMuCzGDocQ==}
+  /@discordjs/collection@1.5.2-dev.1689163488-7fb91c5.0:
+    resolution: {integrity: sha512-e5bNCiF0y4x2Cqt9JU5NdhG3kw+sqTHPySnefOFkINPxB3Q5QLAnSTHze8SCFWHAnO43Fk3/i7EGzlJbJFKboQ==}
     engines: {node: '>=16.9.0'}
     dev: false
 
-  /@discordjs/formatters@0.4.0-dev.1688817880-df40dcd.0:
-    resolution: {integrity: sha512-UzseSRbSY+4/9gpbyfRcyUSTEbCycNPizafD9+Xmjopodkq39PqibRj3jrBMg9BYsmuBdebjqNlEFIRTXZH+Uw==}
+  /@discordjs/formatters@0.3.2-dev.1689163488-7fb91c5.0:
+    resolution: {integrity: sha512-iVO0tGQL5ZDk+qwsMU4whuHuofwm2eYTY0pnD3X6Q7bXMvgyI9t7bky2f0UcKjfYwSAQc6Q/MF9xqcQ/IAXS+w==}
     engines: {node: '>=16.9.0'}
     dependencies:
       discord-api-types: 0.37.47
     dev: false
 
-  /@discordjs/rest@1.8.0-dev.1688817850-df40dcd.0:
-    resolution: {integrity: sha512-8SqpeF6ZZr8UyxFED9q+BtVlnFVhLxs/kQUO/tlo2B9nDBxgUYgPSsbUrnDGaSnF0ecUqNPyLIIkTwcdS4OgNA==}
+  /@discordjs/rest@1.7.2-dev.1689163490-7fb91c5.0:
+    resolution: {integrity: sha512-8TC3SA0ABOAyj5VZISOTLs5r8htLxLFos8F18sLIQVapts5WsY33waFt+MTEZDnQdVq93fvkermRmnGL97EPQw==}
     engines: {node: '>=16.9.0'}
     dependencies:
-      '@discordjs/collection': 1.6.0-dev.1688817853-df40dcd.0
-      '@discordjs/util': 0.4.0-dev.1688817869-df40dcd.0
+      '@discordjs/collection': 1.5.2-dev.1689163488-7fb91c5.0
+      '@discordjs/util': 0.3.2-dev.1689163527-7fb91c5.0
       '@sapphire/async-queue': 1.5.0
       '@sapphire/snowflake': 3.5.1
       discord-api-types: 0.37.47
@@ -263,18 +263,18 @@ packages:
       undici: 5.22.1
     dev: false
 
-  /@discordjs/util@0.4.0-dev.1688817869-df40dcd.0:
-    resolution: {integrity: sha512-9BMLFHB9SNUBSg4YwFWPKk0p+fs4H09tEfYPPLoww2IABe3gFJkW9jHfL8Keh5/yX4EyVfdozyqiUnP+UAPfnw==}
+  /@discordjs/util@0.3.2-dev.1689163527-7fb91c5.0:
+    resolution: {integrity: sha512-Pu0pfuJsIAbXQRhOskwusW6jwChd5st5KQ1HmlSbXXJE8jUAs9oxqaIwrCWkhGywaUxk9xYR/pguIU7oUwRtaw==}
     engines: {node: '>=16.9.0'}
     dev: false
 
-  /@discordjs/ws@0.9.0-dev.1688817852-df40dcd.0(bufferutil@4.0.7)(utf-8-validate@6.0.3):
-    resolution: {integrity: sha512-0nFkHeKoOuCmbXiRxvgigPaeqWYYe/7Ec886aU80odRm8iIZRuBvhET+KWz3Y18RVjWYMLdTslrUfb3OL5HxNw==}
+  /@discordjs/ws@0.8.4-dev.1689163511-7fb91c5.0(bufferutil@4.0.7)(utf-8-validate@6.0.3):
+    resolution: {integrity: sha512-OgWI+wG2sohSduYM2GYr32sVRX/WSOvypMMzsDBL/sR2pCutBM+bDR18jdHIPi844KOfjPjUn4m6eZShHdGLZg==}
     engines: {node: '>=16.9.0'}
     dependencies:
-      '@discordjs/collection': 1.6.0-dev.1688817853-df40dcd.0
-      '@discordjs/rest': 1.8.0-dev.1688817850-df40dcd.0
-      '@discordjs/util': 0.4.0-dev.1688817869-df40dcd.0
+      '@discordjs/collection': 1.5.2-dev.1689163488-7fb91c5.0
+      '@discordjs/rest': 1.7.2-dev.1689163490-7fb91c5.0
+      '@discordjs/util': 0.3.2-dev.1689163527-7fb91c5.0
       '@sapphire/async-queue': 1.5.0
       '@types/ws': 8.5.5
       '@vladfrangu/async_event_emitter': 2.2.2
@@ -1388,16 +1388,16 @@ packages:
     resolution: {integrity: sha512-rNif8IAv6duS2z47BMXq/V9kkrLfkAoiwpFY3sLxxbyKprk065zqf3HLTg4bEoxRSmi+Lhc7yqGDrG8C3j8GFA==}
     dev: false
 
-  /discord.js@14.12.0-dev.1688817865-df40dcd.0(bufferutil@4.0.7)(utf-8-validate@6.0.3):
-    resolution: {integrity: sha512-6ptIbbHcFz+o7XIE1lR0hRfqaSGG+dV9P0PIJYUKlCeDQsdbU0GBCs9AmG3yg6odSwpIWF901oV0wfb12LjSmA==}
+  /discord.js@14.11.1-dev.1689163486-7fb91c5.0(bufferutil@4.0.7)(utf-8-validate@6.0.3):
+    resolution: {integrity: sha512-dKsevJPQXDRep/7wNQg1dvjF1OYzRCIvRsYAAmuI+FBemCaSmDDbK3RZGOO0vSuyu4sEP8ZgMxBj6qrKBGrZlg==}
     engines: {node: '>=16.9.0'}
     dependencies:
-      '@discordjs/builders': 1.7.0-dev.1688817868-df40dcd.0
-      '@discordjs/collection': 1.6.0-dev.1688817853-df40dcd.0
-      '@discordjs/formatters': 0.4.0-dev.1688817880-df40dcd.0
-      '@discordjs/rest': 1.8.0-dev.1688817850-df40dcd.0
-      '@discordjs/util': 0.4.0-dev.1688817869-df40dcd.0
-      '@discordjs/ws': 0.9.0-dev.1688817852-df40dcd.0(bufferutil@4.0.7)(utf-8-validate@6.0.3)
+      '@discordjs/builders': 1.6.4-dev.1689163492-7fb91c5.0
+      '@discordjs/collection': 1.5.2-dev.1689163488-7fb91c5.0
+      '@discordjs/formatters': 0.3.2-dev.1689163488-7fb91c5.0
+      '@discordjs/rest': 1.7.2-dev.1689163490-7fb91c5.0
+      '@discordjs/util': 0.3.2-dev.1689163527-7fb91c5.0
+      '@discordjs/ws': 0.8.4-dev.1689163511-7fb91c5.0(bufferutil@4.0.7)(utf-8-validate@6.0.3)
       '@sapphire/snowflake': 3.5.1
       '@types/ws': 8.5.5
       discord-api-types: 0.37.47
@@ -1445,8 +1445,8 @@ packages:
       - supports-color
     dev: true
 
-  /drizzle-orm@0.27.0(postgres@3.3.5):
-    resolution: {integrity: sha512-LGiJ0icB+wQwgbSCOvAjONY8Ec6G/EDzQQP5PmUaQYeI9OqgpVKHC2T1fFIbvk5dabWsbokJ5NOciVAxriStig==}
+  /drizzle-orm@0.27.2(postgres@3.3.5):
+    resolution: {integrity: sha512-ZvBvceff+JlgP7FxHKe0zOU9CkZ4RcOtibumIrqfYzDGuOeF0YUY0F9iMqYpRM7pxnLRfC+oO7rWOUH3T5oFQA==}
     peerDependencies:
       '@aws-sdk/client-rds-data': '>=3'
       '@cloudflare/workers-types': '>=3'
