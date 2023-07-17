@@ -22,7 +22,7 @@ dependencies:
     version: 8.0.2
   discord.js:
     specifier: dev
-    version: 14.12.0-dev.1688817865-df40dcd.0(bufferutil@4.0.7)(utf-8-validate@6.0.3)
+    version: 14.11.1-dev.1689600799-afa9879.0(bufferutil@4.0.7)(utf-8-validate@6.0.3)
   drizzle-orm:
     specifier: ^0.27.0
     version: 0.27.0(postgres@3.3.5)
@@ -88,8 +88,8 @@ devDependencies:
     specifier: ^5.61.0
     version: 5.61.0(eslint@8.44.0)(typescript@5.1.6)
   drizzle-kit:
-    specifier: ^0.19.3
-    version: 0.19.3
+    specifier: ^0.19.8
+    version: 0.19.8
   eslint:
     specifier: ^8.44.0
     version: 8.44.0
@@ -224,61 +224,62 @@ packages:
       to-fast-properties: 2.0.0
     dev: true
 
-  /@discordjs/builders@1.7.0-dev.1688817868-df40dcd.0:
-    resolution: {integrity: sha512-EWdYm8MXbuStkBWLHzxs95MPzjNgeQuynW6wjSnqGqewIrkp5VBRRhM2JHvb9o/L3sPy5ZWA/n02AyTETpY6Ag==}
+  /@discordjs/builders@1.6.4-dev.1689600764-afa9879.0:
+    resolution: {integrity: sha512-ZkK0bUxZ3lBrPFylaifEvH5FkEYUiyo0MzqBv78Igqtzv0IX6PGXqh4pAdPs1Bxo/NE6/qFBiUtVYk66IkkWZA==}
     engines: {node: '>=16.9.0'}
     dependencies:
-      '@discordjs/formatters': 0.4.0-dev.1688817880-df40dcd.0
-      '@discordjs/util': 0.4.0-dev.1688817869-df40dcd.0
+      '@discordjs/formatters': 0.3.2-dev.1689600759-afa9879.0
+      '@discordjs/util': 0.3.2-dev.1689600800-afa9879.0
       '@sapphire/shapeshift': 3.9.2
-      discord-api-types: 0.37.47
+      discord-api-types: 0.37.49
       fast-deep-equal: 3.1.3
       ts-mixer: 6.0.3
       tslib: 2.6.0
     dev: false
 
-  /@discordjs/collection@1.6.0-dev.1688817853-df40dcd.0:
-    resolution: {integrity: sha512-CEifxWjOCNBVQqPJDdOuTHAHNhh+ZDU+315eoDHY0D7Q+t2COTf6051BuLOz/8b92RH/zwz04fHJIMuCzGDocQ==}
+  /@discordjs/collection@1.5.2-dev.1689600762-afa9879.0:
+    resolution: {integrity: sha512-XiQtwzcRpbnYQCsOb8zEgw5zzlDU04ikwmCoW+iVbpF4wYW3iSn4HJSeIatiAGun8kvidW8wX7Rb4ex6o03W3w==}
     engines: {node: '>=16.9.0'}
     dev: false
 
-  /@discordjs/formatters@0.4.0-dev.1688817880-df40dcd.0:
-    resolution: {integrity: sha512-UzseSRbSY+4/9gpbyfRcyUSTEbCycNPizafD9+Xmjopodkq39PqibRj3jrBMg9BYsmuBdebjqNlEFIRTXZH+Uw==}
+  /@discordjs/formatters@0.3.2-dev.1689600759-afa9879.0:
+    resolution: {integrity: sha512-ZjS5smYVnioI45bXPeKUZMiKkBPVTiWCDrWJm4GiXYF09QvL2FoyC3qF6jZGg+nyo5m9CRJhy15KDsk22a5TvQ==}
     engines: {node: '>=16.9.0'}
     dependencies:
-      discord-api-types: 0.37.47
+      discord-api-types: 0.37.49
     dev: false
 
-  /@discordjs/rest@1.8.0-dev.1688817850-df40dcd.0:
-    resolution: {integrity: sha512-8SqpeF6ZZr8UyxFED9q+BtVlnFVhLxs/kQUO/tlo2B9nDBxgUYgPSsbUrnDGaSnF0ecUqNPyLIIkTwcdS4OgNA==}
+  /@discordjs/rest@1.7.2-dev.1689600762-afa9879.0:
+    resolution: {integrity: sha512-VDu5pesprMNX/KLToozEdbdIPz0q2gqhlSJ+9EZdF/yWnRZ4Q46nSlYU3ZLRoSlO6Nb+/rE3xr2a1yw/rbXuqw==}
     engines: {node: '>=16.9.0'}
     dependencies:
-      '@discordjs/collection': 1.6.0-dev.1688817853-df40dcd.0
-      '@discordjs/util': 0.4.0-dev.1688817869-df40dcd.0
+      '@discordjs/collection': 1.5.2-dev.1689600762-afa9879.0
+      '@discordjs/util': 0.3.2-dev.1689600800-afa9879.0
       '@sapphire/async-queue': 1.5.0
       '@sapphire/snowflake': 3.5.1
-      discord-api-types: 0.37.47
-      file-type: 18.5.0
+      '@vladfrangu/async_event_emitter': 2.2.2
+      discord-api-types: 0.37.49
+      magic-bytes.js: 1.0.14
       tslib: 2.6.0
       undici: 5.22.1
     dev: false
 
-  /@discordjs/util@0.4.0-dev.1688817869-df40dcd.0:
-    resolution: {integrity: sha512-9BMLFHB9SNUBSg4YwFWPKk0p+fs4H09tEfYPPLoww2IABe3gFJkW9jHfL8Keh5/yX4EyVfdozyqiUnP+UAPfnw==}
+  /@discordjs/util@0.3.2-dev.1689600800-afa9879.0:
+    resolution: {integrity: sha512-oLMs30WzyBaNcGA81DwKU90yleVqKwp1leFOahImZHBYlNH5fm9fMnFT3H9f9mPiLQwJZiXG2jnAGJp/poYOSA==}
     engines: {node: '>=16.9.0'}
     dev: false
 
-  /@discordjs/ws@0.9.0-dev.1688817852-df40dcd.0(bufferutil@4.0.7)(utf-8-validate@6.0.3):
-    resolution: {integrity: sha512-0nFkHeKoOuCmbXiRxvgigPaeqWYYe/7Ec886aU80odRm8iIZRuBvhET+KWz3Y18RVjWYMLdTslrUfb3OL5HxNw==}
+  /@discordjs/ws@0.8.4-dev.1689600801-afa9879.0(bufferutil@4.0.7)(utf-8-validate@6.0.3):
+    resolution: {integrity: sha512-K5gHttKZnvEBbJglO9Y/uRHS244J9U0LJgo3oNa6wUXO8nIDjctJJCGc+Dnq6n3pCzgmj03LqvqiEyphfkENFw==}
     engines: {node: '>=16.9.0'}
     dependencies:
-      '@discordjs/collection': 1.6.0-dev.1688817853-df40dcd.0
-      '@discordjs/rest': 1.8.0-dev.1688817850-df40dcd.0
-      '@discordjs/util': 0.4.0-dev.1688817869-df40dcd.0
+      '@discordjs/collection': 1.5.2-dev.1689600762-afa9879.0
+      '@discordjs/rest': 1.7.2-dev.1689600762-afa9879.0
+      '@discordjs/util': 0.3.2-dev.1689600800-afa9879.0
       '@sapphire/async-queue': 1.5.0
       '@types/ws': 8.5.5
       '@vladfrangu/async_event_emitter': 2.2.2
-      discord-api-types: 0.37.47
+      discord-api-types: 0.37.49
       tslib: 2.6.0
       ws: 8.13.0(bufferutil@4.0.7)(utf-8-validate@6.0.3)
     transitivePeerDependencies:
@@ -286,8 +287,8 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@drizzle-team/studio@0.0.1:
-    resolution: {integrity: sha512-cHgGezy2ojBFMaU6PZyBkksgFsg2CQ8IRN4mS7WdbA/Zv6xUK6fCNmpEWS/FftbxoA4B8Z0XGnuKsaTJEZsGgA==}
+  /@drizzle-team/studio@0.0.3:
+    resolution: {integrity: sha512-GXda7FZIhZeJmXY8uPUCScHRcn6C7QVdG7CxEXnAxXWRc5eXbCR0mklqSpG2buOWtCKCTonL4MKpzSmqY9yTEw==}
     dev: true
 
   /@esbuild-kit/core-utils@3.1.0:
@@ -920,10 +921,6 @@ packages:
     engines: {node: '>=v14.0.0', npm: '>=7.0.0'}
     dev: false
 
-  /@tokenizer/token@0.3.0:
-    resolution: {integrity: sha512-OvjF+z51L3ov0OyAU0duzsYuvO01PH7x4t6DJx+guahgTnBHkhJdG7soQeTSFLWN3efnHyibZ4Z8l2EuWwJN3A==}
-    dev: false
-
   /@trivago/prettier-plugin-sort-imports@4.1.1(prettier@2.8.8):
     resolution: {integrity: sha512-dQ2r2uzNr1x6pJsuh/8x0IRA3CBUB+pWEW3J/7N98axqt7SQSm+2fy0FLNXvXGg77xEDC7KHxJlHfLYyi7PDcw==}
     peerDependencies:
@@ -1384,23 +1381,23 @@ packages:
       path-type: 4.0.0
     dev: true
 
-  /discord-api-types@0.37.47:
-    resolution: {integrity: sha512-rNif8IAv6duS2z47BMXq/V9kkrLfkAoiwpFY3sLxxbyKprk065zqf3HLTg4bEoxRSmi+Lhc7yqGDrG8C3j8GFA==}
+  /discord-api-types@0.37.49:
+    resolution: {integrity: sha512-a2vvjgmE/1cPtXOuOh5zHlLe+qheu0uO625K+FyZVFomoCmpV1xNpadC48S98K30CnQ4/XJyFGnOZLXxAyBbCQ==}
     dev: false
 
-  /discord.js@14.12.0-dev.1688817865-df40dcd.0(bufferutil@4.0.7)(utf-8-validate@6.0.3):
-    resolution: {integrity: sha512-6ptIbbHcFz+o7XIE1lR0hRfqaSGG+dV9P0PIJYUKlCeDQsdbU0GBCs9AmG3yg6odSwpIWF901oV0wfb12LjSmA==}
+  /discord.js@14.11.1-dev.1689600799-afa9879.0(bufferutil@4.0.7)(utf-8-validate@6.0.3):
+    resolution: {integrity: sha512-TbfJvpz3VkD14t4ksCF//lI+REtpHOYWadiFpesT8PIS/8vgnUCMS1fM7KzPSS8mE+ivJ+bkpprACGU/Qe8K3A==}
     engines: {node: '>=16.9.0'}
     dependencies:
-      '@discordjs/builders': 1.7.0-dev.1688817868-df40dcd.0
-      '@discordjs/collection': 1.6.0-dev.1688817853-df40dcd.0
-      '@discordjs/formatters': 0.4.0-dev.1688817880-df40dcd.0
-      '@discordjs/rest': 1.8.0-dev.1688817850-df40dcd.0
-      '@discordjs/util': 0.4.0-dev.1688817869-df40dcd.0
-      '@discordjs/ws': 0.9.0-dev.1688817852-df40dcd.0(bufferutil@4.0.7)(utf-8-validate@6.0.3)
+      '@discordjs/builders': 1.6.4-dev.1689600764-afa9879.0
+      '@discordjs/collection': 1.5.2-dev.1689600762-afa9879.0
+      '@discordjs/formatters': 0.3.2-dev.1689600759-afa9879.0
+      '@discordjs/rest': 1.7.2-dev.1689600762-afa9879.0
+      '@discordjs/util': 0.3.2-dev.1689600800-afa9879.0
+      '@discordjs/ws': 0.8.4-dev.1689600801-afa9879.0(bufferutil@4.0.7)(utf-8-validate@6.0.3)
       '@sapphire/snowflake': 3.5.1
       '@types/ws': 8.5.5
-      discord-api-types: 0.37.47
+      discord-api-types: 0.37.49
       fast-deep-equal: 3.1.3
       lodash.snakecase: 4.1.1
       tslib: 2.6.0
@@ -1425,11 +1422,11 @@ packages:
       wordwrap: 1.0.0
     dev: true
 
-  /drizzle-kit@0.19.3:
-    resolution: {integrity: sha512-G3Es+gPbQcTka0eKdDyzhgyDAWP5nfZpRXtKEND8Cl1Ww0Tn71yV/CYNbYk+gxg5x5+jeBIN7kM/bZ/agGBxYw==}
+  /drizzle-kit@0.19.8:
+    resolution: {integrity: sha512-pgTP7MPoiktVkpK8C+0d4uCbG+4YmKldn9GoguWJFUXyBQtMhmbCHQvpmBkGiWBD5l0I7ijp6n3zSPSlGveL5Q==}
     hasBin: true
     dependencies:
-      '@drizzle-team/studio': 0.0.1
+      '@drizzle-team/studio': 0.0.3
       '@esbuild-kit/esm-loader': 2.5.5
       camelcase: 7.0.1
       chalk: 5.3.0
@@ -1798,15 +1795,6 @@ packages:
       flat-cache: 3.0.4
     dev: true
 
-  /file-type@18.5.0:
-    resolution: {integrity: sha512-yvpl5U868+V6PqXHMmsESpg6unQ5GfnPssl4dxdJudBrr9qy7Fddt7EVX1VLlddFfe8Gj9N7goCZH22FXuSQXQ==}
-    engines: {node: '>=14.16'}
-    dependencies:
-      readable-web-to-node-stream: 3.0.2
-      strtok3: 7.0.0
-      token-types: 5.0.1
-    dev: false
-
   /file-uri-to-path@1.0.0:
     resolution: {integrity: sha512-0Zt+s3L7Vf1biwWZ29aARiVYLx7iMGnEUl9x33fbB/j3jR81u/O2LbqK+Bm1CDSNDKVtJ/YjwY7TUd5SkeLQLw==}
     dev: false
@@ -1946,10 +1934,6 @@ packages:
     resolution: {integrity: sha512-2bsegYkkHO+h/9MGbn6KWcE45cHZgPANo5LXF7EvWdT0yT2EguSVO1nDgU5c8+ZOPwp2vMNa7YFsJhVcDR9Sdg==}
     dev: true
 
-  /ieee754@1.2.1:
-    resolution: {integrity: sha512-dcyqhDvX1C46lXZcVqCpK+FtMRQVdIMN6/Df5js2zouUsqG7I6sFxitIC+7KYK29KdXOLHdu9zL4sFnoVQnqaA==}
-    dev: false
-
   /ignore@5.2.4:
     resolution: {integrity: sha512-MAb38BcSbH0eHNBxn7ql2NH/kX33OkB3lZ1BNdh7ENeRChHTYsTvWrMubiIAMNS2llXEEgZ1MUOBtXChP3kaFQ==}
     engines: {node: '>= 4'}
@@ -1977,6 +1961,7 @@ packages:
 
   /inherits@2.0.4:
     resolution: {integrity: sha512-k/vGaX4/Yla3WzyMCvTQOXYeIHvqOKtnqBduzTHpzpQZzAskKMhZ2K+EnBiSM9zGSoIFeMpXKxa4dYeZIQqewQ==}
+    dev: true
 
   /is-extglob@2.1.1:
     resolution: {integrity: sha512-SbKbANkN603Vi4jEZv49LeVJMn4yGwsbzZworEoyEiutsN3nJYdbO36zfhGJ6QEDpOZIFkDtnq5JRxmvl3jsoQ==}
@@ -2103,6 +2088,10 @@ packages:
   /luxon@3.3.0:
     resolution: {integrity: sha512-An0UCfG/rSiqtAIiBPO0Y9/zAnHUZxAMiCpTd5h2smgsj7GGmcenvrvww2cqNA8/4A5ZrD1gJpHN2mIHZQF+Mg==}
     engines: {node: '>=12'}
+    dev: false
+
+  /magic-bytes.js@1.0.14:
+    resolution: {integrity: sha512-Xz644ideT892A7l9JtYLlVp3KjQc8gHJP9rN6H2Mq8OOld6BMU7xiS9rFGYAXeY7Z/yHOYtFSLyFzL8/NaodPw==}
     dev: false
 
   /map-obj@4.3.0:
@@ -2256,11 +2245,6 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /peek-readable@5.0.0:
-    resolution: {integrity: sha512-YtCKvLUOvwtMGmrniQPdO7MwPjgkFBtFIrmfSbYmYuq3tKDV/mcfAhBth1+C3ru7uXIZasc/pHnb+YDYNkkj4A==}
-    engines: {node: '>=14.16'}
-    dev: false
-
   /picomatch@2.3.1:
     resolution: {integrity: sha512-JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA==}
     engines: {node: '>=8.6'}
@@ -2299,22 +2283,6 @@ packages:
     engines: {node: '>=12'}
     dev: false
 
-  /readable-stream@3.6.2:
-    resolution: {integrity: sha512-9u/sniCrY3D5WdsERHzHE4G2YCXqoG5FTHUiCC4SIbr6XcLZBY05ya9EKjYek9O5xOAwjGq+1JdGBAS7Q9ScoA==}
-    engines: {node: '>= 6'}
-    dependencies:
-      inherits: 2.0.4
-      string_decoder: 1.3.0
-      util-deprecate: 1.0.2
-    dev: false
-
-  /readable-web-to-node-stream@3.0.2:
-    resolution: {integrity: sha512-ePeK6cc1EcKLEhJFt/AebMCLL+GgSKhuygrZ/GLaKZYEecIgIECf4UaUuaByiGtzckwR4ain9VzUh95T1exYGw==}
-    engines: {node: '>=8'}
-    dependencies:
-      readable-stream: 3.6.2
-    dev: false
-
   /resolve-from@4.0.0:
     resolution: {integrity: sha512-pb/MYmXstAkysRFx8piNI1tGFNQIFA3vkE3Gq4EuA1dF6gHp/+vgZqsCGJapvy8N3Q+4o7FwvquPJcnZ7RYy4g==}
     engines: {node: '>=4'}
@@ -2341,10 +2309,6 @@ packages:
     dependencies:
       queue-microtask: 1.2.3
     dev: true
-
-  /safe-buffer@5.2.1:
-    resolution: {integrity: sha512-rp3So07KcdmmKbGvgaNxQSJr7bGVSVk5S9Eq1F+ppbRo70+YeaDxkw5Dd8NPN+GD6bjnYm2VuPuCXmpuYvmCXQ==}
-    dev: false
 
   /semver@7.5.4:
     resolution: {integrity: sha512-1bCSESV6Pv+i21Hvpxp3Dx+pSD8lIPt8uVjRrxAUt/nbswYc+tK6Y2btiULjd4+fnq15PX+nqQDC7Oft7WkwcA==}
@@ -2397,12 +2361,6 @@ packages:
     engines: {node: '>=10.0.0'}
     dev: false
 
-  /string_decoder@1.3.0:
-    resolution: {integrity: sha512-hkRX8U1WjJFd8LsDJ2yQ/wWWxaopEsABU1XfkM8A+j0+85JAGppt16cr1Whg6KIbb4okU6Mql6BOj+uup/wKeA==}
-    dependencies:
-      safe-buffer: 5.2.1
-    dev: false
-
   /strip-ansi@6.0.1:
     resolution: {integrity: sha512-Y38VPSHcqkFrCpFnQ9vuSXmquuv5oXOKpGeT6aGrr3o3Gc9AlVa6JBfUSOCnbxGGZF+/0ooI7KrPuUSztUdU5A==}
     engines: {node: '>=8'}
@@ -2414,14 +2372,6 @@ packages:
     resolution: {integrity: sha512-6fPc+R4ihwqP6N/aIv2f1gMH8lOVtWQHoqC4yK6oSDVVocumAsfCqjkXnqiYMhmMwS/mEHLp7Vehlt3ql6lEig==}
     engines: {node: '>=8'}
     dev: true
-
-  /strtok3@7.0.0:
-    resolution: {integrity: sha512-pQ+V+nYQdC5H3Q7qBZAz/MO6lwGhoC2gOAjuouGf/VO0m7vQRh8QNMl2Uf6SwAtzZ9bOw3UIeBukEGNJl5dtXQ==}
-    engines: {node: '>=14.16'}
-    dependencies:
-      '@tokenizer/token': 0.3.0
-      peek-readable: 5.0.0
-    dev: false
 
   /supports-color@5.5.0:
     resolution: {integrity: sha512-QjVjwdXIt408MIiAqCX4oUKsgU2EqAGzs2Ppkm4aQYbjm+ZEWEcW4SfFNTr4uMNZma0ey4f5lgLrkB0aX0QMow==}
@@ -2459,14 +2409,6 @@ packages:
     dependencies:
       is-number: 7.0.0
     dev: true
-
-  /token-types@5.0.1:
-    resolution: {integrity: sha512-Y2fmSnZjQdDb9W4w4r1tswlMHylzWIeOKpx0aZH9BgGtACHhrk3OkT52AzwcuqTRBZtvvnTjDBh8eynMulu8Vg==}
-    engines: {node: '>=14.16'}
-    dependencies:
-      '@tokenizer/token': 0.3.0
-      ieee754: 1.2.1
-    dev: false
 
   /tr46@0.0.3:
     resolution: {integrity: sha512-N3WMsuqV66lT30CrXNbEjx4GEwlow3v6rr4mCcv6prnfwhS01rkgyFdjPNBYd9br7LpXV1+Emh01fHnq2Gdgrw==}
@@ -2548,10 +2490,6 @@ packages:
     requiresBuild: true
     dependencies:
       node-gyp-build: 4.6.0
-    dev: false
-
-  /util-deprecate@1.0.2:
-    resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
     dev: false
 
   /webidl-conversions@3.0.1:
