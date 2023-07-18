@@ -8,6 +8,7 @@ import { CatCommand } from "./commands/catCommand.mjs"
 import { CharactersCommand } from "./commands/charactersCommand.mjs"
 import { CommissionsCommand } from "./commands/commissionsCommand.mjs"
 import { DogCommand } from "./commands/dogCommand.mjs"
+import { EditCommand } from "./commands/editCommand.mjs"
 import { EightBallCommand } from "./commands/eightBallCommand.mjs"
 import { ExemptCommand } from "./commands/exemptCommand.mjs"
 import { FlipCommand } from "./commands/flipCommand.mjs"
@@ -34,6 +35,7 @@ export const SlashCommands: Command<ApplicationCommandType.ChatInput>[] = [
   CharactersCommand,
   CommissionsCommand,
   DogCommand,
+  EditCommand,
   EightBallCommand,
   ExemptCommand,
   FlipCommand,

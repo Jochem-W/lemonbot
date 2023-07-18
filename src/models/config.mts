@@ -42,6 +42,7 @@ const model = z.object({
       owner: z.string(),
     })
     .optional(),
+  s3: z.object({ bucket: z.string(), url: z.string().url() }),
   roles: z.object({ art: z.string(), media: z.string(), qotw: z.string() }),
 })
 

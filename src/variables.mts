@@ -8,6 +8,10 @@ const model = z
     GITHUB_TOKEN: z.string().optional(),
     NODE_ENV: z.string().optional().default("development"),
     DATABASE_URL: z.string(),
+    S3_REGION: z.string(),
+    S3_ENDPOINT: z.string(),
+    S3_ACCESS_KEY_ID: z.string(),
+    S3_SECRET_ACCESS_KEY: z.string(),
   })
   .transform((arg) => camelcaseKeys(arg))
 
