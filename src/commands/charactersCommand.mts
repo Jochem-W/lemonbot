@@ -1,5 +1,6 @@
 import { Drizzle } from "../clients.mjs"
 import { NoDataError } from "../errors.mjs"
+import { characterMessage } from "../messages/characterMessage.mjs"
 import { originalUserOnlyMessage } from "../messages/originalUserOnlyMessage.mjs"
 import { component } from "../models/component.mjs"
 import { slashCommand, slashOption } from "../models/slashCommand.mjs"
@@ -7,14 +8,10 @@ import { character } from "../schema.mjs"
 import { componentEmoji } from "../utilities/discordUtilities.mjs"
 import {
   ActionRowBuilder,
-  EmbedBuilder,
   type MessageActionRowComponentBuilder,
   StringSelectMenuBuilder,
   StringSelectMenuOptionBuilder,
-  TimestampStyles,
-  time,
   ComponentType,
-  type EmbedAuthorOptions,
   Client,
   SlashCommandIntegerOption,
 } from "discord.js"
@@ -48,7 +45,7 @@ export const CharactersCommand = slashCommand({
     }
 
     await interaction.reply({
-      embeds: characterEmbeds(interaction.client, char),
+      ...characterMessage(interaction.client, char),
       components: [
         new ActionRowBuilder<MessageActionRowComponentBuilder>().setComponents(
           new StringSelectMenuBuilder()
@@ -88,7 +85,7 @@ const updateCharacters = component({
     }
 
     await interaction.update({
-      embeds: characterEmbeds(interaction.client, char),
+      ...characterMessage(interaction.client, char),
       components: [
         new ActionRowBuilder<MessageActionRowComponentBuilder>().setComponents(
           new StringSelectMenuBuilder()
@@ -118,55 +115,4 @@ function characterOptions(client: Client<true>, id: number) {
   options.find((o) => o.data.value === id.toString(10))?.setDefault(true)
 
   return options
-}
-
-function characterEmbeds(
-  client: Client<true>,
-  character: (typeof characters)[0]
-) {
-  const images = [character.image1, character.image2, character.image3].filter(
-    (i) => i
-  ) as string[]
-
-  const embeds = images.map((i) =>
-    new EmbedBuilder().setImage(i).setURL("https://discord.gg/zestylemons")
-  )
-
-  let firstEmbed = embeds[0]
-  if (!firstEmbed) {
-    firstEmbed = new EmbedBuilder()
-    embeds.push(firstEmbed)
-  }
-
-  const author: EmbedAuthorOptions = {
-    name: character.name,
-  }
-
-  if (character.icon) {
-    const emoji = client.emojis.cache.find((e) => e.name === character.icon)
-    if (emoji) {
-      author.iconURL = emoji.url
-    }
-  }
-
-  firstEmbed
-    .setAuthor(author)
-    .setThumbnail(character.palette)
-    .setDescription(character.description)
-    .setFields(
-      {
-        name: "Pronouns",
-        value: character.pronouns,
-        inline: true,
-      },
-      { name: "Created by", value: character.creator, inline: true },
-      {
-        name: "Created on",
-        value: time(character.timestamp, TimestampStyles.LongDate),
-        inline: true,
-      }
-    )
-    .setColor(character.colour)
-
-  return embeds
 }

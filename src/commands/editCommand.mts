@@ -1,4 +1,6 @@
 import { Drizzle } from "../clients.mjs"
+import { NoDataError } from "../errors.mjs"
+import { characterMessage } from "../messages/characterMessage.mjs"
 import { Config } from "../models/config.mjs"
 import { modal, modalInput } from "../models/modal.mjs"
 import {
@@ -50,11 +52,19 @@ const editCharacterDescription = modal({
     ),
   ],
   async handle(interaction, { name, description, pronouns }, id) {
-    await Drizzle.update(character)
+    const [data] = await Drizzle.update(character)
       .set({ name, description, pronouns })
       .where(eq(character.id, await z.coerce.number().parseAsync(id)))
+      .returning()
 
-    await interaction.reply({ ephemeral: true, content: "Character updated!" })
+    if (!data) {
+      throw new NoDataError("No character")
+    }
+
+    await interaction.reply({
+      ephemeral: true,
+      ...characterMessage(interaction.client, data),
+    })
   },
 })
 
@@ -83,7 +93,7 @@ const editCharacterMeta = modal({
     ),
   ],
   async handle(interaction, { creator, timestamp, colour }, id) {
-    await Drizzle.update(character)
+    const [data] = await Drizzle.update(character)
       .set({
         creator,
         timestamp: DateTime.fromMillis(
@@ -92,8 +102,16 @@ const editCharacterMeta = modal({
         colour: await z.coerce.number().parseAsync(colour),
       })
       .where(eq(character.id, await z.coerce.number().parseAsync(id)))
+      .returning()
 
-    await interaction.reply({ ephemeral: true, content: "Character updated!" })
+    if (!data) {
+      throw new NoDataError("No character")
+    }
+
+    await interaction.reply({
+      ephemeral: true,
+      ...characterMessage(interaction.client, data),
+    })
   },
 })
 
@@ -280,11 +298,18 @@ export const EditCommand = slashCommand({
               return
             }
 
-            await Drizzle.update(character)
+            const [data] = await Drizzle.update(character)
               .set(changes)
               .where(eq(character.id, id))
+              .returning()
 
-            await interaction.editReply("Character updated!")
+            if (!data) {
+              throw new NoDataError("No character")
+            }
+
+            await interaction.editReply({
+              ...characterMessage(interaction.client, data),
+            })
           },
         }),
       ],

@@ -1,4 +1,5 @@
 import { integer, pgTable, serial, text, timestamp } from "drizzle-orm/pg-core"
+import { createSelectSchema } from "drizzle-zod"
 
 export const artboard = pgTable("artboard", {
   messageId: text("messageId").primaryKey(),
@@ -31,3 +32,5 @@ export const character = pgTable("character", {
   image2: text("image2"),
   image3: text("image3"),
 })
+
+export const selectCharacterSchema = createSelectSchema(character)
