@@ -9,10 +9,13 @@ import {
   slashOption,
   subcommandGroup,
 } from "../models/slashCommand.mjs"
-import { character } from "../schema.mjs"
+import { character, selectCharacterSchema } from "../schema.mjs"
+import { fetchChannel } from "../utilities/discordUtilities.mjs"
 import { uploadAttachment } from "../utilities/s3Utilities.mjs"
 import { randomUUID } from "crypto"
 import {
+  ChannelType,
+  Client,
   PermissionFlagsBits,
   SlashCommandAttachmentOption,
   SlashCommandIntegerOption,
@@ -28,6 +31,19 @@ const choices = await Drizzle.select({
   name: character.name,
   value: character.id,
 }).from(character)
+
+async function updateMessage(
+  client: Client<true>,
+  data: z.infer<typeof selectCharacterSchema>
+) {
+  const channel = await fetchChannel(
+    client,
+    Config.channels.characters,
+    ChannelType.GuildText
+  )
+
+  await channel.messages.edit(data.message, characterMessage(client, data))
+}
 
 const editCharacterDescription = modal({
   id: "ecd",
@@ -65,6 +81,8 @@ const editCharacterDescription = modal({
       ephemeral: true,
       ...characterMessage(interaction.client, data),
     })
+
+    await updateMessage(interaction.client, data)
   },
 })
 
@@ -112,6 +130,8 @@ const editCharacterMeta = modal({
       ephemeral: true,
       ...characterMessage(interaction.client, data),
     })
+
+    await updateMessage(interaction.client, data)
   },
 })
 
@@ -310,6 +330,8 @@ export const EditCommand = slashCommand({
             await interaction.editReply({
               ...characterMessage(interaction.client, data),
             })
+
+            await updateMessage(interaction.client, data)
           },
         }),
       ],

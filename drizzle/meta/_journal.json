@@ -29,6 +29,13 @@
       "when": 1689690504300,
       "tag": "0003_next_chronomancer",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "5",
+      "when": 1689717637302,
+      "tag": "0004_low_silvermane",
+      "breakpoints": true
     }
   ]
 }

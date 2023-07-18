@@ -31,6 +31,7 @@ export const character = pgTable("character", {
   image1: text("image1"),
   image2: text("image2"),
   image3: text("image3"),
+  message: text("message").notNull(),
 })
 
 export const selectCharacterSchema = createSelectSchema(character)

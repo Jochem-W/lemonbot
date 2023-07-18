@@ -1,0 +1,1 @@
+ALTER TABLE "character" ADD COLUMN "message" text NOT NULL;

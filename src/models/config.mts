@@ -21,6 +21,7 @@ const model = z.object({
     webhook: z.string(),
   }),
   channels: z.object({
+    characters: z.string(),
     error: z.string(),
     modGeneral: z.string(),
     qotw: z.string(),
