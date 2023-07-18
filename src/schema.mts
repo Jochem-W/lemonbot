@@ -1,4 +1,4 @@
-import { pgTable, serial, text } from "drizzle-orm/pg-core"
+import { integer, pgTable, serial, text, timestamp } from "drizzle-orm/pg-core"
 
 export const artboard = pgTable("artboard", {
   messageId: text("messageId").primaryKey(),
@@ -15,4 +15,19 @@ export const dontShowAgain = pgTable("dontShowAgain", {
 export const qotw = pgTable("qotw", {
   id: serial("id").primaryKey(),
   body: text("question").notNull(),
+})
+
+export const character = pgTable("character", {
+  id: serial("id").primaryKey(),
+  name: text("name").notNull(),
+  description: text("description").notNull(),
+  pronouns: text("pronouns").notNull(),
+  creator: text("creator").notNull(),
+  timestamp: timestamp("timestamp").notNull(),
+  colour: integer("colour").notNull(),
+  icon: text("icon").notNull(),
+  palette: text("palette").notNull(),
+  image1: text("image1"),
+  image2: text("image2"),
+  image3: text("image3"),
 })
