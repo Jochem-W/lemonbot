@@ -40,7 +40,7 @@
     "@types/whatwg-mimetype": "^3.0.0",
     "@typescript-eslint/eslint-plugin": "^6.1.0",
     "@typescript-eslint/parser": "^6.1.0",
-    "drizzle-kit": "^0.19.8",
+    "drizzle-kit": "^0.19.10",
     "eslint": "^8.45.0",
     "eslint-config-prettier": "^8.8.0",
     "prettier": "^2.8.8",
