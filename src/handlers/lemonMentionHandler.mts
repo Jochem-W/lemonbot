@@ -12,6 +12,8 @@ import {
   type MessageActionRowComponentBuilder,
   ButtonBuilder,
   ButtonStyle,
+  DiscordAPIError,
+  RESTJSONErrorCodes,
 } from "discord.js"
 import { eq } from "drizzle-orm"
 
@@ -75,33 +77,42 @@ export const LemonMentionHandler = handler({
       return
     }
 
-    await message.author.send({
-      embeds: [
-        new EmbedBuilder()
-          .setDescription(
-            `Hey! This is just a reminder to not ping ${matches
-              .map(userMention)
-              .join(", ")
-              .replace(
-                /,([^,]*)$/,
-                " and$1",
-              )} in your message unless it's important!\n\nHere's a demonstration on how to disable pinging when replying:`,
-          )
-          .setImage(
-            "https://cdn.discordapp.com/attachments/1125446368002052186/1126865484046929980/chrome_20220423_222431.gif",
-          )
-          .setFooter({
-            text: "If this is understood, you can press the button below to disable this reminder.",
-          }),
-      ],
-      components: [
-        new ActionRowBuilder<MessageActionRowComponentBuilder>().setComponents(
-          new ButtonBuilder()
-            .setStyle(ButtonStyle.Primary)
-            .setLabel("Don't show again")
-            .setCustomId(disableReminder),
-        ),
-      ],
-    })
+    try {
+      await message.author.send({
+        embeds: [
+          new EmbedBuilder()
+            .setDescription(
+              `Hey! This is just a reminder to not ping ${matches
+                .map(userMention)
+                .join(", ")
+                .replace(
+                  /,([^,]*)$/,
+                  " and$1",
+                )} in your message unless it's important!\n\nHere's a demonstration on how to disable pinging when replying:`,
+            )
+            .setImage(
+              "https://cdn.discordapp.com/attachments/1125446368002052186/1126865484046929980/chrome_20220423_222431.gif",
+            )
+            .setFooter({
+              text: "If this is understood, you can press the button below to disable this reminder.",
+            }),
+        ],
+        components: [
+          new ActionRowBuilder<MessageActionRowComponentBuilder>().setComponents(
+            new ButtonBuilder()
+              .setStyle(ButtonStyle.Primary)
+              .setLabel("Don't show again")
+              .setCustomId(disableReminder),
+          ),
+        ],
+      })
+    } catch (e) {
+      if (
+        !(e instanceof DiscordAPIError) ||
+        e.code !== RESTJSONErrorCodes.CannotSendMessagesToThisUser
+      ) {
+        throw e
+      }
+    }
   },
 })
