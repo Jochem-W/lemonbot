@@ -25,7 +25,7 @@ export const GuildMemberUpdateHandler = handler({
     logChannel ??= await fetchChannel(
       newMember.client,
       Config.logs.member,
-      ChannelType.GuildText
+      ChannelType.GuildText,
     )
 
     const embeds = [
@@ -55,8 +55,8 @@ export const GuildMemberUpdateHandler = handler({
               inline: true,
             })
             .setDescription(
-              added.map((r) => roleMention(r.id)).join(" ") || null
-            )
+              added.map((r) => roleMention(r.id)).join(" ") || null,
+            ),
         )
       } else if (added.size === 0) {
         embeds.push(
@@ -70,8 +70,8 @@ export const GuildMemberUpdateHandler = handler({
               inline: true,
             })
             .setDescription(
-              removed.map((r) => roleMention(r.id)).join(" ") || null
-            )
+              removed.map((r) => roleMention(r.id)).join(" ") || null,
+            ),
         )
       } else {
         embeds.push(
@@ -90,8 +90,8 @@ export const GuildMemberUpdateHandler = handler({
                 value:
                   added.map((r) => roleMention(r.id)).join(" ") || "\u200b",
                 inline: true,
-              }
-            )
+              },
+            ),
         )
       }
     }
@@ -111,8 +111,8 @@ export const GuildMemberUpdateHandler = handler({
               name: "After",
               value: newMember.nickname ?? "\u200b",
               inline: true,
-            }
-          )
+            },
+          ),
       )
     }
 
@@ -134,9 +134,9 @@ export const GuildMemberUpdateHandler = handler({
               name: "After",
               value: newAvatar ? hyperlink("Click here", newAvatar) : "\u200b",
               inline: true,
-            }
+            },
           )
-          .setThumbnail(newAvatar)
+          .setThumbnail(newAvatar),
       )
     }
 
@@ -153,9 +153,9 @@ export const GuildMemberUpdateHandler = handler({
             name: "Until",
             value: time(
               newMember.communicationDisabledUntil,
-              TimestampStyles.ShortDateTime
+              TimestampStyles.ShortDateTime,
             ),
-          })
+          }),
       )
     }
 

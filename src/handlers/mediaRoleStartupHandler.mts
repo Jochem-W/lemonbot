@@ -21,7 +21,7 @@ export const MediaRoleStartupHandler = handler({
     const channel = await fetchChannel(
       client,
       Config.logs.verify,
-      ChannelType.GuildText
+      ChannelType.GuildText,
     )
 
     let before
@@ -61,7 +61,7 @@ export const MediaRoleStartupHandler = handler({
 
         if (remaining <= 0) {
           await giveMediaRole(guild, role, message, footer.text).catch((e) =>
-            console.error(e)
+            console.error(e),
           )
           continue
         }
@@ -70,11 +70,11 @@ export const MediaRoleStartupHandler = handler({
           "Set media role timeout for",
           remaining,
           "millis for",
-          footer.text
+          footer.text,
         )
         setTimeout(() => {
           giveMediaRole(guild, role, message, footer.text).catch((e) =>
-            console.error(e)
+            console.error(e),
           )
         }, remaining)
       }

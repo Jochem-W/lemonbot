@@ -51,7 +51,7 @@ export async function bannerMessage(interaction: Interaction, user?: User) {
         .setStyle(ButtonStyle.Link)
         .setEmoji("🖼️")
         .setLabel("Banner")
-        .setURL(userBanner)
+        .setURL(userBanner),
     )
 
   return { embeds: [embed], components: [actionRow] }

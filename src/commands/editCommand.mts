@@ -34,12 +34,12 @@ const choices = await Drizzle.select({
 
 async function updateMessage(
   client: Client<true>,
-  data: z.infer<typeof selectCharacterSchema>
+  data: z.infer<typeof selectCharacterSchema>,
 ) {
   const channel = await fetchChannel(
     client,
     Config.channels.characters,
-    ChannelType.GuildText
+    ChannelType.GuildText,
   )
 
   await channel.messages.edit(data.message, characterMessage(client, data))
@@ -52,19 +52,21 @@ const editCharacterDescription = modal({
     modalInput(
       "name",
       true,
-      new TextInputBuilder().setLabel("Name").setStyle(TextInputStyle.Short)
+      new TextInputBuilder().setLabel("Name").setStyle(TextInputStyle.Short),
     ),
     modalInput(
       "description",
       true,
       new TextInputBuilder()
         .setLabel("Description")
-        .setStyle(TextInputStyle.Paragraph)
+        .setStyle(TextInputStyle.Paragraph),
     ),
     modalInput(
       "pronouns",
       true,
-      new TextInputBuilder().setLabel("Pronouns").setStyle(TextInputStyle.Short)
+      new TextInputBuilder()
+        .setLabel("Pronouns")
+        .setStyle(TextInputStyle.Short),
     ),
   ],
   async handle(interaction, { name, description, pronouns }, id) {
@@ -95,19 +97,19 @@ const editCharacterMeta = modal({
       true,
       new TextInputBuilder()
         .setLabel("Created by")
-        .setStyle(TextInputStyle.Short)
+        .setStyle(TextInputStyle.Short),
     ),
     modalInput(
       "timestamp",
       true,
       new TextInputBuilder()
         .setLabel("Created at")
-        .setStyle(TextInputStyle.Short)
+        .setStyle(TextInputStyle.Short),
     ),
     modalInput(
       "colour",
       true,
-      new TextInputBuilder().setLabel("Colour").setStyle(TextInputStyle.Short)
+      new TextInputBuilder().setLabel("Colour").setStyle(TextInputStyle.Short),
     ),
   ],
   async handle(interaction, { creator, timestamp, colour }, id) {
@@ -115,7 +117,7 @@ const editCharacterMeta = modal({
       .set({
         creator,
         timestamp: DateTime.fromMillis(
-          await z.coerce.number().parseAsync(timestamp)
+          await z.coerce.number().parseAsync(timestamp),
         ).toJSDate(),
         colour: await z.coerce.number().parseAsync(colour),
       })
@@ -156,8 +158,8 @@ export const EditCommand = slashCommand({
                 new SlashCommandIntegerOption()
                   .setName("id")
                   .setDescription("The character's ID")
-                  .setChoices(...choices)
-              )
+                  .setChoices(...choices),
+              ),
             ),
           ],
           async handle(interaction, id) {
@@ -175,8 +177,8 @@ export const EditCommand = slashCommand({
                   description: data.description,
                   pronouns: data.pronouns,
                 },
-                id.toString(10)
-              )
+                id.toString(10),
+              ),
             )
           },
         }),
@@ -191,8 +193,8 @@ export const EditCommand = slashCommand({
                 new SlashCommandIntegerOption()
                   .setName("id")
                   .setDescription("The character's ID")
-                  .setChoices(...choices)
-              )
+                  .setChoices(...choices),
+              ),
             ),
           ],
           async handle(interaction, id) {
@@ -212,8 +214,8 @@ export const EditCommand = slashCommand({
                     .toString(10),
                   colour: data.colour.toString(10),
                 },
-                id.toString(10)
-              )
+                id.toString(10),
+              ),
             )
           },
         }),
@@ -226,7 +228,7 @@ export const EditCommand = slashCommand({
               new SlashCommandIntegerOption()
                 .setName("id")
                 .setDescription("The character's ID")
-                .setChoices(...choices)
+                .setChoices(...choices),
             ),
             slashOption(false, {
               option: new SlashCommandStringOption()
@@ -237,7 +239,7 @@ export const EditCommand = slashCommand({
                   .filter(
                     (e) =>
                       e.name?.toLowerCase().includes(value.toLowerCase()) &&
-                      e.guild.id === interaction.guildId
+                      e.guild.id === interaction.guildId,
                   )
                   .slice(0, 25)
                   .map((e) => ({ name: e.name as string, value: e.id }))
@@ -248,25 +250,25 @@ export const EditCommand = slashCommand({
               false,
               new SlashCommandAttachmentOption()
                 .setName("palette")
-                .setDescription("The character's palette")
+                .setDescription("The character's palette"),
             ),
             slashOption(
               false,
               new SlashCommandAttachmentOption()
                 .setName("image1")
-                .setDescription("The character's first image")
+                .setDescription("The character's first image"),
             ),
             slashOption(
               false,
               new SlashCommandAttachmentOption()
                 .setName("image3")
-                .setDescription("The character's second image")
+                .setDescription("The character's second image"),
             ),
             slashOption(
               false,
               new SlashCommandAttachmentOption()
                 .setName("image2")
-                .setDescription("The character's third image")
+                .setDescription("The character's third image"),
             ),
           ],
           async handle(interaction, id, icon, palette, image1, image2, image3) {
@@ -281,7 +283,7 @@ export const EditCommand = slashCommand({
               const url = await uploadAttachment(
                 Config.s3.bucket,
                 randomUUID(),
-                palette
+                palette,
               )
               changes = { ...changes, palette: url.toString() }
             }
@@ -290,7 +292,7 @@ export const EditCommand = slashCommand({
               const url = await uploadAttachment(
                 Config.s3.bucket,
                 randomUUID(),
-                image1
+                image1,
               )
               changes = { ...changes, image1: url.toString() }
             }
@@ -299,7 +301,7 @@ export const EditCommand = slashCommand({
               const url = await uploadAttachment(
                 Config.s3.bucket,
                 randomUUID(),
-                image2
+                image2,
               )
               changes = { ...changes, image2: url.toString() }
             }
@@ -308,7 +310,7 @@ export const EditCommand = slashCommand({
               const url = await uploadAttachment(
                 Config.s3.bucket,
                 randomUUID(),
-                image3
+                image3,
               )
               changes = { ...changes, image3: url.toString() }
             }

@@ -59,11 +59,11 @@ async function generate(userId: Snowflake) {
   const image = gm.subClass({ imageMagick: "7+" })(
     result.length * size,
     size,
-    "#000000"
+    "#000000",
   )
 
   const colours = result.map(
-    (arr) => `#${arr.map((num) => num.toString(16).padStart(2, "0")).join("")}`
+    (arr) => `#${arr.map((num) => num.toString(16).padStart(2, "0")).join("")}`,
   )
 
   let offset = 0
@@ -79,7 +79,7 @@ async function generate(userId: Snowflake) {
           .setStyle(ButtonStyle.Secondary)
           .setLabel("Regenerate")
           .setEmoji("🎨")
-          .setCustomId(regenerate(userId))
+          .setCustomId(regenerate(userId)),
       ),
     ],
     embeds: [

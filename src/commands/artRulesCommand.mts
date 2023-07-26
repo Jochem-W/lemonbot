@@ -68,51 +68,51 @@ const rules = {
     new EmbedBuilder()
       .setTitle("Art category rules")
       .setThumbnail(
-        "https://cdn.discordapp.com/attachments/1125446368002052186/1127325150245814362/IMG_4463.png"
+        "https://cdn.discordapp.com/attachments/1125446368002052186/1127325150245814362/IMG_4463.png",
       )
       .setDescription(
         `${quote(
-          "Please refer to, and read these rules thoroughly to gain the ability to send messages and images in the art channels!"
-        )}`
+          "Please refer to, and read these rules thoroughly to gain the ability to send messages and images in the art channels!",
+        )}`,
       )
       .setFields(
         {
           name: "1️⃣ › Please post in the correct art channels.",
           value: `${bold("1a ›")} ${channelMention(
-            Config.art.general
+            Config.art.general,
           )} is for discussing art, sending commission sheets, etc.\n${bold(
-            "1b ›"
+            "1b ›",
           )} ${channelMention(Config.art.yours)} and ${channelMention(
-            Config.art.wips
+            Config.art.wips,
           )} is for showcasing your artwork for the server to see!\n${bold(
-            "1c ›"
+            "1c ›",
           )} ${channelMention(
-            Config.art.others
+            Config.art.others,
           )} is for sharing artwork that is not your own.\n`,
         },
         {
           name: "2️⃣ › Suggestive and NSFW artwork and images are prohibited.",
           value: `Images violating this rule will be deleted, and, if this offense is repeated, you will lose access to these channels. ${bold(
-            "This is a zero tolerance policy."
+            "This is a zero tolerance policy.",
           )}`,
         },
         {
           name: "3️⃣ › Do not repost art without credit.",
           value: `${bold(
-            "3a ›"
+            "3a ›",
           )} Do not repost art without credit. Artist's works deserve to be properly regonized and appreciated.\n${bold(
-            "3b ›"
+            "3b ›",
           )} Do not post artwork in ${channelMention(
-            Config.art.others
+            Config.art.others,
           )} without properly crediting the original artist.\n${bold(
-            "3c ›"
+            "3c ›",
           )} If you do not know the original artist, take the time and effort to find out, or do not post at all.`,
         },
         {
           name: "4️⃣ › Use proper etiquette.",
           value:
             "Please try to not post over other people here. Everyone's work deserves proper recognition and it can be hurtful to do this! We would also appreciate it if you did not use the art channels to only self promote yourself; this is a community, not an advertisement station!",
-        }
+        },
       )
       .setFooter({
         text: "If you have THOROUGHLY read through these rules, you can press the button below to gain access to the art channels!",
@@ -125,7 +125,7 @@ const rules = {
         .setStyle(ButtonStyle.Primary)
         .setEmoji("🎨")
         .setLabel("Accept")
-        .setCustomId(acceptRules)
+        .setCustomId(acceptRules),
     ),
   ],
 }
@@ -140,7 +140,7 @@ export const ArtRulesCommand = slashCommand({
       false,
       new SlashCommandStringOption()
         .setName("message")
-        .setDescription("The ID of the message to edit")
+        .setDescription("The ID of the message to edit"),
     ),
   ],
   async handle(interaction, messageId) {
@@ -159,7 +159,7 @@ export const ArtRulesCommand = slashCommand({
       ephemeral: true,
       embeds: [
         new EmbedBuilder().setTitle(
-          `Art rules ${messageId ? "updated" : "sent"}`
+          `Art rules ${messageId ? "updated" : "sent"}`,
         ),
       ],
       components: [
@@ -168,7 +168,7 @@ export const ArtRulesCommand = slashCommand({
             .setStyle(ButtonStyle.Link)
             .setEmoji("🔗")
             .setLabel("Go to message")
-            .setURL(rulesMessage.url)
+            .setURL(rulesMessage.url),
         ),
       ],
     })

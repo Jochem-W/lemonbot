@@ -8,7 +8,7 @@ export function makeErrorMessage(error: Error, stack = false) {
         new EmbedBuilder()
           .setTitle("An unexpected error has occurred")
           .setDescription(
-            "It seems that an error has occurred. Staff is aware of the issue, and will try to fix it as soon as possible!"
+            "It seems that an error has occurred. Staff is aware of the issue, and will try to fix it as soon as possible!",
           )
           .setTimestamp(Date.now())
           .setColor(Colours.red[500]),

@@ -16,7 +16,7 @@ import {
 export async function avatarMessage(
   interaction: Interaction,
   user?: User,
-  server?: boolean
+  server?: boolean,
 ) {
   user ??= interaction.user
   server ??= true
@@ -44,7 +44,7 @@ export async function avatarMessage(
         .setStyle(ButtonStyle.Link)
         .setEmoji("🖼️")
         .setLabel("User avatar")
-        .setURL(userAvatar)
+        .setURL(userAvatar),
     )
 
   const member = await interactionMember(interaction, { user })
@@ -65,7 +65,7 @@ export async function avatarMessage(
           .setEmoji("🖼️")
           .setLabel("Server avatar")
           .setURL(memberAvatar),
-        ...actionRow.components
+        ...actionRow.components,
       )
     }
   }

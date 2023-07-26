@@ -20,14 +20,14 @@ export const UnbanCommand = slashCommand({
       true,
       new SlashCommandUserOption()
         .setName("user")
-        .setDescription("The target user")
+        .setDescription("The target user"),
     ),
     slashOption(
       false,
       new SlashCommandStringOption()
         .setName("reason")
         .setDescription("The unban reason")
-        .setMaxLength(512)
+        .setMaxLength(512),
     ),
   ],
   async handle(interaction, user, reason) {

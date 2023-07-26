@@ -24,7 +24,9 @@ const editModal = modal({
     modalInput(
       "body",
       true,
-      new TextInputBuilder().setLabel("Body").setStyle(TextInputStyle.Paragraph)
+      new TextInputBuilder()
+        .setLabel("Body")
+        .setStyle(TextInputStyle.Paragraph),
     ),
   ],
   async handle(interaction, { body }, id) {
@@ -43,7 +45,7 @@ const editModal = modal({
           .setTitle("Question edited")
           .setFields(
             { name: "Old body", value: old.body },
-            { name: "New body", value: body }
+            { name: "New body", value: body },
           )
           .setFooter({ text: id })
           .setTimestamp(Date.now()),
@@ -77,7 +79,7 @@ export const QotwCommand = slashCommand({
           true,
           new SlashCommandStringOption()
             .setName("body")
-            .setDescription("The body of the question")
+            .setDescription("The body of the question"),
         ),
       ],
       async handle(interaction, body) {
@@ -168,7 +170,7 @@ export const QotwCommand = slashCommand({
             new EmbedBuilder()
               .setTitle("Questions")
               .setDescription(
-                questions.map((q) => `- ${q.body}`).join("\n") || null
+                questions.map((q) => `- ${q.body}`).join("\n") || null,
               )
               .setFooter({ text: `${questions.length} ${noun}` })
               .setTimestamp(Date.now()),

@@ -32,7 +32,7 @@ async function sendQotw(client: Client) {
   const channel = await fetchChannel(
     client,
     Config.channels.qotw,
-    ChannelType.GuildAnnouncement
+    ChannelType.GuildAnnouncement,
   )
 
   const questions = await Drizzle.select().from(qotw)
@@ -40,7 +40,7 @@ async function sendQotw(client: Client) {
     const modGeneral = await fetchChannel(
       client,
       Config.channels.modGeneral,
-      ChannelType.GuildText
+      ChannelType.GuildText,
     )
 
     await modGeneral.send({
@@ -55,7 +55,7 @@ async function sendQotw(client: Client) {
   }
 
   const rulesEmoji = channel.guild.emojis.cache.find(
-    (e) => e.name === "pinned_messages"
+    (e) => e.name === "pinned_messages",
   )
   let rulesText = "follow the "
   if (rulesEmoji) {
@@ -66,14 +66,14 @@ async function sendQotw(client: Client) {
 
   const message = await channel.send(
     `${roleMention(
-      Config.roles.qotw
+      Config.roles.qotw,
     )} Good morning, everyone! It's time for another question of the week! The one for this week is:\n\n${bold(
-      `<${question.body}>`
+      `<${question.body}>`,
     )}\n\nPlease remember to ${bold(
-      rulesText
+      rulesText,
     )}, and to keep conversations on-topic and civil.\n\nIf you have a question you'd like to see, please submit it at <https://forms.gle/AiPPdedoB91fgPkL6>!\n\n⬇️ ${bold(
-      "Send your responses in the attached thread!"
-    )} ⬇️`
+      "Send your responses in the attached thread!",
+    )} ⬇️`,
   )
   await message.startThread({
     name:

@@ -18,7 +18,7 @@ export async function giveMediaRole(
   guild: Guild,
   role: Role,
   message: Message<true>,
-  userId: string
+  userId: string,
 ) {
   if (message.author.id !== message.client.user.id) {
     console.warn("Skipping edit of", message.id)
@@ -36,10 +36,10 @@ export async function giveMediaRole(
           .setThumbnail(user.displayAvatarURL({ size: 4096 }))
           .setDescription(
             `${userMention(
-              userId
+              userId,
             )} left the server before receiving the ${roleMention(
-              role.id
-            )} role.`
+              role.id,
+            )} role.`,
           )
           .setFooter({ text: userId })
           .setTimestamp(Date.now())
@@ -60,8 +60,8 @@ export async function giveMediaRole(
         .setThumbnail(member.displayAvatarURL({ size: 4096 }))
         .setDescription(
           `${userMention(
-            member.id
-          )} can now send and embed media and links in certain channels.`
+            member.id,
+          )} can now send and embed media and links in certain channels.`,
         )
         .setFooter({ text: member.id })
         .setTimestamp(Date.now())
@@ -86,7 +86,7 @@ export const MediaRoleHandler = handler({
     const channel = await fetchChannel(
       newMember.client,
       Config.logs.verify,
-      ChannelType.GuildText
+      ChannelType.GuildText,
     )
 
     const message = await channel.send({
@@ -96,8 +96,8 @@ export const MediaRoleHandler = handler({
           .setThumbnail(newMember.displayAvatarURL({ size: 4096 }))
           .setDescription(
             `${userMention(newMember.id)} will be given the ${roleMention(
-              role.id
-            )} role in 24 hours.`
+              role.id,
+            )} role in 24 hours.`,
           )
           .setFooter({ text: newMember.id })
           .setTimestamp(Date.now()),
@@ -105,10 +105,13 @@ export const MediaRoleHandler = handler({
     })
 
     console.log("Set media role timeout for", 24, "hours for", newMember.id)
-    setTimeout(() => {
-      giveMediaRole(newMember.guild, role, message, newMember.id).catch((e) =>
-        console.error(e)
-      )
-    }, Duration.fromObject({ days: 1 }).toMillis())
+    setTimeout(
+      () => {
+        giveMediaRole(newMember.guild, role, message, newMember.id).catch((e) =>
+          console.error(e),
+        )
+      },
+      Duration.fromObject({ days: 1 }).toMillis(),
+    )
   },
 })

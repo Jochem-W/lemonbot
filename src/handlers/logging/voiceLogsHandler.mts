@@ -24,7 +24,7 @@ export const VoiceLogsHandler = handler({
     logChannel ??= await fetchChannel(
       newState.client,
       Config.logs.voice,
-      ChannelType.GuildText
+      ChannelType.GuildText,
     )
 
     const member = newState.member
@@ -49,14 +49,14 @@ export const VoiceLogsHandler = handler({
         new EmbedBuilder()
           .setTitle("➡️ Joined a voice channel")
           .setDescription(channelMention(newState.channelId))
-          .setColor(Colours.green[500])
+          .setColor(Colours.green[500]),
       )
     } else if (oldState.channelId && !newState.channelId) {
       embeds.push(
         new EmbedBuilder()
           .setTitle("⬅️ Left a voice channel")
           .setDescription(channelMention(oldState.channelId))
-          .setColor(Colours.red[500])
+          .setColor(Colours.red[500]),
       )
       voiceChannelId = oldState.channelId
     } else if (
@@ -77,9 +77,9 @@ export const VoiceLogsHandler = handler({
               name: "After",
               value: channelMention(newState.channelId),
               inline: true,
-            }
+            },
           )
-          .setColor(Colours.amber[500])
+          .setColor(Colours.amber[500]),
       )
     }
 
@@ -87,7 +87,7 @@ export const VoiceLogsHandler = handler({
       embeds.push(
         new EmbedBuilder()
           .setTitle(`${newState.selfDeaf ? "🔇 D" : "🔊 Und"}eafened`)
-          .setColor(Colours.amber[500])
+          .setColor(Colours.amber[500]),
       )
     }
 
@@ -95,7 +95,7 @@ export const VoiceLogsHandler = handler({
       embeds.push(
         new EmbedBuilder()
           .setTitle(`🎙️ ${newState.selfMute ? "M" : "Unm"}uted`)
-          .setColor(Colours.amber[500])
+          .setColor(Colours.amber[500]),
       )
     }
 
@@ -106,7 +106,7 @@ export const VoiceLogsHandler = handler({
       embeds.push(
         new EmbedBuilder()
           .setTitle(`📷 ${newState.selfVideo ? "En" : "Dis"}abled video`)
-          .setColor(Colours.amber[500])
+          .setColor(Colours.amber[500]),
       )
     }
 
@@ -117,7 +117,7 @@ export const VoiceLogsHandler = handler({
       embeds.push(
         new EmbedBuilder()
           .setTitle(`Server ${newState.serverDeaf ? "🔇 " : "🔊 un"}deafened`)
-          .setColor(Colours.red[500])
+          .setColor(Colours.red[500]),
       )
     }
 
@@ -128,7 +128,7 @@ export const VoiceLogsHandler = handler({
       embeds.push(
         new EmbedBuilder()
           .setTitle(`🎙️ Server ${newState.serverMute ? "" : "un"}muted`)
-          .setColor(Colours.red[500])
+          .setColor(Colours.red[500]),
       )
     }
 
@@ -139,9 +139,9 @@ export const VoiceLogsHandler = handler({
       embeds.push(
         new EmbedBuilder()
           .setTitle(
-            `🖥️ ${newState.streaming ? "Started" : "Stopped"} streaming`
+            `🖥️ ${newState.streaming ? "Started" : "Stopped"} streaming`,
           )
-          .setColor(Colours.amber[500])
+          .setColor(Colours.amber[500]),
       )
     }
 
@@ -184,11 +184,11 @@ export const VoiceLogsHandler = handler({
           value:
             truncate(
               voiceChannel.members.map((m) => userMention(m.id)),
-              1024
+              1024,
             ) || "None",
         },
         { name: "User ID", value: member.id, inline: true },
-        { name: "Voice channel ID", value: voiceChannel.id, inline: true }
+        { name: "Voice channel ID", value: voiceChannel.id, inline: true },
       )
     }
 

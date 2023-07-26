@@ -32,8 +32,8 @@ export const CharactersCommand = slashCommand({
         .setChoices(
           ...characters
             .map((c) => ({ name: c.name, value: c.id }))
-            .sort((a, b) => a.name.localeCompare(b.name))
-        )
+            .sort((a, b) => a.name.localeCompare(b.name)),
+        ),
     ),
   ],
   async handle(interaction, id) {
@@ -50,7 +50,7 @@ export const CharactersCommand = slashCommand({
         new ActionRowBuilder<MessageActionRowComponentBuilder>().setComponents(
           new StringSelectMenuBuilder()
             .setOptions(characterOptions(interaction.client, char.id))
-            .setCustomId(updateCharacters(interaction.user.id))
+            .setCustomId(updateCharacters(interaction.user.id)),
         ),
       ],
     })
@@ -90,7 +90,7 @@ const updateCharacters = component({
         new ActionRowBuilder<MessageActionRowComponentBuilder>().setComponents(
           new StringSelectMenuBuilder()
             .setOptions(characterOptions(interaction.client, id))
-            .setCustomId(updateCharacters(interaction.user.id))
+            .setCustomId(updateCharacters(interaction.user.id)),
         ),
       ],
     })
@@ -102,14 +102,14 @@ function characterOptions(client: Client<true>, id: number) {
     new StringSelectMenuOptionBuilder()
       .setLabel(c.name)
       .setEmoji(
-        componentEmoji(client.emojis.cache.find((e) => e.name === c.icon))
+        componentEmoji(client.emojis.cache.find((e) => e.name === c.icon)),
       )
       .setValue(c.id.toString(10))
       .setDescription(
         c.description.length > 100
           ? c.description.substring(0, 99) + "…"
-          : c.description
-      )
+          : c.description,
+      ),
   )
 
   options.find((o) => o.data.value === id.toString(10))?.setDefault(true)

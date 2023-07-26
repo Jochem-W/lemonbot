@@ -8,7 +8,7 @@ import type { Attachment } from "discord.js"
 export async function uploadAttachment(
   bucket: Required<PutObjectCommandInput["Bucket"]>,
   key: Required<PutObjectCommandInput["Key"]>,
-  attachment: Attachment
+  attachment: Attachment,
 ) {
   const options: Options = {
     client: S3,

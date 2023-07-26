@@ -10,14 +10,14 @@ import type { z } from "zod"
 
 export function characterMessage(
   client: Client<true>,
-  character: z.infer<typeof selectCharacterSchema>
+  character: z.infer<typeof selectCharacterSchema>,
 ) {
   const images = [character.image1, character.image2, character.image3].filter(
-    (i) => i
+    (i) => i,
   ) as string[]
 
   const embeds = images.map((i) =>
-    new EmbedBuilder().setImage(i).setURL("https://discord.gg/zestylemons")
+    new EmbedBuilder().setImage(i).setURL("https://discord.gg/zestylemons"),
   )
 
   let firstEmbed = embeds[0]
@@ -52,7 +52,7 @@ export function characterMessage(
         name: "Created on",
         value: time(character.timestamp, TimestampStyles.LongDate),
         inline: true,
-      }
+      },
     )
     .setColor(character.colour)
 

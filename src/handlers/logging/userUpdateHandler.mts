@@ -22,7 +22,7 @@ export const UserUpdateHandler = handler({
     logChannel ??= await fetchChannel(
       newUser.client,
       Config.logs.user,
-      ChannelType.GuildText
+      ChannelType.GuildText,
     )
 
     const embeds = [
@@ -56,9 +56,9 @@ export const UserUpdateHandler = handler({
               name: "After",
               value: newAvatar ? hyperlink("Click here", newAvatar) : "\u200b",
               inline: true,
-            }
+            },
           )
-          .setColor(Colours.amber[500])
+          .setColor(Colours.amber[500]),
       )
     }
 
@@ -76,9 +76,9 @@ export const UserUpdateHandler = handler({
               name: "After",
               value: newUser.discriminator,
               inline: true,
-            }
+            },
           )
-          .setColor(Colours.amber[500])
+          .setColor(Colours.amber[500]),
       )
     }
 
@@ -96,9 +96,9 @@ export const UserUpdateHandler = handler({
               name: "After",
               value: newUser.globalName ?? "\u200b",
               inline: true,
-            }
+            },
           )
-          .setColor(Colours.amber[500])
+          .setColor(Colours.amber[500]),
       )
     }
 
@@ -116,9 +116,9 @@ export const UserUpdateHandler = handler({
               name: "After",
               value: newUser.username,
               inline: true,
-            }
+            },
           )
-          .setColor(Colours.amber[500])
+          .setColor(Colours.amber[500]),
       )
     }
 

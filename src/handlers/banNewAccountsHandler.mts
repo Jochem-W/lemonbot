@@ -43,7 +43,7 @@ export const BanNewAccountsHandler = handler({
       .setAuthor(author)
       .setTitle("Your account has been temporarily banned")
       .setDescription(
-        "Accounts that are less than 30 days old get automatically banned for safety reasons. The ban will be lifted automatically at the time indicated below."
+        "Accounts that are less than 30 days old get automatically banned for safety reasons. The ban will be lifted automatically at the time indicated below.",
       )
       .setFields(
         {
@@ -55,10 +55,10 @@ export const BanNewAccountsHandler = handler({
           name: "Can join starting",
           value: time(
             createdAt.plus({ days: Config.autoBan.days }).toJSDate(),
-            TimestampStyles.ShortDateTime
+            TimestampStyles.ShortDateTime,
           ),
           inline: true,
-        }
+        },
       )
       .setFooter({
         text: "If you have any questions, please DM @lucasfloof on Discord or Twitter.",
@@ -70,7 +70,7 @@ export const BanNewAccountsHandler = handler({
         name: "Invite link",
         value: new URL(
           member.guild.vanityURLCode,
-          "https://discord.gg/"
+          "https://discord.gg/",
         ).toString(),
       })
     }

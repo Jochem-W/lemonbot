@@ -4,7 +4,7 @@ import { EmbedBuilder, type Interaction } from "discord.js"
 export function invalidQuestionMessage(
   interaction: Interaction,
   id: string,
-  body?: string
+  body?: string,
 ) {
   const embed = new EmbedBuilder()
     .setTitle("Invalid question")

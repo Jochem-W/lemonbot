@@ -44,7 +44,7 @@ export const EightBallCommand = slashCommand({
       new SlashCommandStringOption()
         .setName("question")
         .setDescription("The question you'd like to ask")
-        .setMaxLength(255)
+        .setMaxLength(255),
     ),
   ],
   async handle(interaction, question) {
@@ -76,7 +76,7 @@ export const EightBallCommand = slashCommand({
               ? Colours.green[500]
               : response.type === "non-committal"
               ? Colours.amber[500]
-              : Colours.red[500]
+              : Colours.red[500],
           )
           .setTimestamp(Date.now()),
       ],

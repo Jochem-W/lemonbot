@@ -25,15 +25,15 @@ const disableReminder = staticComponent({
     }
 
     const ids = [...text.matchAll(/<@(\d+)>/g)].map(
-      (match) => match[1] as string
+      (match) => match[1] as string,
     )
     await Drizzle.insert(dontShowAgain).values(
-      ids.map((id) => ({ lemonId: id, userId: interaction.user.id }))
+      ids.map((id) => ({ lemonId: id, userId: interaction.user.id })),
     )
 
     const rows = interaction.message.components.map(
       (row) =>
-        new ActionRowBuilder<MessageActionRowComponentBuilder>(row.toJSON())
+        new ActionRowBuilder<MessageActionRowComponentBuilder>(row.toJSON()),
     )
 
     for (const row of rows) {
@@ -84,11 +84,11 @@ export const LemonMentionHandler = handler({
               .join(", ")
               .replace(
                 /,([^,]*)$/,
-                " and$1"
-              )} in your message unless it's important!\n\nHere's a demonstration on how to disable pinging when replying:`
+                " and$1",
+              )} in your message unless it's important!\n\nHere's a demonstration on how to disable pinging when replying:`,
           )
           .setImage(
-            "https://cdn.discordapp.com/attachments/1125446368002052186/1126865484046929980/chrome_20220423_222431.gif"
+            "https://cdn.discordapp.com/attachments/1125446368002052186/1126865484046929980/chrome_20220423_222431.gif",
           )
           .setFooter({
             text: "If this is understood, you can press the button below to disable this reminder.",
@@ -99,7 +99,7 @@ export const LemonMentionHandler = handler({
           new ButtonBuilder()
             .setStyle(ButtonStyle.Primary)
             .setLabel("Don't show again")
-            .setCustomId(disableReminder)
+            .setCustomId(disableReminder),
         ),
       ],
     })

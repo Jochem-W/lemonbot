@@ -10,20 +10,22 @@ export const AvatarCommand = slashCommand({
   options: [
     slashOption(
       false,
-      new SlashCommandUserOption().setName("user").setDescription("Target user")
+      new SlashCommandUserOption()
+        .setName("user")
+        .setDescription("Target user"),
     ),
     slashOption(
       false,
       new SlashCommandBooleanOption()
         .setName("server")
         .setDescription(
-          "Show the user's server avatar if available, defaults to True"
-        )
+          "Show the user's server avatar if available, defaults to True",
+        ),
     ),
   ],
   async handle(interaction, user, server) {
     await interaction.reply(
-      await avatarMessage(interaction, user ?? undefined, server ?? undefined)
+      await avatarMessage(interaction, user ?? undefined, server ?? undefined),
     )
   },
 })

@@ -19,7 +19,7 @@ export const PurgeCommand = slashCommand({
         .setName("limit")
         .setDescription("How many messages to delete")
         .setMaxValue(100)
-        .setMinValue(2)
+        .setMinValue(2),
     ),
   ],
   async handle(interaction, limit) {

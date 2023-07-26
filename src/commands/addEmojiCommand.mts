@@ -37,19 +37,19 @@ export const AddEmojiCommand = slashCommand({
           true,
           new SlashCommandStringOption()
             .setName("name")
-            .setDescription("Name of the emoji")
+            .setDescription("Name of the emoji"),
         ),
         slashOption(
           true,
           new SlashCommandAttachmentOption()
             .setName("image")
-            .setDescription("Emoji image")
+            .setDescription("Emoji image"),
         ),
         slashOption(
           false,
           new SlashCommandRoleOption()
             .setName("role")
-            .setDescription("Role to restrict the emoji to")
+            .setDescription("Role to restrict the emoji to"),
         ),
       ],
       async handle(interaction, name, image, role) {
@@ -84,7 +84,7 @@ export const AddEmojiCommand = slashCommand({
             new EmbedBuilder()
               .setTitle("Emoji created")
               .setDescription(
-                formatEmoji(emoji.id, emoji.animated ?? undefined)
+                formatEmoji(emoji.id, emoji.animated ?? undefined),
               )
               .setFooter({ text: emoji.id })
               .setTimestamp(Date.now()),
@@ -100,27 +100,27 @@ export const AddEmojiCommand = slashCommand({
           true,
           new SlashCommandStringOption()
             .setName("name")
-            .setDescription("Name of the sticker")
+            .setDescription("Name of the sticker"),
         ),
         slashOption(
           true,
           new SlashCommandStringOption()
             .setName("tags")
             .setDescription(
-              "Tags for the sticker, ideally an emoji name without the colons"
-            )
+              "Tags for the sticker, ideally an emoji name without the colons",
+            ),
         ),
         slashOption(
           true,
           new SlashCommandAttachmentOption()
             .setName("image")
-            .setDescription("Sticker image (GIF, PNG, APNG)")
+            .setDescription("Sticker image (GIF, PNG, APNG)"),
         ),
         slashOption(
           false,
           new SlashCommandStringOption()
             .setName("description")
-            .setDescription("Description for the sticker")
+            .setDescription("Description for the sticker"),
         ),
       ],
       async handle(interaction, name, tags, image, description) {

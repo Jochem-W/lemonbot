@@ -39,12 +39,12 @@ export const InfoCommand = slashCommand({
           false,
           new SlashCommandUserOption()
             .setName("user")
-            .setDescription("Target user")
+            .setDescription("Target user"),
         ),
       ],
       async handle(interaction, user) {
         await interaction.reply(
-          await userInfoMessage(interaction, user ?? undefined)
+          await userInfoMessage(interaction, user ?? undefined),
         )
       },
     }),
@@ -57,17 +57,17 @@ export const InfoCommand = slashCommand({
         }
 
         const onlineEmoji = interaction.client.emojis.cache.find(
-          (e) => e.name === "online"
+          (e) => e.name === "online",
         )
         const offlineEmoji = interaction.client.emojis.cache.find(
-          (e) => e.name === "offline"
+          (e) => e.name === "offline",
         )
 
         let description = ""
         if (onlineEmoji) {
           description += `${formatEmoji(
             onlineEmoji.id,
-            onlineEmoji.animated ?? false
+            onlineEmoji.animated ?? false,
           )} `
         }
 
@@ -80,7 +80,7 @@ export const InfoCommand = slashCommand({
         if (offlineEmoji) {
           description += `${formatEmoji(
             offlineEmoji.id,
-            offlineEmoji.animated ?? false
+            offlineEmoji.animated ?? false,
           )} `
         }
 
@@ -107,7 +107,7 @@ export const InfoCommand = slashCommand({
                 guild.roles.cache
                   .filter((r) => r.id !== guild.roles.everyone.id)
                   .map((r) => roleMention(r.id)),
-                1024
+                1024,
               ),
             },
             {
@@ -117,12 +117,12 @@ export const InfoCommand = slashCommand({
                   .filter(
                     (m) =>
                       !m.user.bot &&
-                      m.permissions.has(PermissionFlagsBits.ModerateMembers)
+                      m.permissions.has(PermissionFlagsBits.ModerateMembers),
                   )
                   .map((r) => userMention(r.id)),
-                1024
+                1024,
               ),
-            }
+            },
           )
           .setImage(guild.bannerURL({ size: 4096 }))
           .setFooter({ text: guild.id })
@@ -133,7 +133,7 @@ export const InfoCommand = slashCommand({
             name: "Invite link",
             value: new URL(
               guild.vanityURLCode,
-              "https://discord.gg/"
+              "https://discord.gg/",
             ).toString(),
           })
         }
@@ -155,7 +155,7 @@ export const InfoCommand = slashCommand({
                 (e) =>
                   e.name?.toLowerCase().includes(value.toLowerCase()) &&
                   e.guild.id === interaction.guildId &&
-                  e.roles.cache.size === 0
+                  e.roles.cache.size === 0,
               )
               .slice(0, 25)
               .map((e) => ({ name: e.name as string, value: e.id }))
@@ -186,7 +186,7 @@ export const InfoCommand = slashCommand({
               .setTitle(
                 emoji.name
                   ? `:${emoji.name}:`
-                  : formatEmoji(emoji.id, emoji.animated ?? false)
+                  : formatEmoji(emoji.id, emoji.animated ?? false),
               )
               .setFields({ name: "Uploaded by", value: userMention(author.id) })
               .setThumbnail(emoji.url)

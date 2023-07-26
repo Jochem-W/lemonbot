@@ -21,7 +21,7 @@ export const SlowmodeCommand = slashCommand({
         .setName("delay")
         .setDescription("The slowmode delay in seconds")
         .setMinValue(0)
-        .setMaxValue(21600)
+        .setMaxValue(21600),
     ),
   ],
   async handle(interaction, delay) {
@@ -39,8 +39,8 @@ export const SlowmodeCommand = slashCommand({
           .setTitle("Slowmode changed")
           .setDescription(
             `Set the slowmode to ${inlineCode(
-              delay.toString(10)
-            )} for ${channelMention(channel.id)}`
+              delay.toString(10),
+            )} for ${channelMention(channel.id)}`,
           )
           .setFooter({ text: channel.id })
           .setTimestamp(Date.now()),

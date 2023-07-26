@@ -24,14 +24,14 @@ export const SayCommand = slashCommand({
       true,
       new SlashCommandStringOption()
         .setName("message")
-        .setDescription("The message to send")
+        .setDescription("The message to send"),
     ),
     slashOption(
       false,
       new SlashCommandChannelOption()
         .setName("channel")
         .setDescription(
-          "The channel to send the message to, or the current channel if omitted"
+          "The channel to send the message to, or the current channel if omitted",
         )
         .addChannelTypes(
           ChannelType.GuildAnnouncement,
@@ -41,14 +41,14 @@ export const SayCommand = slashCommand({
           ChannelType.GuildText,
           ChannelType.GuildForum,
           ChannelType.GuildVoice,
-          ChannelType.GuildStageVoice
-        )
+          ChannelType.GuildStageVoice,
+        ),
     ),
     slashOption(
       false,
       new SlashCommandAttachmentOption()
         .setName("attachment")
-        .setDescription("Attachment to send with the message")
+        .setDescription("Attachment to send with the message"),
     ),
   ],
   async handle(interaction, content, channel, attachment) {
@@ -75,7 +75,7 @@ export const SayCommand = slashCommand({
       }
 
       files.push(
-        new AttachmentBuilder(response.body as unknown as Stream, data)
+        new AttachmentBuilder(response.body as unknown as Stream, data),
       )
     }
 
@@ -97,7 +97,7 @@ export const SayCommand = slashCommand({
           .setTitle("Message sent")
           .setURL(message.url)
           .setImage(
-            mimeType?.type === "image" ? sentAttachment?.url ?? null : null
+            mimeType?.type === "image" ? sentAttachment?.url ?? null : null,
           )
           .setDescription(content)
           .setFooter({ text: message.id })

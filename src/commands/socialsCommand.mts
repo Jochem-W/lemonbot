@@ -15,20 +15,20 @@ export const SocialCommand = slashCommand({
   dmPermission: true,
   async handle(interaction) {
     const heartEmoji = interaction.client.emojis.cache.find(
-      (e) => e.name === "kuiperHeart"
+      (e) => e.name === "kuiperHeart",
     )
     const koFiEmoji = interaction.client.emojis.cache.find(
-      (e) => e.name === "kofi"
+      (e) => e.name === "kofi",
     )
     const twitterEmoji = interaction.client.emojis.cache.find(
-      (e) => e.name === "twitter"
+      (e) => e.name === "twitter",
     )
 
     await interaction.reply({
       embeds: [
         new EmbedBuilder()
           .setTitle(
-            "Here are my socials and Ko-fi for when you'd like to further support me and my work!"
+            "Here are my socials and Ko-fi for when you'd like to further support me and my work!",
           )
           .setThumbnail(heartEmoji?.url ?? null),
       ],
@@ -48,7 +48,7 @@ export const SocialCommand = slashCommand({
             .setStyle(ButtonStyle.Link)
             .setLabel("Twitter (alt)")
             .setEmoji(componentEmoji(twitterEmoji))
-            .setURL("https://twitter.com/realcatirl")
+            .setURL("https://twitter.com/realcatirl"),
         ),
       ],
     })

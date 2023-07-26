@@ -40,7 +40,7 @@ export const FlipCommand = slashCommand({
     const embed = new EmbedBuilder()
       .setAuthor(author)
       .setThumbnail(
-        "https://cdn.discordapp.com/attachments/1125446368002052186/1125824626216423424/coinflip.gif"
+        "https://cdn.discordapp.com/attachments/1125446368002052186/1125824626216423424/coinflip.gif",
       )
     await interaction.reply({ embeds: [embed] })
 

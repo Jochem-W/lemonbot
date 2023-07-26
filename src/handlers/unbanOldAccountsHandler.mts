@@ -40,7 +40,7 @@ export const UnbanOldAccountsHandler = handler({
           "Set unban timeout for",
           remaining,
           "millis for",
-          ban.user.id
+          ban.user.id,
         )
         new LongTimeout(() => {
           guild.bans

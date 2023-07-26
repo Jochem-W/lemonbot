@@ -10,7 +10,9 @@ export const BannerCommand = slashCommand({
   options: [
     slashOption(
       false,
-      new SlashCommandUserOption().setName("user").setDescription("Target user")
+      new SlashCommandUserOption()
+        .setName("user")
+        .setDescription("Target user"),
     ),
   ],
   async handle(interaction, user) {

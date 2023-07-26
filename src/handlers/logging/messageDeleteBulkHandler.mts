@@ -34,7 +34,7 @@ export const MessageDeleteBulkHandler = handler({
     logChannel ??= await fetchChannel(
       channel.client,
       Config.logs.message,
-      ChannelType.GuildText
+      ChannelType.GuildText,
     )
 
     const info = new EmbedBuilder()
@@ -54,7 +54,7 @@ export const MessageDeleteBulkHandler = handler({
       .setDescription(
         firstMessage.content === null
           ? italic("Not cached")
-          : firstMessage.content || null
+          : firstMessage.content || null,
       )
       .setFooter({ text: firstMessage.id })
       .setTimestamp(firstMessage.createdAt)
@@ -73,7 +73,7 @@ export const MessageDeleteBulkHandler = handler({
             value: userMention(firstMessage.author.id),
             inline: true,
           },
-          { name: "User ID", value: firstMessage.author.id, inline: true }
+          { name: "User ID", value: firstMessage.author.id, inline: true },
         )
     }
 
@@ -88,7 +88,7 @@ export const MessageDeleteBulkHandler = handler({
       .setDescription(
         lastMessage.content === null
           ? italic("Not cached")
-          : lastMessage.content || null
+          : lastMessage.content || null,
       )
       .setFooter({ text: lastMessage.id })
       .setTimestamp(lastMessage.createdAt)
@@ -107,7 +107,7 @@ export const MessageDeleteBulkHandler = handler({
             value: userMention(lastMessage.author.id),
             inline: true,
           },
-          { name: "User ID", value: lastMessage.author.id, inline: true }
+          { name: "User ID", value: lastMessage.author.id, inline: true },
         )
     }
 
@@ -119,7 +119,7 @@ export const MessageDeleteBulkHandler = handler({
             .setStyle(ButtonStyle.Link)
             .setEmoji("🔗")
             .setLabel("Go to first message")
-            .setURL(firstMessage.url)
+            .setURL(firstMessage.url),
         ),
       ],
     })

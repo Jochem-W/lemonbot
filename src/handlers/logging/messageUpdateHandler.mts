@@ -31,7 +31,7 @@ export const MessageUpdateHandler = handler({
     logChannel ??= await fetchChannel(
       newMessage.client,
       Config.logs.message,
-      ChannelType.GuildText
+      ChannelType.GuildText,
     )
 
     if (newMessage.partial) {
@@ -52,7 +52,7 @@ export const MessageUpdateHandler = handler({
 
     const embeds = newMessage.attachments
       .filter(
-        (a) => a.contentType && new MIMEType(a.contentType).type === "image"
+        (a) => a.contentType && new MIMEType(a.contentType).type === "image",
       )
       .map((a) => new EmbedBuilder().setURL(newMessage.url).setImage(a.url))
 
@@ -83,7 +83,7 @@ export const MessageUpdateHandler = handler({
               ? italic("Not cached")
               : oldMessage.content || "\u200b",
         },
-        { name: "After", value: newMessage.content || "\u200b" }
+        { name: "After", value: newMessage.content || "\u200b" },
       )
       .setFooter({ text: newMessage.id })
       .setTimestamp(newMessage.editedAt)
@@ -108,7 +108,7 @@ export const MessageUpdateHandler = handler({
         name: "Channel",
         value: channelMention(newMessage.channelId),
         inline: true,
-      }
+      },
     )
 
     await logChannel.send({
@@ -119,7 +119,7 @@ export const MessageUpdateHandler = handler({
             .setStyle(ButtonStyle.Link)
             .setEmoji("🔗")
             .setLabel("Go to message")
-            .setURL(newMessage.url)
+            .setURL(newMessage.url),
         ),
       ],
     })

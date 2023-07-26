@@ -31,7 +31,7 @@ export const MessageDeleteHandler = handler({
     logChannel ??= await fetchChannel(
       message.client,
       Config.logs.message,
-      ChannelType.GuildText
+      ChannelType.GuildText,
     )
 
     if (!message.guildId || message.guildId !== Config.guild) {
@@ -44,7 +44,7 @@ export const MessageDeleteHandler = handler({
 
     const embeds = message.attachments
       .filter(
-        (a) => a.contentType && new MIMEType(a.contentType).type === "image"
+        (a) => a.contentType && new MIMEType(a.contentType).type === "image",
       )
       .map((a) => new EmbedBuilder().setURL(message.url).setImage(a.url))
 
@@ -88,7 +88,7 @@ export const MessageDeleteHandler = handler({
         })
         .addFields(
           { name: "User", value: userMention(message.author.id), inline: true },
-          { name: "User ID", value: message.author.id, inline: true }
+          { name: "User ID", value: message.author.id, inline: true },
         )
     }
 
@@ -106,7 +106,7 @@ export const MessageDeleteHandler = handler({
             .setStyle(ButtonStyle.Link)
             .setEmoji("🔗")
             .setLabel("Go to message")
-            .setURL(message.url)
+            .setURL(message.url),
         ),
       ],
     })

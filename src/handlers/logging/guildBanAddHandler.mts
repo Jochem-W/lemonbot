@@ -22,7 +22,7 @@ export const GuildBanAddHandler = handler({
     logChannel ??= await fetchChannel(
       ban.client,
       Config.logs.member,
-      ChannelType.GuildText
+      ChannelType.GuildText,
     )
 
     if (ban.guild.id !== Config.guild) {

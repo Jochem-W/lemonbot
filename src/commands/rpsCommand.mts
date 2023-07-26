@@ -28,7 +28,7 @@ export const RpsCommand = slashCommand({
       new SlashCommandStringOption()
         .setName("choice")
         .setDescription("Your choice")
-        .setChoices(...choices.map((c) => ({ name: c, value: c })))
+        .setChoices(...choices.map((c) => ({ name: c, value: c }))),
     ),
   ],
   async handle(interaction, choice) {
@@ -39,12 +39,12 @@ export const RpsCommand = slashCommand({
 
     const clientMember = await tryFetchMember(
       { id: Config.guild, client: interaction.client },
-      interaction.client.user.id
+      interaction.client.user.id,
     )
 
     const embed = new EmbedBuilder().setFields(
       { name: "You chose", value: upperFirst(choice), inline: true },
-      { name: "I chose", value: upperFirst(botChoice), inline: true }
+      { name: "I chose", value: upperFirst(botChoice), inline: true },
     )
     if (botChoice === choice) {
       embed.setAuthor({

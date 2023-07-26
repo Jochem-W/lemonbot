@@ -15,7 +15,9 @@ export const ExemptCommand = slashCommand({
   options: [
     slashOption(
       true,
-      new SlashCommandUserOption().setName("user").setDescription("Target user")
+      new SlashCommandUserOption()
+        .setName("user")
+        .setDescription("Target user"),
     ),
   ],
   async handle(interaction, user) {
@@ -27,8 +29,8 @@ export const ExemptCommand = slashCommand({
           .setTitle("Exempted a user from the account age requirement")
           .setDescription(
             `${userMention(
-              user.id
-            )} is now exempt from the 30 day account age requirement.`
+              user.id,
+            )} is now exempt from the 30 day account age requirement.`,
           )
           .setFooter({ text: user.id })
           .setTimestamp(Date.now()),

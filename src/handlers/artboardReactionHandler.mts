@@ -54,7 +54,7 @@ export const ArtboardReactionHandler = handler({
         new EmbedBuilder().setDescription(
           `Posted by ${userMention(originalMessage.author.id)} in ${
             originalMessage.url
-          }`
+          }`,
         ),
       ],
       files: [...originalMessage.attachments.values()],

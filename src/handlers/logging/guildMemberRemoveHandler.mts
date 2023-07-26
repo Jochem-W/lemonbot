@@ -25,7 +25,7 @@ export const GuildMemberRemoveHandler = handler({
     logChannel ??= await fetchChannel(
       member.client,
       Config.logs.member,
-      ChannelType.GuildText
+      ChannelType.GuildText,
     )
 
     if (member.guild.id !== Config.guild) {
@@ -57,14 +57,14 @@ export const GuildMemberRemoveHandler = handler({
     }
 
     const roles = member.roles.cache.filter(
-      (r) => r.id !== member.guild.roles.everyone.id
+      (r) => r.id !== member.guild.roles.everyone.id,
     )
     if (roles.size > 0) {
       embed.addFields({
         name: "Roles",
         value: truncate(
           roles.map((r) => roleMention(r.id)),
-          1024
+          1024,
         ),
       })
     }

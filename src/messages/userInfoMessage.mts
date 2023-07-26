@@ -80,7 +80,7 @@ export async function userInfoMessage(interaction: Interaction, user?: User) {
     }
 
     const roles = member.roles.cache.filter(
-      (r) => r.id !== member.guild.roles.everyone.id
+      (r) => r.id !== member.guild.roles.everyone.id,
     )
     if (roles.size > 0) {
       embed.addFields({
