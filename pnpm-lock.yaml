@@ -6,11 +6,11 @@ settings:
 
 dependencies:
   '@aws-sdk/client-s3':
-    specifier: ^3.382.0
-    version: 3.382.0
+    specifier: ^3.383.0
+    version: 3.383.0
   '@aws-sdk/lib-storage':
     specifier: ^3.382.0
-    version: 3.382.0(@aws-sdk/client-s3@3.382.0)
+    version: 3.382.0(@aws-sdk/client-s3@3.383.0)
   '@octokit/rest':
     specifier: ^20.0.1
     version: 20.0.1
@@ -179,8 +179,8 @@ packages:
       tslib: 1.14.1
     dev: false
 
-  /@aws-sdk/client-s3@3.382.0:
-    resolution: {integrity: sha512-7s5DI1dw5HUF9+tHuZzkJaZBcaE3kuGsMw17/enEa8YdF0CtL5rW46FlzQ3/7NYIKc9rhDtb0UMakEej1cWFtg==}
+  /@aws-sdk/client-s3@3.383.0:
+    resolution: {integrity: sha512-8x3WtuGHy3mESB3UxbZKdrZgMDBqqyPdUGwnkM8YeC8VkGce5pS98OgYe350aUNSzTkE3dNipzYZtm2BjalAyA==}
     engines: {node: '>=14.0.0'}
     dependencies:
       '@aws-crypto/sha1-browser': 3.0.0
@@ -190,7 +190,7 @@ packages:
       '@aws-sdk/credential-provider-node': 3.382.0
       '@aws-sdk/middleware-bucket-endpoint': 3.378.0
       '@aws-sdk/middleware-expect-continue': 3.378.0
-      '@aws-sdk/middleware-flexible-checksums': 3.378.0
+      '@aws-sdk/middleware-flexible-checksums': 3.383.0
       '@aws-sdk/middleware-host-header': 3.379.1
       '@aws-sdk/middleware-location-constraint': 3.379.1
       '@aws-sdk/middleware-logger': 3.378.0
@@ -452,13 +452,13 @@ packages:
       tslib: 2.6.1
     dev: false
 
-  /@aws-sdk/lib-storage@3.382.0(@aws-sdk/client-s3@3.382.0):
+  /@aws-sdk/lib-storage@3.382.0(@aws-sdk/client-s3@3.383.0):
     resolution: {integrity: sha512-KFaMEGBogmAr+FPlz6u8+kCk1Xsp6LuRkb2EABN0wAF98qaV076HgEQac4xW372zjVX1DKCCQnRbRsxx3Ce0/A==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       '@aws-sdk/client-s3': ^3.0.0
     dependencies:
-      '@aws-sdk/client-s3': 3.382.0
+      '@aws-sdk/client-s3': 3.383.0
       '@smithy/abort-controller': 2.0.1
       '@smithy/middleware-endpoint': 2.0.1
       '@smithy/smithy-client': 2.0.1
@@ -490,8 +490,8 @@ packages:
       tslib: 2.6.1
     dev: false
 
-  /@aws-sdk/middleware-flexible-checksums@3.378.0:
-    resolution: {integrity: sha512-pHkcVTu2T+x/1fpPHMpRDpXY5zxDsjijv3C6Nz/nm3gQrZvQ3fYDrQdV3Oj6Xeg40B3kkcp/bzgDo7MDzG088A==}
+  /@aws-sdk/middleware-flexible-checksums@3.383.0:
+    resolution: {integrity: sha512-RxIuby6Nz4pgKqNtt9Rdr2gWtOLrl9shZrteVuPh42n/dSOtCIhsG0fffKqy247I6oUghicoVJK9v0mxfINu/w==}
     engines: {node: '>=14.0.0'}
     dependencies:
       '@aws-crypto/crc32': 3.0.0
