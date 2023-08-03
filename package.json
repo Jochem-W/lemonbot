@@ -31,7 +31,7 @@
     "@typescript-eslint/parser": "^6.2.1",
     "drizzle-kit": "^0.19.12",
     "eslint": "^8.46.0",
-    "eslint-config-prettier": "^8.9.0",
+    "eslint-config-prettier": "^8.10.0",
     "prettier": "^3.0.0",
     "typescript": "^5.1.6"
   },
