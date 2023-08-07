@@ -9,8 +9,8 @@ dependencies:
     specifier: ^3.382.0
     version: 3.382.0
   '@aws-sdk/lib-storage':
-    specifier: ^3.382.0
-    version: 3.382.0(@aws-sdk/client-s3@3.382.0)
+    specifier: ^3.386.0
+    version: 3.386.0(@aws-sdk/client-s3@3.382.0)
   '@octokit/rest':
     specifier: ^20.0.1
     version: 20.0.1
@@ -452,8 +452,8 @@ packages:
       tslib: 2.6.1
     dev: false
 
-  /@aws-sdk/lib-storage@3.382.0(@aws-sdk/client-s3@3.382.0):
-    resolution: {integrity: sha512-KFaMEGBogmAr+FPlz6u8+kCk1Xsp6LuRkb2EABN0wAF98qaV076HgEQac4xW372zjVX1DKCCQnRbRsxx3Ce0/A==}
+  /@aws-sdk/lib-storage@3.386.0(@aws-sdk/client-s3@3.382.0):
+    resolution: {integrity: sha512-auSe+bpXCqWnUSKpxzBaOgiinIGen5V7956kJTqEgr2Vbmzr+ohPMj6V6SwAukDmmyvNBlyRv0Ryp0sClWdkaw==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       '@aws-sdk/client-s3': ^3.0.0
