@@ -31,10 +31,10 @@ export const GuildBanRemoveHandler = handler({
     const embed = new EmbedBuilder()
       .setAuthor({
         name: userDisplayName(ban.user),
-        iconURL: ban.user.displayAvatarURL(),
+        iconURL: ban.user.displayAvatarURL({ size: 4096 }),
       })
       .setTitle(`🙏 User unbanned`)
-      .setThumbnail(ban.user.displayAvatarURL())
+      .setThumbnail(ban.user.displayAvatarURL({ size: 4096 }))
       .setDescription(userMention(ban.user.id))
       .setColor(Colours.amber[500])
       .setFooter({ text: ban.user.id })

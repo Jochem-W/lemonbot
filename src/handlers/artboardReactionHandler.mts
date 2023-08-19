@@ -46,7 +46,7 @@ export const ArtboardReactionHandler = handler({
 
     const threadMessage = await webhook.send({
       username: userDisplayName(originalMessage.author),
-      avatarURL: originalMessage.author.displayAvatarURL(),
+      avatarURL: originalMessage.author.displayAvatarURL({ size: 4096 }),
       threadName: `Art by @${uniqueName(originalMessage.author)}`,
       content: originalMessage.content,
       embeds: [

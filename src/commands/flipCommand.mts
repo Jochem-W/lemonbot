@@ -34,7 +34,7 @@ export const FlipCommand = slashCommand({
 
     const author = {
       name: "Flipping a coin...",
-      iconURL: (member ?? user).displayAvatarURL(),
+      iconURL: (member ?? user).displayAvatarURL({ size: 4096 }),
     }
 
     const embed = new EmbedBuilder()

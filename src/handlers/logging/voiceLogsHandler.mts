@@ -36,7 +36,7 @@ export const VoiceLogsHandler = handler({
       new EmbedBuilder()
         .setAuthor({
           name: memberDisplayName(member),
-          iconURL: member.displayAvatarURL(),
+          iconURL: member.displayAvatarURL({ size: 4096 }),
         })
         .setTitle("Voice state changed")
         .setTimestamp(Date.now())

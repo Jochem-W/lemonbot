@@ -39,10 +39,10 @@ export const GuildMemberAddHandler = handler({
     const embed = new EmbedBuilder()
       .setAuthor({
         name: memberDisplayName(member),
-        iconURL: member.displayAvatarURL(),
+        iconURL: member.displayAvatarURL({ size: 4096 }),
       })
       .setTitle("➡️ Member joined")
-      .setThumbnail(member.displayAvatarURL())
+      .setThumbnail(member.displayAvatarURL({ size: 4096 }))
       .setDescription(userMention(member.id))
       .setFields({
         name: "Account created at",

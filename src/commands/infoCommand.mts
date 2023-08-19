@@ -216,7 +216,9 @@ export const InfoCommand = slashCommand({
                 name: member
                   ? memberDisplayName(member)
                   : userDisplayName(user),
-                iconURL: member?.displayAvatarURL() ?? user.displayAvatarURL(),
+                iconURL:
+                  member?.displayAvatarURL({ size: 4096 }) ??
+                  user.displayAvatarURL({ size: 4096 }),
               })
               .setDescription(`Multi-purpose bot for ${guild.name}.`)
               .setFooter({ text: user.id })

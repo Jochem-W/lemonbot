@@ -29,7 +29,7 @@ export const UserUpdateHandler = handler({
       new EmbedBuilder()
         .setAuthor({
           name: userDisplayName(newUser),
-          iconURL: newUser.displayAvatarURL(),
+          iconURL: newUser.displayAvatarURL({ size: 4096 }),
         })
         .setTitle("✏️ User updated")
         .setDescription(userMention(newUser.id))

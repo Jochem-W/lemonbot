@@ -32,7 +32,7 @@ export const GuildMemberUpdateHandler = handler({
       new EmbedBuilder()
         .setAuthor({
           name: memberDisplayName(newMember),
-          iconURL: newMember.displayAvatarURL(),
+          iconURL: newMember.displayAvatarURL({ size: 4096 }),
         })
         .setTitle("✏️ Member updated")
         .setDescription(userMention(newMember.id))

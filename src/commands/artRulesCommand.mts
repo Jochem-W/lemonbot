@@ -38,7 +38,7 @@ const acceptRules = staticComponent({
           new EmbedBuilder()
             .setAuthor({
               name: "You already have access to the art channels",
-              iconURL: clientMember.displayAvatarURL(),
+              iconURL: clientMember.displayAvatarURL({ size: 4096 }),
             })
             .setColor(Colours.red[500]),
         ],
@@ -54,7 +54,7 @@ const acceptRules = staticComponent({
         new EmbedBuilder()
           .setAuthor({
             name: "Access to the art channels has been granted!",
-            iconURL: clientMember.displayAvatarURL(),
+            iconURL: clientMember.displayAvatarURL({ size: 4096 }),
           })
           .setColor(Colours.green[500])
           .setTimestamp(Date.now()),

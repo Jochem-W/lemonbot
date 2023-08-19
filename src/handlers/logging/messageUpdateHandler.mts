@@ -71,7 +71,7 @@ export const MessageUpdateHandler = handler({
         name: member
           ? memberDisplayName(member)
           : userDisplayName(newMessage.author),
-        iconURL: (member ?? newMessage.author).displayAvatarURL(),
+        iconURL: (member ?? newMessage.author).displayAvatarURL({ size: 4096 }),
       })
       .setTitle("📝 Message edited")
       .setColor(Colours.amber[500])

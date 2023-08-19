@@ -65,7 +65,9 @@ export const MessageDeleteBulkHandler = handler({
           name: member
             ? memberDisplayName(member)
             : userDisplayName(firstMessage.author),
-          iconURL: (member ?? firstMessage.author).displayAvatarURL(),
+          iconURL: (member ?? firstMessage.author).displayAvatarURL({
+            size: 4096,
+          }),
         })
         .addFields(
           {
@@ -99,7 +101,9 @@ export const MessageDeleteBulkHandler = handler({
           name: member
             ? memberDisplayName(member)
             : userDisplayName(lastMessage.author),
-          iconURL: (member ?? lastMessage.author).displayAvatarURL(),
+          iconURL: (member ?? lastMessage.author).displayAvatarURL({
+            size: 4096,
+          }),
         })
         .addFields(
           {

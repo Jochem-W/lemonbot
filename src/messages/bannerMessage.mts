@@ -21,7 +21,7 @@ export async function bannerMessage(interaction: Interaction, user?: User) {
 
   const author = {
     name: `${userDisplayName(user)}'s banner`,
-    iconURL: user.displayAvatarURL(),
+    iconURL: user.displayAvatarURL({ size: 4096 }),
   }
 
   const embed = new EmbedBuilder()
@@ -32,7 +32,7 @@ export async function bannerMessage(interaction: Interaction, user?: User) {
   const member = await interactionMember(interaction, { user })
   if (member) {
     author.name = `${memberDisplayName(member)}'s banner`
-    author.iconURL = member.displayAvatarURL()
+    author.iconURL = member.displayAvatarURL({ size: 4096 })
   }
 
   embed.setAuthor(author)

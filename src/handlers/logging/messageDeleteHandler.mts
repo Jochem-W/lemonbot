@@ -84,7 +84,7 @@ export const MessageDeleteHandler = handler({
           name: member
             ? memberDisplayName(member)
             : userDisplayName(message.author),
-          iconURL: (member ?? message.author).displayAvatarURL(),
+          iconURL: (member ?? message.author).displayAvatarURL({ size: 4096 }),
         })
         .addFields(
           { name: "User", value: userMention(message.author.id), inline: true },

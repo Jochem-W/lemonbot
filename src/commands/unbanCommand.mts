@@ -49,7 +49,7 @@ export const UnbanCommand = slashCommand({
           new EmbedBuilder()
             .setAuthor({
               name: `${userDisplayName(user)} wasn't banned`,
-              iconURL: user.displayAvatarURL(),
+              iconURL: user.displayAvatarURL({ size: 4096 }),
             })
             .setFooter({ text: user.id })
             .setTimestamp(Date.now()),
@@ -61,7 +61,7 @@ export const UnbanCommand = slashCommand({
     const embed = new EmbedBuilder()
       .setAuthor({
         name: `Unbanned ${userDisplayName(user)}`,
-        iconURL: user.displayAvatarURL(),
+        iconURL: user.displayAvatarURL({ size: 4096 }),
       })
       .setFooter({ text: user.id })
       .setTimestamp(Date.now())

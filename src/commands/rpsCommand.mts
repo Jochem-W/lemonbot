@@ -49,7 +49,9 @@ export const RpsCommand = slashCommand({
     if (botChoice === choice) {
       embed.setAuthor({
         name: `We both chose ${botChoice.toLowerCase()}; it's a draw!`,
-        iconURL: (clientMember ?? interaction.user).displayAvatarURL(),
+        iconURL: (clientMember ?? interaction.user).displayAvatarURL({
+          size: 4096,
+        }),
       })
     } else if (
       (choice === "rock" && botChoice === "paper") ||
@@ -59,14 +61,18 @@ export const RpsCommand = slashCommand({
       embed
         .setAuthor({
           name: `I chose ${botChoice.toLowerCase()}; I win!`,
-          iconURL: (clientMember ?? interaction.user).displayAvatarURL(),
+          iconURL: (clientMember ?? interaction.user).displayAvatarURL({
+            size: 4096,
+          }),
         })
         .setColor(Colours.red[500])
     } else {
       embed
         .setAuthor({
           name: `I chose ${botChoice.toLowerCase()}; you win!`,
-          iconURL: (clientMember ?? interaction.user).displayAvatarURL(),
+          iconURL: (clientMember ?? interaction.user).displayAvatarURL({
+            size: 4096,
+          }),
         })
         .setColor(Colours.green[500])
     }

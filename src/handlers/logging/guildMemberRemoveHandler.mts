@@ -39,10 +39,10 @@ export const GuildMemberRemoveHandler = handler({
     const embed = new EmbedBuilder()
       .setAuthor({
         name: member.nickname ?? userDisplayName(member.user),
-        iconURL: member.displayAvatarURL(),
+        iconURL: member.displayAvatarURL({ size: 4096 }),
       })
       .setTitle("⬅️ Member left")
-      .setThumbnail(member.displayAvatarURL())
+      .setThumbnail(member.displayAvatarURL({ size: 4096 }))
       .setDescription(userMention(member.id))
       .setImage(member.user.bannerURL({ size: 4096 }) ?? null)
       .setColor(Colours.red[500])

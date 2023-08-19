@@ -35,10 +35,10 @@ export const GuildBanAddHandler = handler({
     const embed = new EmbedBuilder()
       .setAuthor({
         name: member ? memberDisplayName(member) : userDisplayName(ban.user),
-        iconURL: (member ?? ban.user).displayAvatarURL(),
+        iconURL: (member ?? ban.user).displayAvatarURL({ size: 4096 }),
       })
       .setTitle(`🔨 ${noun} banned`)
-      .setThumbnail((member ?? ban.user).displayAvatarURL())
+      .setThumbnail((member ?? ban.user).displayAvatarURL({ size: 4096 }))
       .setDescription(userMention(ban.user.id))
       .setColor(Colours.red[500])
       .setFooter({ text: ban.user.id })

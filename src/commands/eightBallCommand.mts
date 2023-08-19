@@ -68,7 +68,9 @@ export const EightBallCommand = slashCommand({
         new EmbedBuilder()
           .setAuthor({
             name: question,
-            iconURL: (member ?? interaction.user).displayAvatarURL(),
+            iconURL: (member ?? interaction.user).displayAvatarURL({
+              size: 4096,
+            }),
           })
           .setTitle(`🎱 ${response.text}`)
           .setColor(
