@@ -1,5 +1,8 @@
 import { slashCommand, slashOption } from "../models/slashCommand.mjs"
-import { userDisplayName } from "../utilities/discordUtilities.mjs"
+import {
+  tryFetchMember,
+  userDisplayName,
+} from "../utilities/discordUtilities.mjs"
 import { interactionGuild } from "../utilities/interactionUtilities.mjs"
 import {
   DiscordAPIError,
@@ -43,13 +46,14 @@ export const UnbanCommand = slashCommand({
         throw e
       }
 
+      const member = await tryFetchMember(guild, user.id)
       await interaction.reply({
         ephemeral: true,
         embeds: [
           new EmbedBuilder()
             .setAuthor({
               name: `${userDisplayName(user)} wasn't banned`,
-              iconURL: user.displayAvatarURL({ size: 4096 }),
+              iconURL: (member ?? user).displayAvatarURL({ size: 4096 }),
             })
             .setFooter({ text: user.id })
             .setTimestamp(Date.now()),
