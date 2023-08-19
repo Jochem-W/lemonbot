@@ -117,8 +117,8 @@ export const GuildMemberUpdateHandler = handler({
     }
 
     if (oldMember.avatar !== newMember.avatar) {
-      const oldAvatar = oldMember.avatarURL()
-      const newAvatar = newMember.avatarURL()
+      const oldAvatar = oldMember.avatarURL({ size: 4096 })
+      const newAvatar = newMember.avatarURL({ size: 4096 })
 
       embeds.push(
         new EmbedBuilder()
