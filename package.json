@@ -11,7 +11,7 @@
     "camelcase-keys": "^9.0.0",
     "discord.js": "^14.13.0",
     "drizzle-orm": "^0.28.2",
-    "drizzle-zod": "^0.5.0",
+    "drizzle-zod": "^0.5.1",
     "gm": "^1.25.0",
     "luxon": "^3.4.1",
     "postgres": "^3.3.5",
