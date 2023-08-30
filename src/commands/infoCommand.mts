@@ -219,6 +219,13 @@ export const InfoCommand = slashCommand({
                 iconURL: (member ?? user).displayAvatarURL({ size: 4096 }),
               })
               .setDescription(`Multi-purpose bot for ${guild.name}.`)
+              .setFields({
+                name: "Ping",
+                value: inlineCode(
+                  Math.round(interaction.client.ws.ping).toString(10),
+                ),
+                inline: true,
+              })
               .setFooter({ text: user.id })
               .setTimestamp(Date.now()),
           ],
