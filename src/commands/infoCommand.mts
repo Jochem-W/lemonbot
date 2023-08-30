@@ -209,27 +209,24 @@ export const InfoCommand = slashCommand({
         const user = interaction.client.user
         const member = await interactionMember(interaction, { user })
 
-        await interaction.reply({
-          embeds: [
-            new EmbedBuilder()
-              .setAuthor({
-                name: member
-                  ? memberDisplayName(member)
-                  : userDisplayName(user),
-                iconURL: (member ?? user).displayAvatarURL({ size: 4096 }),
-              })
-              .setDescription(`Multi-purpose bot for ${guild.name}.`)
-              .setFields({
-                name: "Ping",
-                value: inlineCode(
-                  Math.round(interaction.client.ws.ping).toString(10),
-                ),
-                inline: true,
-              })
-              .setFooter({ text: user.id })
-              .setTimestamp(Date.now()),
-          ],
-        })
+        const embed = new EmbedBuilder()
+          .setAuthor({
+            name: member ? memberDisplayName(member) : userDisplayName(user),
+            iconURL: (member ?? user).displayAvatarURL({ size: 4096 }),
+          })
+          .setDescription(`Multi-purpose bot for ${guild.name}.`)
+          .setFooter({ text: user.id })
+          .setTimestamp(Date.now())
+
+        if (interaction.client.ws.ping >= 0) {
+          embed.setFields({
+            name: "Ping",
+            value: inlineCode(`${Math.round(interaction.client.ws.ping)} ms`),
+            inline: true,
+          })
+        }
+
+        await interaction.reply({ embeds: [embed] })
       },
     }),
   ],
