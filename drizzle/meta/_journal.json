@@ -36,6 +36,13 @@
       "when": 1689717637302,
       "tag": "0004_low_silvermane",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "5",
+      "when": 1697660513166,
+      "tag": "0005_bent_xorn",
+      "breakpoints": true
     }
   ]
 }
