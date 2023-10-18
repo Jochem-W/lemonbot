@@ -11,7 +11,7 @@ import {
   inlineCode,
   range,
 } from "discord.js"
-import { PostgresError } from "postgres"
+import postgres from "postgres"
 
 export const BlueskyCommand = slashCommand({
   name: "bluesky",
@@ -117,7 +117,7 @@ export const BlueskyCommand = slashCommand({
           userId: interaction.user.id,
         })
       } catch (e) {
-        if (!(e instanceof PostgresError) || e.code !== "23505") {
+        if (!(e instanceof postgres.PostgresError) || e.code !== "23505") {
           console.error(e)
         }
 
