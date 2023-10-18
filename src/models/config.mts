@@ -21,6 +21,7 @@ const model = z.object({
     webhook: z.string(),
   }),
   channels: z.object({
+    bluesky: z.string(),
     characters: z.string(),
     error: z.string(),
     modGeneral: z.string(),
