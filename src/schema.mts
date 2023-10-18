@@ -34,4 +34,9 @@ export const character = pgTable("character", {
   message: text("message").notNull(),
 })
 
+export const bluesky = pgTable("bluesky", {
+  code: text("code").primaryKey(),
+  userId: text("userId").notNull(),
+})
+
 export const selectCharacterSchema = createSelectSchema(character)

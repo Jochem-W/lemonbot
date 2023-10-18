@@ -1,6 +1,8 @@
+import { Drizzle } from "../clients.mjs"
 import { Colours } from "../colours.mjs"
 import { Config } from "../models/config.mjs"
 import { slashCommand, slashOption } from "../models/slashCommand.mjs"
+import { bluesky } from "../schema.mjs"
 import { fetchChannel } from "../utilities/discordUtilities.mjs"
 import {
   ChannelType,
@@ -108,7 +110,17 @@ export const BlueskyCommand = slashCommand({
     await interaction.reply(options)
 
     for (const code of valid) {
-      console.log(interaction.user.id, code)
+      try {
+        await Drizzle.insert(bluesky).values({
+          code,
+          userId: interaction.user.id,
+        })
+      } catch (e) {
+        // TODO
+        console.error(e)
+        continue
+      }
+
       await channel.send(code)
     }
   },
