@@ -29,12 +29,14 @@ function getNextTime() {
 }
 
 async function sendQotw(client: Client) {
+  console.log(32)
   const channel = await fetchChannel(
     client,
     Config.channels.qotw,
     ChannelType.GuildAnnouncement,
   )
 
+  console.log(39)
   const questions = await Drizzle.select().from(qotw)
   if (questions.length === 0) {
     const modGeneral = await fetchChannel(
@@ -43,17 +45,20 @@ async function sendQotw(client: Client) {
       ChannelType.GuildText,
     )
 
+    console.log(48)
     await modGeneral.send({
       embeds: [new EmbedBuilder().setTitle("0 QotW questions remaining!")],
     })
     return
   }
 
+  console.log(55)
   const question = questions[randomInt(questions.length)]
   if (!question) {
     throw new NoDataError("No questions")
   }
 
+  console.log(61)
   const rulesEmoji = channel.guild.emojis.cache.find(
     (e) => e.name === "pinned_messages",
   )
@@ -64,6 +69,7 @@ async function sendQotw(client: Client) {
 
   rulesText += "Rules"
 
+  console.log(72)
   const message = await channel.send(
     `${roleMention(
       Config.roles.qotw,
@@ -82,8 +88,10 @@ async function sendQotw(client: Client) {
         : question.body,
   })
 
+  console.log(91)
   await Drizzle.delete(qotw).where(eq(qotw.id, question.id))
 
+  console.log(94)
   setTimeout(() => {
     sendQotw(client).catch((e) => console.error(e))
   }, getNextTime().diffNow().toMillis())
@@ -93,6 +101,13 @@ export const QotwHandler = handler({
   event: "ready",
   once: true,
   handle(client) {
+    console.log(
+      "Scheduling QoTW",
+      getNextTime().diffNow().toMillis(),
+      "from now",
+    )
+
+    console.log(110)
     setTimeout(() => {
       sendQotw(client).catch((e) => console.error(e))
     }, getNextTime().diffNow().toMillis())
