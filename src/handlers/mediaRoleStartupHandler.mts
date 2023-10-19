@@ -27,8 +27,8 @@ export const MediaRoleStartupHandler = handler({
     const options: FetchMessagesOptions = { limit }
     let stop = false
     while (!stop) {
-      const messages = await channel.messages.fetch({ limit })
-      for (const message of messages.reverse().values()) {
+      const messages = await channel.messages.fetch(options)
+      for (const message of messages.values()) {
         options.before = message.id
 
         const embed = message.embeds[0]
