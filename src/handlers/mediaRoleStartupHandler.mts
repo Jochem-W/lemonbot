@@ -40,7 +40,7 @@ export const MediaRoleStartupHandler = handler({
         }
 
         const embed = message.embeds[0]
-        if (embed?.color !== null && embed?.color !== 2829617) {
+        if (embed?.color !== null) {
           stop = true
           break
         }
