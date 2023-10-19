@@ -12,6 +12,7 @@ export const MediaRoleStartupHandler = handler({
   event: "ready",
   once: true,
   async handle(client) {
+    console.log("Checking verify logs")
     const guild = await client.guilds.fetch(Config.guild)
     const role = await guild.roles.fetch(Config.roles.media)
     if (!role) {
@@ -37,6 +38,7 @@ export const MediaRoleStartupHandler = handler({
         }
 
         if (embed?.color) {
+          console.log("Embed has colour, stop immediately")
           stop = true
           break
         }
@@ -75,5 +77,7 @@ export const MediaRoleStartupHandler = handler({
         }, remaining)
       }
     }
+
+    console.log("Stopped media role startup handler")
   },
 })
