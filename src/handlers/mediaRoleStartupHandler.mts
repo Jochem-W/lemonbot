@@ -12,7 +12,6 @@ export const MediaRoleStartupHandler = handler({
   event: "ready",
   once: true,
   async handle(client) {
-    console.log("Checking verify logs")
     const guild = await client.guilds.fetch(Config.guild)
     const role = await guild.roles.fetch(Config.roles.media)
     if (!role) {
@@ -29,7 +28,7 @@ export const MediaRoleStartupHandler = handler({
     let stop = false
     while (!stop) {
       const messages = await channel.messages.fetch({ limit })
-      for (const message of messages.values()) {
+      for (const message of messages.reverse().values()) {
         options.before = message.id
 
         const embed = message.embeds[0]
@@ -38,7 +37,6 @@ export const MediaRoleStartupHandler = handler({
         }
 
         if (embed?.color) {
-          console.log("Embed has colour, stop immediately")
           stop = true
           break
         }
@@ -77,7 +75,5 @@ export const MediaRoleStartupHandler = handler({
         }, remaining)
       }
     }
-
-    console.log("Stopped media role startup handler")
   },
 })
