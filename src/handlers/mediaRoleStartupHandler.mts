@@ -24,28 +24,24 @@ export const MediaRoleStartupHandler = handler({
       ChannelType.GuildText,
     )
 
-    let before
-    let messages
+    const options: FetchMessagesOptions = { limit }
     let stop = false
-    while (!stop && (!messages || messages.size === limit)) {
-      const options: FetchMessagesOptions = { limit }
-      if (before) {
-        options.before = before
-      }
-
-      messages = await channel.messages.fetch({ limit })
+    while (!stop) {
+      const messages = await channel.messages.fetch({ limit })
       for (const message of messages.values()) {
+        options.before = message.id
+
+        const embed = message.embeds[0]
         if (!message.author.bot) {
           continue
         }
 
-        const embed = message.embeds[0]
-        if (embed?.color !== null) {
+        if (embed?.color) {
           stop = true
           break
         }
 
-        if (!embed.timestamp) {
+        if (!embed?.timestamp) {
           continue
         }
 
@@ -78,8 +74,6 @@ export const MediaRoleStartupHandler = handler({
           )
         }, remaining)
       }
-
-      before = messages.last()?.id
     }
   },
 })
