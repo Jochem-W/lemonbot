@@ -1,17 +1,11 @@
 import { Drizzle } from "../clients.mjs"
 import { invalidQuestionMessage } from "../messages/invalidQuestionMessage.mjs"
 import { modal, modalInput } from "../models/modal.mjs"
-import {
-  slashCommand,
-  slashOption,
-  subcommand,
-} from "../models/slashCommand.mjs"
+import { slashCommand, slashSubcommand } from "../models/slashCommand.mjs"
 import { qotw } from "../schema.mjs"
 import {
   EmbedBuilder,
   PermissionFlagsBits,
-  SlashCommandIntegerOption,
-  SlashCommandStringOption,
   TextInputBuilder,
   TextInputStyle,
 } from "discord.js"
@@ -70,17 +64,18 @@ export const QotwCommand = slashCommand({
   description: "Commands related to QotW",
   defaultMemberPermissions: PermissionFlagsBits.Administrator,
   dmPermission: false,
+  nsfw: false,
   subcommands: [
-    subcommand({
+    slashSubcommand({
       name: "add",
       description: "Add a question to the QotW list",
       options: [
-        slashOption(
-          true,
-          new SlashCommandStringOption()
-            .setName("body")
-            .setDescription("The body of the question"),
-        ),
+        {
+          name: "body",
+          description: "The body of the question",
+          type: "string",
+          required: true,
+        },
       ],
       async handle(interaction, body) {
         const [question] = await Drizzle.insert(qotw)
@@ -99,18 +94,19 @@ export const QotwCommand = slashCommand({
         await interaction.reply({ embeds: [embed] })
       },
     }),
-    subcommand({
+    slashSubcommand({
       name: "remove",
       description: "Remove a question from the QotW list",
       options: [
-        slashOption(true, {
-          option: new SlashCommandIntegerOption()
-            .setName("id")
-            .setDescription("The id of the question"),
-          async autocomplete(_interaction, { value }) {
+        {
+          name: "id",
+          description: "The ID of the question",
+          type: "integer",
+          required: true,
+          async autocomplete(_interaction, value) {
             return await autocompleteQuestions(value)
           },
-        }),
+        },
       ],
       async handle(interaction, id) {
         const [question] = await Drizzle.delete(qotw)
@@ -129,18 +125,19 @@ export const QotwCommand = slashCommand({
         await interaction.reply({ embeds: [embed] })
       },
     }),
-    subcommand({
+    slashSubcommand({
       name: "edit",
       description: "Edit a question in the QotW list",
       options: [
-        slashOption(true, {
-          option: new SlashCommandIntegerOption()
-            .setName("id")
-            .setDescription("The id of the question"),
-          async autocomplete(_interaction, { value }) {
+        {
+          name: "id",
+          description: "The ID of the question",
+          type: "integer",
+          required: true,
+          async autocomplete(_interaction, value) {
             return await autocompleteQuestions(value)
           },
-        }),
+        },
       ],
       async handle(interaction, id) {
         const stringId = id.toString(10)
@@ -153,7 +150,7 @@ export const QotwCommand = slashCommand({
         await interaction.showModal(editModal({ body: old.body }, stringId))
       },
     }),
-    subcommand({
+    slashSubcommand({
       name: "list",
       description: "List all QotW questions",
       async handle(interaction) {

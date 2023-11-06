@@ -1,12 +1,9 @@
 import { DownloadError } from "../errors.mjs"
-import { slashCommand, slashOption } from "../models/slashCommand.mjs"
+import { slashCommand } from "../models/slashCommand.mjs"
 import {
   ChannelType,
   EmbedBuilder,
-  SlashCommandChannelOption,
-  SlashCommandStringOption,
   type GuildTextBasedChannel,
-  SlashCommandAttachmentOption,
   AttachmentBuilder,
   type AttachmentData,
   PermissionFlagsBits,
@@ -19,37 +16,37 @@ export const SayCommand = slashCommand({
   description: "Send a message to a channel using the bot",
   defaultMemberPermissions: PermissionFlagsBits.Administrator,
   dmPermission: false,
+  nsfw: false,
   options: [
-    slashOption(
-      true,
-      new SlashCommandStringOption()
-        .setName("message")
-        .setDescription("The message to send"),
-    ),
-    slashOption(
-      false,
-      new SlashCommandChannelOption()
-        .setName("channel")
-        .setDescription(
-          "The channel to send the message to, or the current channel if omitted",
-        )
-        .addChannelTypes(
-          ChannelType.GuildAnnouncement,
-          ChannelType.PublicThread,
-          ChannelType.PrivateThread,
-          ChannelType.AnnouncementThread,
-          ChannelType.GuildText,
-          ChannelType.GuildForum,
-          ChannelType.GuildVoice,
-          ChannelType.GuildStageVoice,
-        ),
-    ),
-    slashOption(
-      false,
-      new SlashCommandAttachmentOption()
-        .setName("attachment")
-        .setDescription("Attachment to send with the message"),
-    ),
+    {
+      name: "message",
+      description: "The message to send",
+      type: "string",
+      required: true,
+    },
+    {
+      name: "channel",
+      description:
+        "The channel to send the message to, or the current channel if omitted",
+      type: "channel",
+      required: false,
+      channelTypes: [
+        ChannelType.GuildAnnouncement,
+        ChannelType.PublicThread,
+        ChannelType.PrivateThread,
+        ChannelType.AnnouncementThread,
+        ChannelType.GuildText,
+        ChannelType.GuildForum,
+        ChannelType.GuildVoice,
+        ChannelType.GuildStageVoice,
+      ],
+    },
+    {
+      name: "attachment",
+      description: "Attachment to send with the message",
+      type: "attachment",
+      required: false,
+    },
   ],
   async handle(interaction, content, channel, attachment) {
     if (!channel) {

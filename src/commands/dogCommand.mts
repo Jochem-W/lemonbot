@@ -14,6 +14,7 @@ export const DogCommand = slashCommand({
   description: "Sends a random dog image 🐶",
   defaultMemberPermissions: null,
   dmPermission: true,
+  nsfw: false,
   async handle(interaction) {
     await interaction.deferReply()
 

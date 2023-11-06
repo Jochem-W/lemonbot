@@ -1,24 +1,15 @@
 import { Exemptions } from "../handlers/banNewAccountsHandler.mjs"
-import { slashCommand, slashOption } from "../models/slashCommand.mjs"
-import {
-  EmbedBuilder,
-  PermissionFlagsBits,
-  SlashCommandUserOption,
-  userMention,
-} from "discord.js"
+import { slashCommand } from "../models/slashCommand.mjs"
+import { EmbedBuilder, PermissionFlagsBits, userMention } from "discord.js"
 
 export const ExemptCommand = slashCommand({
   name: "exempt",
   description: "Exempt a user from the 30 day account age requirement",
   defaultMemberPermissions: PermissionFlagsBits.Administrator,
   dmPermission: false,
+  nsfw: false,
   options: [
-    slashOption(
-      true,
-      new SlashCommandUserOption()
-        .setName("user")
-        .setDescription("Target user"),
-    ),
+    { name: "user", description: "Target user", type: "user", required: true },
   ],
   async handle(interaction, user) {
     Exemptions.add(user.id)

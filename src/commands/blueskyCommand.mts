@@ -1,16 +1,10 @@
 import { Drizzle } from "../clients.mjs"
 import { Colours } from "../colours.mjs"
 import { Config } from "../models/config.mjs"
-import { slashCommand, slashOption } from "../models/slashCommand.mjs"
+import { slashCommand } from "../models/slashCommand.mjs"
 import { bluesky } from "../schema.mjs"
 import { fetchChannel } from "../utilities/discordUtilities.mjs"
-import {
-  ChannelType,
-  EmbedBuilder,
-  SlashCommandStringOption,
-  inlineCode,
-  range,
-} from "discord.js"
+import { ChannelType, EmbedBuilder, inlineCode, range } from "discord.js"
 import postgres from "postgres"
 
 export const BlueskyCommand = slashCommand({
@@ -18,20 +12,22 @@ export const BlueskyCommand = slashCommand({
   description: "Donate a Bluesky code to us",
   defaultMemberPermissions: null,
   dmPermission: true,
+  nsfw: false,
   options: [
-    slashOption(
-      true,
-      new SlashCommandStringOption()
-        .setName("code")
-        .setDescription("A Bluesky code"),
-    ),
-    ...[...range({ start: 2, end: 26 })].map((i) =>
-      slashOption(
-        false,
-        new SlashCommandStringOption()
-          .setName(`code${i}`)
-          .setDescription("A Bluesky code"),
-      ),
+    {
+      name: "code",
+      description: "A Bluesky code",
+      type: "string",
+      required: true,
+    },
+    ...[...range({ start: 2, end: 26 })].map(
+      (i) =>
+        ({
+          name: `code${i}` as Lowercase<string>,
+          description: "A Bluesky code",
+          type: "string",
+          required: false,
+        }) as const,
     ),
   ],
   async handle(interaction, ...codes: (string | null)[]) {

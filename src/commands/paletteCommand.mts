@@ -103,6 +103,7 @@ export const PaletteCommand = slashCommand({
   description: "Generate a random palette",
   defaultMemberPermissions: null,
   dmPermission: true,
+  nsfw: false,
   async handle(interaction) {
     await interaction.reply(await generate(interaction.user.id))
   },

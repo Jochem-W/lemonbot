@@ -11,6 +11,7 @@ export const CatCommand = slashCommand({
   description: "Sends a random cat image 🐱",
   defaultMemberPermissions: null,
   dmPermission: true,
+  nsfw: false,
   async handle(interaction) {
     await interaction.deferReply()
 

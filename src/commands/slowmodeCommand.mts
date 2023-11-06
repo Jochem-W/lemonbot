@@ -1,10 +1,9 @@
 import { InvalidChannelTypeError } from "../errors.mjs"
-import { slashCommand, slashOption } from "../models/slashCommand.mjs"
+import { slashCommand } from "../models/slashCommand.mjs"
 import { interactionChannel } from "../utilities/interactionUtilities.mjs"
 import {
   EmbedBuilder,
   PermissionFlagsBits,
-  SlashCommandIntegerOption,
   channelMention,
   inlineCode,
 } from "discord.js"
@@ -14,15 +13,16 @@ export const SlowmodeCommand = slashCommand({
   description: "Set the slowmode for a channel",
   defaultMemberPermissions: PermissionFlagsBits.ManageChannels,
   dmPermission: false,
+  nsfw: false,
   options: [
-    slashOption(
-      true,
-      new SlashCommandIntegerOption()
-        .setName("delay")
-        .setDescription("The slowmode delay in seconds")
-        .setMinValue(0)
-        .setMaxValue(21600),
-    ),
+    {
+      name: "delay",
+      description: "The slowmode delay in seconds",
+      type: "integer",
+      required: true,
+      minValue: 0,
+      maxValue: 21600,
+    },
   ],
   async handle(interaction, delay) {
     const channel = await interactionChannel(interaction, true)

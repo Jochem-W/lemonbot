@@ -23,6 +23,7 @@ export const FlipCommand = slashCommand({
   description: "Flip a coin",
   defaultMemberPermissions: null,
   dmPermission: true,
+  nsfw: false,
   async handle(interaction) {
     const user = interaction.user
     const member = await interactionMember(interaction)

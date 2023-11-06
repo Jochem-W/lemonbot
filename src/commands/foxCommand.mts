@@ -11,6 +11,7 @@ export const FoxCommand = slashCommand({
   description: "Sends a random fox image 🦊",
   defaultMemberPermissions: null,
   dmPermission: true,
+  nsfw: false,
   async handle(interaction) {
     await interaction.deferReply()
 

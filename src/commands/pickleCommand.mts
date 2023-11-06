@@ -26,6 +26,7 @@ export const PickleCommand = slashCommand({
   description: "Sends a picture of Lemons's bird Pickle",
   defaultMemberPermissions: null,
   dmPermission: true,
+  nsfw: false,
   async handle(interaction) {
     const image = images[randomInt(images.length)]
     if (!image) {

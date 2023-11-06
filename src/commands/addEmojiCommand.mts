@@ -1,18 +1,11 @@
 import { DownloadError, FileSizeError, MIMETypeError } from "../errors.mjs"
-import {
-  slashCommand,
-  slashOption,
-  subcommand,
-} from "../models/slashCommand.mjs"
+import { slashCommand, slashSubcommand } from "../models/slashCommand.mjs"
 import { userDisplayName } from "../utilities/discordUtilities.mjs"
 import { interactionGuild } from "../utilities/interactionUtilities.mjs"
 import {
   ALLOWED_STICKER_EXTENSIONS,
   EmbedBuilder,
   PermissionFlagsBits,
-  SlashCommandAttachmentOption,
-  SlashCommandRoleOption,
-  SlashCommandStringOption,
   formatEmoji,
 } from "discord.js"
 import MIMEType from "whatwg-mimetype"
@@ -28,29 +21,30 @@ export const AddEmojiCommand = slashCommand({
   description: "Add emojis or stickers to the server",
   defaultMemberPermissions: PermissionFlagsBits.ManageGuildExpressions,
   dmPermission: false,
+  nsfw: false,
   subcommands: [
-    subcommand({
+    slashSubcommand({
       name: "emoji",
       description: "Add an emoji to the server",
       options: [
-        slashOption(
-          true,
-          new SlashCommandStringOption()
-            .setName("name")
-            .setDescription("Name of the emoji"),
-        ),
-        slashOption(
-          true,
-          new SlashCommandAttachmentOption()
-            .setName("image")
-            .setDescription("Emoji image"),
-        ),
-        slashOption(
-          false,
-          new SlashCommandRoleOption()
-            .setName("role")
-            .setDescription("Role to restrict the emoji to"),
-        ),
+        {
+          name: "name",
+          description: "Name of the emoji",
+          type: "string",
+          required: true,
+        },
+        {
+          name: "image",
+          description: "Emoji image",
+          type: "attachment",
+          required: true,
+        },
+        {
+          name: "role",
+          description: "Role to restrict the emoji to",
+          type: "role",
+          required: false,
+        },
       ],
       async handle(interaction, name, image, role) {
         const guild = await interactionGuild(interaction, true)
@@ -92,36 +86,35 @@ export const AddEmojiCommand = slashCommand({
         })
       },
     }),
-    subcommand({
+    slashSubcommand({
       name: "sticker",
       description: "Add a sticker to the server",
       options: [
-        slashOption(
-          true,
-          new SlashCommandStringOption()
-            .setName("name")
-            .setDescription("Name of the sticker"),
-        ),
-        slashOption(
-          true,
-          new SlashCommandStringOption()
-            .setName("tags")
-            .setDescription(
-              "Tags for the sticker, ideally an emoji name without the colons",
-            ),
-        ),
-        slashOption(
-          true,
-          new SlashCommandAttachmentOption()
-            .setName("image")
-            .setDescription("Sticker image (GIF, PNG, APNG)"),
-        ),
-        slashOption(
-          false,
-          new SlashCommandStringOption()
-            .setName("description")
-            .setDescription("Description for the sticker"),
-        ),
+        {
+          name: "name",
+          description: "Name of the sticker",
+          type: "string",
+          required: true,
+        },
+        {
+          name: "tags",
+          description:
+            "Tags for the sticker, ideally an emoji name without the colons",
+          type: "string",
+          required: true,
+        },
+        {
+          name: "image",
+          description: "Sticker image (GIF, PNG, APNG)",
+          type: "attachment",
+          required: true,
+        },
+        {
+          name: "description",
+          description: "Description for the sticker",
+          type: "string",
+          required: false,
+        },
       ],
       async handle(interaction, name, tags, image, description) {
         const guild = await interactionGuild(interaction, true)

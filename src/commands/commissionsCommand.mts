@@ -18,6 +18,7 @@ export const CommissionsCommand = slashCommand({
   description: "Display Lemon's commission info",
   defaultMemberPermissions: null,
   dmPermission: true,
+  nsfw: false,
   async handle(interaction) {
     const twitterEmoji = interaction.client.emojis.cache.find(
       (e) => e.name === "twitter",

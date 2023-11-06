@@ -1,11 +1,7 @@
 import { Colours } from "../colours.mjs"
 import { GuildOnlyError } from "../errors.mjs"
 import { userInfoMessage } from "../messages/userInfoMessage.mjs"
-import {
-  slashCommand,
-  slashOption,
-  subcommand,
-} from "../models/slashCommand.mjs"
+import { slashCommand, slashSubcommand } from "../models/slashCommand.mjs"
 import {
   memberDisplayName,
   truncate,
@@ -15,8 +11,6 @@ import { interactionMember } from "../utilities/interactionUtilities.mjs"
 import {
   EmbedBuilder,
   PermissionFlagsBits,
-  SlashCommandStringOption,
-  SlashCommandUserOption,
   TimestampStyles,
   formatEmoji,
   inlineCode,
@@ -30,17 +24,18 @@ export const InfoCommand = slashCommand({
   description: "Show information about various server-related things",
   defaultMemberPermissions: null,
   dmPermission: true,
+  nsfw: false,
   subcommands: [
-    subcommand({
+    slashSubcommand({
       name: "user",
       description: "Show information about a user",
       options: [
-        slashOption(
-          false,
-          new SlashCommandUserOption()
-            .setName("user")
-            .setDescription("Target user"),
-        ),
+        {
+          name: "user",
+          description: "Target user",
+          type: "user",
+          required: true,
+        },
       ],
       async handle(interaction, user) {
         await interaction.reply(
@@ -48,7 +43,7 @@ export const InfoCommand = slashCommand({
         )
       },
     }),
-    subcommand({
+    slashSubcommand({
       name: "server",
       description: "Show information about the server",
       async handle(interaction) {
@@ -141,15 +136,16 @@ export const InfoCommand = slashCommand({
         await interaction.reply({ embeds: [embed] })
       },
     }),
-    subcommand({
+    slashSubcommand({
       name: "emoji",
       description: "Show information about an emoji",
       options: [
-        slashOption(true, {
-          option: new SlashCommandStringOption()
-            .setName("name")
-            .setDescription("Name of the emoji"),
-          autocomplete(interaction, { value }) {
+        {
+          name: "name",
+          description: "Name of the emoji",
+          type: "string",
+          required: true,
+          autocomplete(interaction, value) {
             return [...interaction.client.emojis.cache.values()]
               .filter(
                 (e) =>
@@ -161,7 +157,7 @@ export const InfoCommand = slashCommand({
               .map((e) => ({ name: e.name as string, value: e.id }))
               .sort((a, b) => a.name.localeCompare(b.name))
           },
-        }),
+        },
       ],
       async handle(interaction, id) {
         const emoji =
@@ -196,7 +192,7 @@ export const InfoCommand = slashCommand({
         })
       },
     }),
-    subcommand({
+    slashSubcommand({
       name: "bot",
       description: "Show information about the bot",
       async handle(interaction) {

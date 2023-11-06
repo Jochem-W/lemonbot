@@ -3,12 +3,7 @@ import { NoDataError } from "../errors.mjs"
 import { characterMessage } from "../messages/characterMessage.mjs"
 import { Config } from "../models/config.mjs"
 import { modal, modalInput } from "../models/modal.mjs"
-import {
-  groupedSubcommand,
-  slashCommand,
-  slashOption,
-  subcommandGroup,
-} from "../models/slashCommand.mjs"
+import { slashCommand, slashSubcommand } from "../models/slashCommand.mjs"
 import { character, selectCharacterSchema } from "../schema.mjs"
 import { fetchChannel } from "../utilities/discordUtilities.mjs"
 import { uploadAttachment } from "../utilities/s3Utilities.mjs"
@@ -17,9 +12,6 @@ import {
   ChannelType,
   Client,
   PermissionFlagsBits,
-  SlashCommandAttachmentOption,
-  SlashCommandIntegerOption,
-  SlashCommandStringOption,
   TextInputBuilder,
   TextInputStyle,
 } from "discord.js"
@@ -142,25 +134,23 @@ export const EditCommand = slashCommand({
   description: "Commands related to editing various things",
   defaultMemberPermissions: PermissionFlagsBits.Administrator,
   dmPermission: false,
+  nsfw: false,
   subcommandGroups: [
-    subcommandGroup({
+    {
       name: "character",
       description: "Commands related to editing characters",
       subcommands: [
-        groupedSubcommand({
+        slashSubcommand({
           name: "info",
           description: "Edit the character name, description or pronouns",
           options: [
-            slashOption(
-              true,
-              slashOption(
-                true,
-                new SlashCommandIntegerOption()
-                  .setName("id")
-                  .setDescription("The character's ID")
-                  .setChoices(...choices),
-              ),
-            ),
+            {
+              name: "id",
+              description: "The character's ID",
+              type: "integer",
+              required: true,
+              choices: [...choices],
+            },
           ],
           async handle(interaction, id) {
             const [data] = await Drizzle.select()
@@ -182,20 +172,17 @@ export const EditCommand = slashCommand({
             )
           },
         }),
-        groupedSubcommand({
+        slashSubcommand({
           name: "meta",
           description: "Edit the character creator, creation time or colour",
           options: [
-            slashOption(
-              true,
-              slashOption(
-                true,
-                new SlashCommandIntegerOption()
-                  .setName("id")
-                  .setDescription("The character's ID")
-                  .setChoices(...choices),
-              ),
-            ),
+            {
+              name: "id",
+              description: "The character's ID",
+              type: "integer",
+              required: true,
+              choices: [...choices],
+            },
           ],
           async handle(interaction, id) {
             const [data] = await Drizzle.select()
@@ -219,22 +206,23 @@ export const EditCommand = slashCommand({
             )
           },
         }),
-        groupedSubcommand({
+        slashSubcommand({
           name: "images",
           description: "Edit the character icon, palette and images",
           options: [
-            slashOption(
-              true,
-              new SlashCommandIntegerOption()
-                .setName("id")
-                .setDescription("The character's ID")
-                .setChoices(...choices),
-            ),
-            slashOption(false, {
-              option: new SlashCommandStringOption()
-                .setName("icon")
-                .setDescription("The character's icon"),
-              autocomplete(interaction, { value }) {
+            {
+              name: "id",
+              description: "The character's ID",
+              type: "integer",
+              required: true,
+              choices: [...choices],
+            },
+            {
+              name: "icon",
+              description: "The character's icon",
+              type: "string",
+              required: false,
+              autocomplete(interaction, value) {
                 return [...interaction.client.emojis.cache.values()]
                   .filter(
                     (e) =>
@@ -245,31 +233,31 @@ export const EditCommand = slashCommand({
                   .map((e) => ({ name: e.name as string, value: e.id }))
                   .sort((a, b) => a.name.localeCompare(b.name))
               },
-            }),
-            slashOption(
-              false,
-              new SlashCommandAttachmentOption()
-                .setName("palette")
-                .setDescription("The character's palette"),
-            ),
-            slashOption(
-              false,
-              new SlashCommandAttachmentOption()
-                .setName("image1")
-                .setDescription("The character's first image"),
-            ),
-            slashOption(
-              false,
-              new SlashCommandAttachmentOption()
-                .setName("image3")
-                .setDescription("The character's second image"),
-            ),
-            slashOption(
-              false,
-              new SlashCommandAttachmentOption()
-                .setName("image2")
-                .setDescription("The character's third image"),
-            ),
+            },
+            {
+              name: "palette",
+              description: "The character's palette",
+              type: "attachment",
+              required: false,
+            },
+            {
+              name: "image1",
+              description: "The character's first image",
+              type: "attachment",
+              required: false,
+            },
+            {
+              name: "image2",
+              description: "The character's second image",
+              type: "attachment",
+              required: false,
+            },
+            {
+              name: "image3",
+              description: "The character's third image",
+              type: "attachment",
+              required: false,
+            },
           ],
           async handle(interaction, id, icon, palette, image1, image2, image3) {
             await interaction.deferReply({ ephemeral: true })
@@ -337,6 +325,6 @@ export const EditCommand = slashCommand({
           },
         }),
       ],
-    }),
+    },
   ],
 })

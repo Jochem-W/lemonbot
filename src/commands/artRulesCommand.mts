@@ -1,7 +1,7 @@
 import { Colours } from "../colours.mjs"
 import { staticComponent } from "../models/component.mjs"
 import { Config } from "../models/config.mjs"
-import { slashCommand, slashOption } from "../models/slashCommand.mjs"
+import { slashCommand } from "../models/slashCommand.mjs"
 import {
   interactionChannel,
   interactionGuild,
@@ -18,7 +18,6 @@ import {
   quote,
   bold,
   channelMention,
-  SlashCommandStringOption,
   Colors,
 } from "discord.js"
 
@@ -135,13 +134,14 @@ export const ArtRulesCommand = slashCommand({
   description: "Send the art rules",
   defaultMemberPermissions: PermissionFlagsBits.Administrator,
   dmPermission: false,
+  nsfw: false,
   options: [
-    slashOption(
-      false,
-      new SlashCommandStringOption()
-        .setName("message")
-        .setDescription("The ID of the message to edit"),
-    ),
+    {
+      name: "message",
+      description: "The ID of the message to edit",
+      type: "string",
+      required: false,
+    },
   ],
   async handle(interaction, messageId) {
     rules.embeds[0]?.setTimestamp(interaction.createdAt)

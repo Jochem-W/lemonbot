@@ -13,6 +13,7 @@ export const SocialCommand = slashCommand({
   description: "Displays Lemon's socials and Ko-fi link",
   defaultMemberPermissions: null,
   dmPermission: true,
+  nsfw: false,
   async handle(interaction) {
     const heartEmoji = interaction.client.emojis.cache.find(
       (e) => e.name === "kuiperHeart",

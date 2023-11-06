@@ -1,26 +1,23 @@
 import { InvalidChannelTypeError } from "../errors.mjs"
-import { slashCommand, slashOption } from "../models/slashCommand.mjs"
+import { slashCommand } from "../models/slashCommand.mjs"
 import { interactionChannel } from "../utilities/interactionUtilities.mjs"
-import {
-  EmbedBuilder,
-  PermissionFlagsBits,
-  SlashCommandIntegerOption,
-} from "discord.js"
+import { EmbedBuilder, PermissionFlagsBits } from "discord.js"
 
 export const PurgeCommand = slashCommand({
   name: "purge",
   description: "Purge recent messages",
   defaultMemberPermissions: PermissionFlagsBits.ManageMessages,
   dmPermission: false,
+  nsfw: false,
   options: [
-    slashOption(
-      true,
-      new SlashCommandIntegerOption()
-        .setName("limit")
-        .setDescription("How many messages to delete")
-        .setMaxValue(100)
-        .setMinValue(2),
-    ),
+    {
+      name: "limit",
+      description: "The amount of messages to delete",
+      type: "integer",
+      required: true,
+      minValue: 2,
+      maxValue: 100,
+    },
   ],
   async handle(interaction, limit) {
     const channel = await interactionChannel(interaction, true)

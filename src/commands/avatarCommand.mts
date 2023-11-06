@@ -1,27 +1,26 @@
 import { avatarMessage } from "../messages/avatarMessage.mjs"
-import { slashCommand, slashOption } from "../models/slashCommand.mjs"
-import { SlashCommandUserOption, SlashCommandBooleanOption } from "discord.js"
+import { slashCommand } from "../models/slashCommand.mjs"
 
 export const AvatarCommand = slashCommand({
   name: "avatar",
   description: "Show a user's avatar",
   defaultMemberPermissions: null,
   dmPermission: true,
+  nsfw: false,
   options: [
-    slashOption(
-      false,
-      new SlashCommandUserOption()
-        .setName("user")
-        .setDescription("Target user"),
-    ),
-    slashOption(
-      false,
-      new SlashCommandBooleanOption()
-        .setName("server")
-        .setDescription(
-          "Show the user's server avatar if available, defaults to True",
-        ),
-    ),
+    {
+      name: "user",
+      description: "Target user",
+      type: "user",
+      required: false,
+    },
+    {
+      name: "server",
+      description:
+        "Show the user's server avatar if available; defaults to True",
+      type: "boolean",
+      required: false,
+    },
   ],
   async handle(interaction, user, server) {
     await interaction.reply(

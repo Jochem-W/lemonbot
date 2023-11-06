@@ -3,7 +3,7 @@ import { NoDataError } from "../errors.mjs"
 import { characterMessage } from "../messages/characterMessage.mjs"
 import { originalUserOnlyMessage } from "../messages/originalUserOnlyMessage.mjs"
 import { component } from "../models/component.mjs"
-import { slashCommand, slashOption } from "../models/slashCommand.mjs"
+import { slashCommand } from "../models/slashCommand.mjs"
 import { character } from "../schema.mjs"
 import { componentEmoji } from "../utilities/discordUtilities.mjs"
 import {
@@ -13,7 +13,6 @@ import {
   StringSelectMenuOptionBuilder,
   ComponentType,
   Client,
-  SlashCommandIntegerOption,
 } from "discord.js"
 
 let characters = await Drizzle.select().from(character)
@@ -23,18 +22,19 @@ export const CharactersCommand = slashCommand({
   description: "Browse through Lemon's characters",
   defaultMemberPermissions: null,
   dmPermission: true,
+  nsfw: false,
   options: [
-    slashOption(
-      false,
-      new SlashCommandIntegerOption()
-        .setName("character")
-        .setDescription("Character to view")
-        .setChoices(
-          ...characters
-            .map((c) => ({ name: c.name, value: c.id }))
-            .sort((a, b) => a.name.localeCompare(b.name)),
-        ),
-    ),
+    {
+      name: "character",
+      description: "Character to view",
+      type: "integer",
+      required: false,
+      choices: [
+        ...characters
+          .map((c) => ({ name: c.name, value: c.id }))
+          .sort((a, b) => a.name.localeCompare(b.name)),
+      ],
+    },
   ],
   async handle(interaction, id) {
     characters = await Drizzle.select().from(character)

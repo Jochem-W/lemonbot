@@ -1,10 +1,10 @@
 import { Colours } from "../colours.mjs"
 import { NoDataError } from "../errors.mjs"
 import { Config } from "../models/config.mjs"
-import { slashCommand, slashOption } from "../models/slashCommand.mjs"
+import { slashCommand } from "../models/slashCommand.mjs"
 import { tryFetchMember } from "../utilities/discordUtilities.mjs"
 import { randomInt } from "crypto"
-import { EmbedBuilder, SlashCommandStringOption } from "discord.js"
+import { EmbedBuilder } from "discord.js"
 
 const choices = ["rock", "paper", "scissors"] as const
 
@@ -22,14 +22,15 @@ export const RpsCommand = slashCommand({
   description: "Play rock paper scissors against the bot",
   defaultMemberPermissions: null,
   dmPermission: true,
+  nsfw: false,
   options: [
-    slashOption(
-      true,
-      new SlashCommandStringOption()
-        .setName("choice")
-        .setDescription("Your choice")
-        .setChoices(...choices.map((c) => ({ name: c, value: c }))),
-    ),
+    {
+      name: "choice",
+      description: "Your choice",
+      type: "string",
+      required: true,
+      choices: [...choices.map((c) => ({ name: c, value: c }))],
+    },
   ],
   async handle(interaction, choice) {
     const botChoice = choices[randomInt(choices.length)]

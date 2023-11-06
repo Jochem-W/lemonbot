@@ -1,9 +1,9 @@
 import { Colours } from "../colours.mjs"
 import { NoDataError } from "../errors.mjs"
-import { slashCommand, slashOption } from "../models/slashCommand.mjs"
+import { slashCommand } from "../models/slashCommand.mjs"
 import { interactionMember } from "../utilities/interactionUtilities.mjs"
 import { randomInt } from "crypto"
-import { EmbedBuilder, SlashCommandStringOption } from "discord.js"
+import { EmbedBuilder } from "discord.js"
 
 type Response = {
   text: string
@@ -38,14 +38,15 @@ export const EightBallCommand = slashCommand({
   description: "Ask the Magic 8 Ball a question",
   defaultMemberPermissions: null,
   dmPermission: true,
+  nsfw: false,
   options: [
-    slashOption(
-      true,
-      new SlashCommandStringOption()
-        .setName("question")
-        .setDescription("The question you'd like to ask")
-        .setMaxLength(255),
-    ),
+    {
+      name: "question",
+      description: "The question you'd like to ask",
+      type: "string",
+      required: true,
+      maxLength: 255,
+    },
   ],
   async handle(interaction, question) {
     const response = responses[randomInt(responses.length)]

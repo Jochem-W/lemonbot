@@ -1,4 +1,4 @@
-import { slashCommand, slashOption } from "../models/slashCommand.mjs"
+import { slashCommand } from "../models/slashCommand.mjs"
 import {
   tryFetchMember,
   userDisplayName,
@@ -9,8 +9,6 @@ import {
   EmbedBuilder,
   PermissionFlagsBits,
   RESTJSONErrorCodes,
-  SlashCommandStringOption,
-  SlashCommandUserOption,
 } from "discord.js"
 
 export const UnbanCommand = slashCommand({
@@ -18,20 +16,21 @@ export const UnbanCommand = slashCommand({
   description: "Remove a user's ban",
   defaultMemberPermissions: PermissionFlagsBits.BanMembers,
   dmPermission: false,
+  nsfw: false,
   options: [
-    slashOption(
-      true,
-      new SlashCommandUserOption()
-        .setName("user")
-        .setDescription("The target user"),
-    ),
-    slashOption(
-      false,
-      new SlashCommandStringOption()
-        .setName("reason")
-        .setDescription("The unban reason")
-        .setMaxLength(512),
-    ),
+    {
+      name: "user",
+      description: "The target user",
+      type: "user",
+      required: true,
+    },
+    {
+      name: "reason",
+      description: "The unban reason",
+      type: "string",
+      required: false,
+      maxLength: 512,
+    },
   ],
   async handle(interaction, user, reason) {
     const guild = await interactionGuild(interaction, true)
