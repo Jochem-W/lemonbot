@@ -352,8 +352,7 @@ function addOption(
       )
       break
     default:
-      // TODO
-      throw new Error()
+      throw new Error(`Invalid option type`)
   }
 
   return commandBuilder
@@ -413,8 +412,7 @@ function getOption<
         option.required,
       ) as SlashOptionValueTypeWithRequired<Type, Required>
     default:
-      // TODO
-      throw new Error()
+      throw new Error(`Invalid option type ${option.type}`)
   }
 }
 
@@ -498,8 +496,7 @@ export function slashCommand<
         const focused = interaction.options.getFocused(true)
         const option = data.options?.find((o) => o.name === focused.name)
         if (!option || !option.autocomplete) {
-          // TODO
-          throw new Error()
+          throw new Error(`Option ${option?.name} doesn't have autocomplete`)
         }
 
         await interaction.respond(
@@ -525,8 +522,7 @@ export function slashCommand<
       const subcommandName = interaction.options.getSubcommand(true)
       const command = list?.find((sub) => sub.name === subcommandName)
       if (!command) {
-        // TODO
-        throw new Error()
+        throw new Error(`Invalid subcommand ${subcommandName}`)
       }
 
       await command.handle(interaction)
@@ -544,8 +540,7 @@ export function slashCommand<
       const subcommandName = interaction.options.getSubcommand(true)
       const command = list?.find((sub) => sub.name === subcommandName)
       if (!command) {
-        // TODO
-        throw new Error()
+        throw new Error(`Invalid subcommand ${subcommandName}`)
       }
 
       await command.autocomplete(interaction)
@@ -601,8 +596,7 @@ export function slashSubcommand<
       const focused = interaction.options.getFocused(true)
       const option = options?.find((o) => o.name === focused.name)
       if (!option || !option.autocomplete) {
-        // TODO
-        throw new Error()
+        throw new Error(`Option ${option?.name} doesn't have autocomplete`)
       }
 
       await interaction.respond(
