@@ -60,9 +60,6 @@ export const BanNewAccountsHandler = handler({
           inline: true,
         },
       )
-      .setFooter({
-        text: "If you have any questions, please DM @lucasfloof on Discord or Twitter.",
-      })
       .setColor(Colours.red[500])
 
     if (member.guild.vanityURLCode) {
