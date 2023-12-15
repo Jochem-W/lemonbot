@@ -207,8 +207,11 @@ export class InvalidEmbedError extends CustomError {
   }
 }
 
-export async function logError(client: Client<true>, error: Error) {
+export async function logError(client: Client, error: Error) {
   console.error(error)
+  if (!client.isReady()) {
+    return
+  }
 
   const channel = await client.channels.fetch(Config.channels.error, {
     allowUnknownGuild: true,

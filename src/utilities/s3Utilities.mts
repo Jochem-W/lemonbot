@@ -1,3 +1,4 @@
+import { Readable } from "stream"
 import { S3 } from "../clients.mjs"
 import { DownloadError } from "../errors.mjs"
 import { Config } from "../models/config.mjs"
@@ -24,7 +25,7 @@ export async function uploadAttachment(
   }
 
   if (response.body) {
-    options.params.Body = response.body
+    options.params.Body = response.body as unknown as Readable
   }
 
   if (attachment.contentType) {

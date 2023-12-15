@@ -28,7 +28,7 @@ function getNextTime() {
   return next
 }
 
-async function sendQotw(client: Client) {
+async function sendQotw(client: Client<true>) {
   console.log(32)
   const channel = await fetchChannel(
     client,
