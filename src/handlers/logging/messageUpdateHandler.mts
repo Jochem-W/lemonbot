@@ -89,11 +89,24 @@ export const MessageUpdateHandler = handler({
       .setTimestamp(newMessage.editedAt)
 
     if (newMessage.attachments.size > 0) {
+      const longAttachments = newMessage.attachments
+        .map((a) => `- ${hyperlink(a.name, a.url)}`)
+        .join("\n")
+      const shorterAttachments = newMessage.attachments
+        .map((a) => `- ${a.url}`)
+        .join("\n")
+      const shortestAttachments = newMessage.attachments
+        .map((a) => `- ${a.name}`)
+        .join("\n")
+
       firstEmbed.addFields({
         name: "Attachments",
-        value: newMessage.attachments
-          .map((a) => `- ${hyperlink(a.name, a.url)}`)
-          .join("\n"),
+        value:
+          longAttachments.length <= 1024
+            ? longAttachments
+            : shorterAttachments.length <= 1024
+              ? shorterAttachments
+              : shortestAttachments,
       })
     }
 

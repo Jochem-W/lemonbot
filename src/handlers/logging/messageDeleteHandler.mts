@@ -63,11 +63,24 @@ export const MessageDeleteHandler = handler({
       .setTimestamp(Date.now())
 
     if (message.attachments.size > 0) {
-      firstEmbed.setFields({
+      const longAttachments = message.attachments
+        .map((a) => `- ${hyperlink(a.name, a.url)}`)
+        .join("\n")
+      const shorterAttachments = message.attachments
+        .map((a) => `- ${a.url}`)
+        .join("\n")
+      const shortestAttachments = message.attachments
+        .map((a) => `- ${a.name}`)
+        .join("\n")
+
+      firstEmbed.addFields({
         name: "Attachments",
-        value: message.attachments
-          .map((a) => `- ${hyperlink(a.name, a.url)}`)
-          .join("\n"),
+        value:
+          longAttachments.length <= 1024
+            ? longAttachments
+            : shorterAttachments.length <= 1024
+              ? shorterAttachments
+              : shortestAttachments,
       })
     }
 
