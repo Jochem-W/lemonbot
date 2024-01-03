@@ -64,6 +64,8 @@ export const MessageUpdateHandler = handler({
       firstEmbed.setURL(null)
     }
 
+    console.log(newMessage.guildId, newMessage.channelId, newMessage.id)
+
     const member = await tryFetchMember(logChannel.guild, newMessage.author)
 
     firstEmbed
