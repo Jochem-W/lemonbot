@@ -21,6 +21,7 @@ import { PurgeCommand } from "./commands/purgeCommand.mjs"
 import { QotwCommand } from "./commands/qotwCommand.mjs"
 import { RpsCommand } from "./commands/rpsCommand.mjs"
 import { SayCommand } from "./commands/sayCommand.mjs"
+import { SlowmodeCommand } from "./commands/slowmodeCommand.mjs"
 import { SocialCommand } from "./commands/socialsCommand.mjs"
 import { ToggleInvitesCommand } from "./commands/toggleInvitesCommand.mjs"
 import { UnbanCommand } from "./commands/unbanCommand.mjs"
@@ -49,10 +50,11 @@ export const SlashCommands: Command<ApplicationCommandType.ChatInput>[] = [
   PurgeCommand,
   QotwCommand,
   RpsCommand,
-  SocialCommand,
   SayCommand,
-  UnbanCommand,
+  SlowmodeCommand,
+  SocialCommand,
   ToggleInvitesCommand,
+  UnbanCommand,
 ]
 
 export const MessageContextMenuCommands: Command<ApplicationCommandType.Message>[] =
