@@ -6,6 +6,7 @@ export const ToggleInvitesCommand = slashCommand({
   description: "Command group",
   dmPermission: false,
   defaultMemberPermissions: PermissionFlagsBits.Administrator,
+  nsfw: false,
   subcommands: [
     slashSubcommand({
       name: "invites",
