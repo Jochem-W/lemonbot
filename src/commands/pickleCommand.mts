@@ -2,7 +2,7 @@ import { Colours } from "../colours.mjs"
 import { NoDataError } from "../errors.mjs"
 import { slashCommand } from "../models/slashCommand.mjs"
 import { randomInt } from "crypto"
-import { EmbedBuilder } from "discord.js"
+import { EmbedBuilder, PermissionFlagsBits } from "discord.js"
 
 const images = [
   "https://cdn.discordapp.com/attachments/1125446368002052186/1127299650563616828/2C326BCB-ED8B-4AA8-B8FF-EF5742B11412.jpg",
@@ -24,8 +24,8 @@ const images = [
 export const PickleCommand = slashCommand({
   name: "pickle",
   description: "Sends a picture of Lemons's bird Pickle",
-  defaultMemberPermissions: null,
-  dmPermission: true,
+  defaultMemberPermissions: PermissionFlagsBits.ModerateMembers,
+  dmPermission: false,
   nsfw: false,
   async handle(interaction) {
     const image = images[randomInt(images.length)]

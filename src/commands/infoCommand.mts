@@ -22,8 +22,8 @@ import {
 export const InfoCommand = slashCommand({
   name: "info",
   description: "Show information about various server-related things",
-  defaultMemberPermissions: null,
-  dmPermission: true,
+  defaultMemberPermissions: PermissionFlagsBits.ModerateMembers,
+  dmPermission: false,
   nsfw: false,
   subcommands: [
     slashSubcommand({

@@ -1,11 +1,12 @@
 import { avatarMessage } from "../messages/avatarMessage.mjs"
 import { slashCommand } from "../models/slashCommand.mjs"
+import { PermissionFlagsBits } from "discord.js"
 
 export const AvatarCommand = slashCommand({
   name: "avatar",
   description: "Show a user's avatar",
-  defaultMemberPermissions: null,
-  dmPermission: true,
+  defaultMemberPermissions: PermissionFlagsBits.ModerateMembers,
+  dmPermission: false,
   nsfw: false,
   options: [
     {
