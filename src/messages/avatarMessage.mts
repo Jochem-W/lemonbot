@@ -72,5 +72,5 @@ export async function avatarMessage(
 
   embed.setAuthor(author)
 
-  return { embeds: [embed], components: [actionRow] }
+  return { embeds: [embed], components: [actionRow], ephemeral: true }
 }

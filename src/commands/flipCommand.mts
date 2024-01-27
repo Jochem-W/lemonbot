@@ -43,7 +43,7 @@ export const FlipCommand = slashCommand({
       .setThumbnail(
         "https://cdn.discordapp.com/attachments/1125446368002052186/1125824626216423424/coinflip.gif",
       )
-    await interaction.reply({ embeds: [embed] })
+    await interaction.reply({ embeds: [embed], ephemeral: true })
 
     await setTimeout(2000)
 

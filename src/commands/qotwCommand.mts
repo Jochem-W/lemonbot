@@ -34,6 +34,7 @@ const editModal = modal({
 
     await Drizzle.update(qotw).set({ body }).where(eq(qotw.id, intId))
     await interaction.reply({
+      ephemeral: true,
       embeds: [
         new EmbedBuilder()
           .setTitle("Question edited")
@@ -91,7 +92,7 @@ export const QotwCommand = slashCommand({
             .setFooter({ text: question.id.toString(10) })
         }
 
-        await interaction.reply({ embeds: [embed] })
+        await interaction.reply({ embeds: [embed], ephemeral: true })
       },
     }),
     slashSubcommand({
@@ -122,7 +123,7 @@ export const QotwCommand = slashCommand({
             .setFooter({ text: question.id.toString(10) })
         }
 
-        await interaction.reply({ embeds: [embed] })
+        await interaction.reply({ embeds: [embed], ephemeral: true })
       },
     }),
     slashSubcommand({
@@ -163,6 +164,7 @@ export const QotwCommand = slashCommand({
         }
 
         await interaction.reply({
+          ephemeral: true,
           embeds: [
             new EmbedBuilder()
               .setTitle("Questions")

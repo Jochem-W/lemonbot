@@ -56,5 +56,5 @@ export function characterMessage(
     )
     .setColor(character.colour)
 
-  return { embeds }
+  return { embeds, ephemeral: true }
 }

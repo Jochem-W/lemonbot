@@ -15,6 +15,7 @@ export const ExemptCommand = slashCommand({
     Exemptions.add(user.id)
 
     await interaction.reply({
+      ephemeral: true,
       embeds: [
         new EmbedBuilder()
           .setTitle("Exempted a user from the account age requirement")

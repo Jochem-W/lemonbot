@@ -73,6 +73,7 @@ async function generate(userId: Snowflake) {
   }
 
   return {
+    ephemeral: true,
     components: [
       new ActionRowBuilder<MessageActionRowComponentBuilder>().setComponents(
         new ButtonBuilder()

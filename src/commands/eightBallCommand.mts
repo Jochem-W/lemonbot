@@ -65,6 +65,7 @@ export const EightBallCommand = slashCommand({
     const member = await interactionMember(interaction)
 
     await interaction.reply({
+      ephemeral: true,
       embeds: [
         new EmbedBuilder()
           .setAuthor({
@@ -78,8 +79,8 @@ export const EightBallCommand = slashCommand({
             response.type === "affirmative"
               ? Colours.green[500]
               : response.type === "non-committal"
-              ? Colours.amber[500]
-              : Colours.red[500],
+                ? Colours.amber[500]
+                : Colours.red[500],
           )
           .setTimestamp(Date.now()),
       ],

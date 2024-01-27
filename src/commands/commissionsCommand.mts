@@ -31,6 +31,7 @@ export const CommissionsCommand = slashCommand({
     )
 
     await interaction.reply({
+      ephemeral: true,
       embeds: [
         new EmbedBuilder()
           .setTitle("ZestyLemonss Commissions")

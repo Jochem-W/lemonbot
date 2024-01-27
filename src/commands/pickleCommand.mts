@@ -34,6 +34,7 @@ export const PickleCommand = slashCommand({
     }
 
     await interaction.reply({
+      ephemeral: true,
       embeds: [
         new EmbedBuilder()
           .setTitle("piggle!😊😊")

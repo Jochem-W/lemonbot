@@ -13,7 +13,7 @@ export const CatCommand = slashCommand({
   dmPermission: true,
   nsfw: false,
   async handle(interaction) {
-    await interaction.deferReply()
+    await interaction.deferReply({ ephemeral: true })
 
     const response = await fetch(url)
     if (!response.ok) {

@@ -95,5 +95,5 @@ export async function userInfoMessage(interaction: Interaction, user?: User) {
 
   embed.setDescription(lines.join("\n"))
 
-  return { embeds: [embed] }
+  return { embeds: [embed], ephemeral: true }
 }

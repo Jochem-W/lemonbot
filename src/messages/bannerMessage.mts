@@ -40,7 +40,7 @@ export async function bannerMessage(interaction: Interaction, user?: User) {
   const userBanner = user.bannerURL({ size: 4096 })
   if (!userBanner) {
     embed.setDescription("This user has no banner")
-    return { embeds: [embed] }
+    return { embeds: [embed], ephemeral: true }
   }
 
   embed.setImage(userBanner)
@@ -54,5 +54,5 @@ export async function bannerMessage(interaction: Interaction, user?: User) {
         .setURL(userBanner),
     )
 
-  return { embeds: [embed], components: [actionRow] }
+  return { embeds: [embed], components: [actionRow], ephemeral: true }
 }

@@ -72,7 +72,6 @@ const editCharacterDescription = modal({
     }
 
     await interaction.reply({
-      ephemeral: true,
       ...characterMessage(interaction.client, data),
     })
 
@@ -121,7 +120,6 @@ const editCharacterMeta = modal({
     }
 
     await interaction.reply({
-      ephemeral: true,
       ...characterMessage(interaction.client, data),
     })
 

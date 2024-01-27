@@ -78,6 +78,6 @@ export const RpsCommand = slashCommand({
         .setColor(Colours.green[500])
     }
 
-    await interaction.reply({ embeds: [embed] })
+    await interaction.reply({ embeds: [embed], ephemeral: true })
   },
 })

@@ -133,7 +133,7 @@ export const InfoCommand = slashCommand({
           })
         }
 
-        await interaction.reply({ embeds: [embed] })
+        await interaction.reply({ embeds: [embed], ephemeral: true })
       },
     }),
     slashSubcommand({
@@ -165,6 +165,7 @@ export const InfoCommand = slashCommand({
           interaction.client.emojis.cache.find((e) => e.name === id)
         if (!emoji || emoji.roles.cache.size > 0) {
           await interaction.reply({
+            ephemeral: true,
             embeds: [
               new EmbedBuilder()
                 .setTitle("Invalid emoji")
@@ -177,6 +178,7 @@ export const InfoCommand = slashCommand({
 
         const author = await emoji.fetchAuthor()
         await interaction.reply({
+          ephemeral: true,
           embeds: [
             new EmbedBuilder()
               .setTitle(
@@ -222,7 +224,7 @@ export const InfoCommand = slashCommand({
           })
         }
 
-        await interaction.reply({ embeds: [embed] })
+        await interaction.reply({ embeds: [embed], ephemeral: true })
       },
     }),
   ],

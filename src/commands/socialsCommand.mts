@@ -26,6 +26,7 @@ export const SocialCommand = slashCommand({
     )
 
     await interaction.reply({
+      ephemeral: true,
       embeds: [
         new EmbedBuilder()
           .setTitle(
