@@ -22,6 +22,7 @@ import { QotwCommand } from "./commands/qotwCommand.mjs"
 import { RpsCommand } from "./commands/rpsCommand.mjs"
 import { SayCommand } from "./commands/sayCommand.mjs"
 import { SocialCommand } from "./commands/socialsCommand.mjs"
+import { ToggleInvitesCommand } from "./commands/toggleInvitesCommand.mjs"
 import { UnbanCommand } from "./commands/unbanCommand.mjs"
 import { UserInfoContextCommand } from "./commands/userInfoContextCommand.mjs"
 import type { Command } from "./types/command.mjs"
@@ -51,6 +52,7 @@ export const SlashCommands: Command<ApplicationCommandType.ChatInput>[] = [
   SocialCommand,
   SayCommand,
   UnbanCommand,
+  ToggleInvitesCommand,
 ]
 
 export const MessageContextMenuCommands: Command<ApplicationCommandType.Message>[] =
