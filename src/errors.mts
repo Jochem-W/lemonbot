@@ -213,9 +213,7 @@ export async function logError(client: Client, error: Error) {
     return
   }
 
-  const channel = await client.channels.fetch(Config.channels.error, {
-    allowUnknownGuild: true,
-  })
+  const channel = await client.channels.fetch(Config.channels.error)
   if (!channel?.isTextBased()) {
     console.error("Incorrect error channel")
     return

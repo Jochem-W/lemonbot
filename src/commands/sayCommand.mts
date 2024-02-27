@@ -52,9 +52,7 @@ export const SayCommand = slashCommand({
     if (!channel) {
       channel =
         interaction.channel ??
-        (await interaction.client.channels.fetch(interaction.channelId, {
-          allowUnknownGuild: true,
-        }))
+        (await interaction.client.channels.fetch(interaction.channelId))
     }
 
     const files = []
