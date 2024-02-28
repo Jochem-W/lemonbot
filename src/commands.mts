@@ -4,7 +4,6 @@ import { AvatarCommand } from "./commands/avatarCommand.mjs"
 import { AvatarContextCommand } from "./commands/avatarContextCommand.mjs"
 import { BannerCommand } from "./commands/bannerCommand.mjs"
 import { BannerContextCommand } from "./commands/bannerContextCommand.mjs"
-import { BlueskyCommand } from "./commands/blueskyCommand.mjs"
 import { CatCommand } from "./commands/catCommand.mjs"
 import { CharactersCommand } from "./commands/charactersCommand.mjs"
 import { CommissionsCommand } from "./commands/commissionsCommand.mjs"
@@ -34,7 +33,6 @@ export const SlashCommands: Command<ApplicationCommandType.ChatInput>[] = [
   ArtRulesCommand,
   AvatarCommand,
   BannerCommand,
-  BlueskyCommand,
   CatCommand,
   CharactersCommand,
   CommissionsCommand,
