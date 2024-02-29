@@ -10,11 +10,9 @@ export const PreparePrune = handler({
   event: "ready",
   once: true,
   async handle(client) {
-    console.log("Fetching guild")
     const guild = await client.guilds.fetch(Config.guild)
 
-    console.log("Fetching channels")
-    for (const [, channel] of await guild.channels.fetch()) {
+    for (const [, channel] of guild.channels.cache) {
       if (!channel?.isTextBased()) {
         return
       }
