@@ -31,6 +31,10 @@ for (const handler of Handlers) {
   if (handler.once) {
     discord.once(handler.event, async (...args) => {
       try {
+        if (handler.event === "ready") {
+          await new Promise((r) => setTimeout(r, 5000))
+        }
+
         await handler.handle(...args)
       } catch (e) {
         if (!(e instanceof Error)) {
@@ -45,6 +49,10 @@ for (const handler of Handlers) {
 
   discord.on(handler.event, async (...args) => {
     try {
+      if (handler.event === "ready") {
+        await new Promise((r) => setTimeout(r, 5000))
+      }
+
       await handler.handle(...args)
     } catch (e) {
       if (!(e instanceof Error)) {
