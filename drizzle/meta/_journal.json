@@ -43,6 +43,13 @@
       "when": 1697660513166,
       "tag": "0005_bent_xorn",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "5",
+      "when": 1709224392024,
+      "tag": "0006_far_wallop",
+      "breakpoints": true
     }
   ]
 }

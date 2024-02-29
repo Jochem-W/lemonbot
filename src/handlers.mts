@@ -19,6 +19,7 @@ import { VoiceLogsHandler } from "./handlers/logging/voiceLogsHandler.mjs"
 import { MediaRoleHandler } from "./handlers/mediaRoleHandler.mjs"
 import { MediaRoleStartupHandler } from "./handlers/mediaRoleStartupHandler.mjs"
 import { NoStickersHandler } from "./handlers/noStickersHandler.mjs"
+import { PreparePrune } from "./handlers/preparePrune.mjs"
 import { QotwHandler } from "./handlers/qotwHandler.mjs"
 import { RegisterCommands } from "./handlers/registerCommands.mjs"
 import { StartupHandler } from "./handlers/startupHandler.mjs"
@@ -40,6 +41,7 @@ export const Handlers: Handler<keyof ClientEvents>[] = [
   LemonMentionHandler,
   MediaRoleHandler,
   MediaRoleStartupHandler,
+  PreparePrune,
   QotwHandler,
   RegisterCommands,
   StartupHandler,

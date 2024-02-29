@@ -1,4 +1,11 @@
-import { integer, pgTable, serial, text, timestamp } from "drizzle-orm/pg-core"
+import {
+  integer,
+  pgTable,
+  primaryKey,
+  serial,
+  text,
+  timestamp,
+} from "drizzle-orm/pg-core"
 import { createSelectSchema } from "drizzle-zod"
 
 export const artboard = pgTable("artboard", {
@@ -37,6 +44,25 @@ export const character = pgTable("character", {
 export const bluesky = pgTable("bluesky", {
   code: text("code").primaryKey(),
   userId: text("userId").notNull(),
+})
+
+export const pruneMembers = pgTable(
+  "prune_members",
+  {
+    user: text("user"),
+    newest: timestamp("newest").notNull(),
+    channel: text("channel"),
+  },
+  (table) => {
+    return {
+      pk: primaryKey({ columns: [table.user, table.channel] }),
+    }
+  },
+)
+
+export const pruneProgress = pgTable("prune_progress", {
+  channel: text("channel").primaryKey(),
+  before: text("before").notNull().unique(),
 })
 
 export const selectCharacterSchema = createSelectSchema(character)
