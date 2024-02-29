@@ -16,6 +16,8 @@ export const PreparePrune = handler({
         return
       }
 
+      console.log("Fetching messages in", channel?.id)
+
       const [status] = await Drizzle.select({ before: pruneProgress.before })
         .from(pruneProgress)
         .where(eq(pruneProgress.channel, channel.id))
@@ -24,6 +26,7 @@ export const PreparePrune = handler({
         limit: 100,
       }
       if (status?.before) {
+        console.log("Resuming from", status.before)
         options.before = status.before
       }
 
@@ -35,6 +38,8 @@ export const PreparePrune = handler({
         if (!oldestMessage) {
           break
         }
+
+        console.log("Fetched until", oldestMessage.id)
 
         for (const [, message] of messages) {
           await Drizzle.insert(pruneMembers)
