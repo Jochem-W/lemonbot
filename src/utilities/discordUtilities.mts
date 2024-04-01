@@ -85,7 +85,8 @@ export async function tryFetchMember(
   } catch (e) {
     if (
       e instanceof DiscordAPIError &&
-      e.code === RESTJSONErrorCodes.UnknownMember
+      (e.code === RESTJSONErrorCodes.UnknownMember ||
+        e.code === RESTJSONErrorCodes.UnknownUser)
     ) {
       return null
     }
