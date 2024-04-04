@@ -24,7 +24,7 @@
     "@tsconfig/strictest": "^2.0.5",
     "@types/gm": "^1.25.4",
     "@types/luxon": "^3.4.2",
-    "@types/node": "^20.12.2",
+    "@types/node": "^20.12.4",
     "@types/whatwg-mimetype": "^3.0.2",
     "@typescript-eslint/eslint-plugin": "^7.4.0",
     "@typescript-eslint/parser": "^7.4.0",
