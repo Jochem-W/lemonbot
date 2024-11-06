@@ -8,7 +8,7 @@ The bot uses Docker to ensure a consistent build and runtime environment.
 
 1. Install the latest version of Docker and Docker Compose
 2. Clone the repository
-3. Create and edit `.env`, `.env.db` and `config.json`
+3. Edit and move `example.env` and create `config.json`
 
 ## Running the bot
 
