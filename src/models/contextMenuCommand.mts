@@ -7,6 +7,7 @@ import {
   type User,
   type UserContextMenuCommandInteraction,
   ContextMenuCommandType,
+  InteractionContextType,
 } from "discord.js"
 
 type CustomContextMenuCommandType =
@@ -42,11 +43,19 @@ export function contextMenuCommand<T extends CustomContextMenuCommandType>({
   transform?: (builder: ContextMenuCommandBuilder) => void
   handle: (interaction: Interaction<T>, value: Value<T>) => Promise<void>
 }) {
+  const contexts = [InteractionContextType.Guild]
+  if (dmPermission) {
+    contexts.push(
+      InteractionContextType.PrivateChannel,
+      InteractionContextType.BotDM,
+    )
+  }
+
   const builder = new ContextMenuCommandBuilder()
     .setName(name)
     .setType(type as ContextMenuCommandType)
     .setDefaultMemberPermissions(defaultMemberPermissions)
-    .setDMPermission(dmPermission)
+    .setContexts(contexts)
 
   if (transform) {
     transform(builder)

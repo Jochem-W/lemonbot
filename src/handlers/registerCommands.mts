@@ -35,7 +35,6 @@ export const RegisterCommands = handler({
         ? Routes.applicationCommands(Config.applicationId)
         : Routes.applicationGuildCommands(Config.applicationId, Config.guild)
 
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const applicationCommands = (await client.rest.put(route, {
       body: commandsBody,
     })) as RESTPutAPIApplicationGuildCommandsResult

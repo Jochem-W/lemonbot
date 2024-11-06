@@ -53,11 +53,7 @@ export const pruneMembers = pgTable(
     newest: timestamp("newest").notNull(),
     channel: text("channel"),
   },
-  (table) => {
-    return {
-      pk: primaryKey({ columns: [table.user, table.channel] }),
-    }
-  },
+  (table) => [primaryKey({ columns: [table.user, table.channel] })],
 )
 
 export const pruneProgress = pgTable("prune_progress", {
