@@ -4,7 +4,6 @@ import { z } from "zod"
 const model = z
   .object({
     DISCORD_BOT_TOKEN: z.string(),
-    NODE_ENV: z.string().optional().default("development"),
     DATABASE_URL: z.string(),
     S3_REGION: z.string(),
     S3_ENDPOINT: z.string(),

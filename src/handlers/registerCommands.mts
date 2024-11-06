@@ -8,7 +8,6 @@ import { CommandNotFoundError } from "../errors.mjs"
 import { Config } from "../models/config.mjs"
 import { handler } from "../models/handler.mjs"
 import type { Command } from "../types/command.mjs"
-import { Variables } from "../variables.mjs"
 import {
   Routes,
   type RESTPutAPIApplicationGuildCommandsJSONBody,
@@ -30,14 +29,12 @@ export const RegisterCommands = handler({
       console.log(`Constructed command '${command.builder.name}'`)
     }
 
-    const route =
-      Variables.nodeEnv === "production"
-        ? Routes.applicationCommands(Config.applicationId)
-        : Routes.applicationGuildCommands(Config.applicationId, Config.guild)
-
-    const applicationCommands = (await client.rest.put(route, {
-      body: commandsBody,
-    })) as RESTPutAPIApplicationGuildCommandsResult
+    const applicationCommands = (await client.rest.put(
+      Routes.applicationCommands(Config.applicationId),
+      {
+        body: commandsBody,
+      },
+    )) as RESTPutAPIApplicationGuildCommandsResult
     console.log("Commands updated")
     for (const applicationCommand of applicationCommands) {
       let command: Command<ApplicationCommandType> | undefined
