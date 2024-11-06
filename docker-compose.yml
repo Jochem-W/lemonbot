@@ -23,4 +23,4 @@ services:
     restart: unless-stopped
 
 volumes:
-  lemonbot-db:
+  lemonbot-data:
