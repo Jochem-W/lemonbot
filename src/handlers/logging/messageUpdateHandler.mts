@@ -20,7 +20,7 @@ import {
   ButtonStyle,
   channelMention,
 } from "discord.js"
-import MIMEType from "whatwg-mimetype"
+import { MIMEType } from "util"
 
 let logChannel: TextChannel | undefined
 

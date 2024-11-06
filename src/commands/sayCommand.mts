@@ -9,7 +9,7 @@ import {
   PermissionFlagsBits,
 } from "discord.js"
 import type { Stream } from "stream"
-import MIMEType from "whatwg-mimetype"
+import { MIMEType } from "util"
 
 export const SayCommand = slashCommand({
   name: "say",
@@ -92,7 +92,7 @@ export const SayCommand = slashCommand({
           .setTitle("Message sent")
           .setURL(message.url)
           .setImage(
-            mimeType?.type === "image" ? sentAttachment?.url ?? null : null,
+            mimeType?.type === "image" ? (sentAttachment?.url ?? null) : null,
           )
           .setDescription(content)
           .setFooter({ text: message.id })

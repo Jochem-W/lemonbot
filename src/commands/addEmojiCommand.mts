@@ -8,7 +8,7 @@ import {
   PermissionFlagsBits,
   formatEmoji,
 } from "discord.js"
-import MIMEType from "whatwg-mimetype"
+import { MIMEType } from "util"
 
 const emojiMimeTypes = ["png", "gif", "jpeg"]
 const maxEmojiSize = 256 * 1000

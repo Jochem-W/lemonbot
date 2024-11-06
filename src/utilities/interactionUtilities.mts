@@ -10,7 +10,7 @@ import {
   type GuildMember,
   type Interaction,
   User,
-  type TextBasedChannel,
+  SendableChannels,
 } from "discord.js"
 
 type Return<Type, Force extends boolean> = Force extends true
@@ -66,8 +66,8 @@ export async function interactionMember<T extends boolean>(
 export async function interactionChannel<T extends boolean>(
   interaction: Interaction,
   force?: T,
-): Promise<Return<TextBasedChannel, T>> {
-  if (interaction.channel) {
+): Promise<Return<SendableChannels, T>> {
+  if (interaction.channel?.isSendable()) {
     return interaction.channel
   }
 
@@ -76,7 +76,7 @@ export async function interactionChannel<T extends boolean>(
       throw new GuildOnlyError()
     }
 
-    return null as Return<TextBasedChannel, T>
+    return null as Return<SendableChannels, T>
   }
 
   const channel = await interaction.client.channels.fetch(interaction.channelId)
@@ -85,15 +85,15 @@ export async function interactionChannel<T extends boolean>(
       throw new ChannelNotFoundError(interaction.channelId)
     }
 
-    return null as Return<TextBasedChannel, T>
+    return null as Return<SendableChannels, T>
   }
 
-  if (!channel.isTextBased()) {
+  if (!channel.isSendable()) {
     if (force) {
       throw new InvalidChannelTypeError(channel)
     }
 
-    return null as Return<TextBasedChannel, T>
+    return null as Return<SendableChannels, T>
   }
 
   return channel

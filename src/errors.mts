@@ -12,7 +12,7 @@ import {
   ComponentType,
   Client,
 } from "discord.js"
-import type MIMEType from "whatwg-mimetype"
+import { MIMEType } from "util"
 
 class CustomError extends Error {
   public constructor(message: string) {
@@ -214,7 +214,7 @@ export async function logError(client: Client, error: Error) {
   }
 
   const channel = await client.channels.fetch(Config.channels.error)
-  if (!channel?.isTextBased()) {
+  if (!channel?.isSendable()) {
     console.error("Incorrect error channel")
     return
   }
